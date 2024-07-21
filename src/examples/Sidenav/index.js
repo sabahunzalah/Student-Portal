@@ -161,14 +161,23 @@ function Sidenav({ color, brandName, routes, ...rest }) {
             <Icon sx={{ fontWeight: "bold" }}>close</Icon>
           </MDTypography>
         </MDBox>
-        <MDBox component={NavLink} to="/" display="flex" alignItems="center">
+        <MDBox component={NavLink} to="/" display="flex">
           {/* {brand && <MDBox component="img" src="smit-stud.png" alt="Brand" width="1rem" />} */}
           <MDBox
             width={!brandName && "100%"}
             sx={(theme) => sidenavLogoLabel(theme, { miniSidenav })}
           >
-            <MDTypography component="h6" variant="button" fontWeight="medium" color={textColor}>
-              {"SMIT Admission Portal"}
+            <MDTypography
+              component="h6"
+              variant="button"
+              fontWeight="bold"
+              alignItems="center"
+              color={textColor}
+            >
+              {"SMIT "}
+              <MDTypography component="h6" variant="button" fontWeight="medium" color={textColor}>
+                {" Admission Portal"}
+              </MDTypography>
             </MDTypography>
           </MDBox>
         </MDBox>
