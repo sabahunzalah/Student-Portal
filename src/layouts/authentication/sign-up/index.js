@@ -40,6 +40,9 @@ import CoverLayout from "layouts/authentication/components/CoverLayout";
 import bgImage from "assets/images/register.avif";
 import logo from "assets/images/smit-stud.png";
 function Cover() {
+  const handleNav = () => {
+    window.location.href = "/dashboard";
+  };
   return (
     <CoverLayout image={bgImage}>
       <Card>
@@ -55,9 +58,16 @@ function Cover() {
           textAlign="center"
         >
           <MDBox variant="contained" circular bgColor="light" borderRadius="sm" p={0}>
-            <img src={logo} style={{ width: "150px", height: "100px" }} />
+            <img src={logo} style={{ width: "150px", height: "100px" }} onClick={handleNav} />
           </MDBox>
-          <MDTypography variant="h3" fontWeight="medium" color="success" my={0}>
+          <MDTypography
+            variant="h3"
+            fontWeight="medium"
+            color="success"
+            my={0}
+            component={Link}
+            to="/dashboard"
+          >
             Sign Up
           </MDTypography>
           <Grid container spacing={3} justifyContent="center" sx={{ mt: 0, mb: 0 }}>
