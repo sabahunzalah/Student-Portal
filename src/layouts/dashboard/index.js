@@ -47,14 +47,15 @@ function Dashboard() {
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="dark"
-                icon="weekend"
-                title="Bookings"
-                count={281}
-                percentage={{
-                  color: "success",
-                  amount: "+55%",
-                  label: "than lask week",
-                }}
+                icon=""
+                title="Success Stories"
+
+                // count={281}
+                // percentage={{
+                //   color: "success",
+                //   amount: "+55%",
+                //   label: "than lask week",
+                // }}
               />
             </MDBox>
           </Grid>
