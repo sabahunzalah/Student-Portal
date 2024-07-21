@@ -37,14 +37,15 @@ import GoogleIcon from "@mui/icons-material/Google";
 import CoverLayout from "layouts/authentication/components/CoverLayout";
 
 // Images
-import bgImage from "assets/images/register.avif";
+import bgImage from "assets/images/Student-logo.jpg";
 import logo from "assets/images/smit-stud.png";
+import BasicLayout from "../components/BasicLayout";
 function Cover() {
   const handleNav = () => {
     window.location.href = "/dashboard";
   };
   return (
-    <CoverLayout image={bgImage}>
+    <BasicLayout image={bgImage}>
       <Card>
         <MDBox
           variant="contained"
@@ -52,7 +53,7 @@ function Cover() {
           borderRadius="lg"
           coloredShadow="#8dc63f"
           mx={2}
-          mt={-14}
+          mt={-3}
           p={2}
           mb={1}
           textAlign="center"
@@ -146,7 +147,7 @@ function Cover() {
           </MDBox>
         </MDBox>
       </Card>
-    </CoverLayout>
+    </BasicLayout>
   );
 }
 

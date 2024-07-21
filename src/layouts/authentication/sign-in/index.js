@@ -64,7 +64,7 @@ function Basic() {
             <img src={logo} style={{ width: "150px", height: "100px" }} />
           </MDBox>
           <MDTypography variant="h3" fontWeight="medium" color="success" mt={2}>
-            Sign In
+            SignIn
           </MDTypography>
           <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
             <Grid item xs={3}>
