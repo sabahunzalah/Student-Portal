@@ -1,209 +1,204 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState } from "react";
-
-// @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-
-// Material Dashboard 2 React components
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import TextField from "@mui/material/TextField";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import MDAlert from "components/MDAlert";
-import MDButton from "components/MDButton";
-import MDSnackbar from "components/MDSnackbar";
-
-// Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import MDInput from "components/MDInput";
 
 function Register() {
-  const [successSB, setSuccessSB] = useState(false);
-  const [infoSB, setInfoSB] = useState(false);
-  const [warningSB, setWarningSB] = useState(false);
-  const [errorSB, setErrorSB] = useState(false);
+  // State for form fields
+  const [formValues, setFormValues] = useState({
+    city: "",
+    campus: "",
+    course: "",
+    classPreference: "",
+    fullName: "",
+    email: "",
+    cnic: "",
+    fatherName: "",
+    phone: "",
+    fatherCnic: "",
+    dob: "",
+    gender: "",
+    address: "",
+  });
 
-  const openSuccessSB = () => setSuccessSB(true);
-  const closeSuccessSB = () => setSuccessSB(false);
-  const openInfoSB = () => setInfoSB(true);
-  const closeInfoSB = () => setInfoSB(false);
-  const openWarningSB = () => setWarningSB(true);
-  const closeWarningSB = () => setWarningSB(false);
-  const openErrorSB = () => setErrorSB(true);
-  const closeErrorSB = () => setErrorSB(false);
-
-  const alertContent = (name) => (
-    <MDTypography variant="body2" color="white">
-      A simple {name} alert with{" "}
-      <MDTypography component="a" href="#" variant="body2" fontWeight="medium" color="white">
-        an example link
-      </MDTypography>
-      . Give it a click if you like.
-    </MDTypography>
-  );
-
-  const renderSuccessSB = (
-    <MDSnackbar
-      color="success"
-      icon="check"
-      title="Material Dashboard"
-      content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
-      open={successSB}
-      onClose={closeSuccessSB}
-      close={closeSuccessSB}
-      bgWhite
-    />
-  );
-
-  const renderInfoSB = (
-    <MDSnackbar
-      icon="notifications"
-      title="Material Dashboard"
-      content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
-      open={infoSB}
-      onClose={closeInfoSB}
-      close={closeInfoSB}
-    />
-  );
-
-  const renderWarningSB = (
-    <MDSnackbar
-      color="warning"
-      icon="star"
-      title="Material Dashboard"
-      content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
-      open={warningSB}
-      onClose={closeWarningSB}
-      close={closeWarningSB}
-      bgWhite
-    />
-  );
-
-  const renderErrorSB = (
-    <MDSnackbar
-      color="error"
-      icon="warning"
-      title="Material Dashboard"
-      content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
-      open={errorSB}
-      onClose={closeErrorSB}
-      close={closeErrorSB}
-      bgWhite
-    />
-  );
+  // Handle input change
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
 
   return (
     <DashboardLayout>
-      <DashboardNavbar />
       <MDBox mt={1} mb={3}>
-        <Grid>
+        <Grid container justifyContent="center">
           <Grid item xs={12} lg={8}>
             <Card>
               <MDBox p={2}>
                 <MDTypography variant="h2">Registration Form</MDTypography>
               </MDBox>
-              {/* <MDBox pt={2} px={2}>
-                <MDAlert color="primary" dismissible>
-                  {alertContent("primary")}
-                </MDAlert>
-                <MDAlert color="secondary" dismissible>
-                  {alertContent("secondary")}
-                </MDAlert>
-                <MDAlert color="success" dismissible>
-                  {alertContent("success")}
-                </MDAlert>
-                <MDAlert color="error" dismissible>
-                  {alertContent("error")}
-                </MDAlert>
-                <MDAlert color="warning" dismissible>
-                  {alertContent("warning")}
-                </MDAlert>
-                <MDAlert color="info" dismissible>
-                  {alertContent("info")}
-                </MDAlert>
-                <MDAlert color="light" dismissible>
-                  {alertContent("light")}
-                </MDAlert>
-                <MDAlert color="dark" dismissible>
-                  {alertContent("dark")}
-                </MDAlert>
-              </MDBox> */}
               <MDBox pt={1} pb={3} px={3} mb={5}>
                 <MDBox component="form" role="form">
-                  <MDBox mb={2}>
-                    <MDInput type="text" label="Name" variant="standard" fullWidth />
-                  </MDBox>
-                  <MDBox mb={2}>
-                    <MDInput type="email" label="Email" variant="standard" fullWidth />
-                  </MDBox>
-                  <MDBox mb={2}>
-                    <MDInput type="password" label="Password" variant="standard" fullWidth />
-                  </MDBox>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                      <FormControl fullWidth>
+                        <InputLabel>Select city</InputLabel>
+                        <Select name="city" value={formValues.city} onChange={handleInputChange}>
+                          <MenuItem value="Karachi">Karachi</MenuItem>
+                          <MenuItem value="Lahore">Lahore</MenuItem>
+                          <MenuItem value="Islamabad">Islamabad</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <FormControl fullWidth>
+                        <InputLabel>Select campus</InputLabel>
+                        <Select
+                          name="campus"
+                          value={formValues.campus}
+                          onChange={handleInputChange}
+                        >
+                          <MenuItem value="SMIT">SMIT</MenuItem>
+                          <MenuItem value="CHS">CHS</MenuItem>
+                          <MenuItem value="Korangi">Korangi</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <FormControl fullWidth>
+                        <InputLabel>Select course or event</InputLabel>
+                        <Select
+                          name="course"
+                          value={formValues.course}
+                          onChange={handleInputChange}
+                        >
+                          <MenuItem value="Software Engineering">Software Engineering</MenuItem>
+                          <MenuItem value="Data Science">Data Science</MenuItem>
+                          <MenuItem value="Web Development">Web Development</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <FormControl fullWidth>
+                        <InputLabel>Select class preference</InputLabel>
+                        <Select
+                          name="classPreference"
+                          value={formValues.classPreference}
+                          onChange={handleInputChange}
+                        >
+                          <MenuItem value="Morning">Morning</MenuItem>
+                          <MenuItem value="Evening">Evening</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        fullWidth
+                        label="Full name"
+                        name="fullName"
+                        value={formValues.fullName}
+                        onChange={handleInputChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        fullWidth
+                        label="Email"
+                        name="email"
+                        value={formValues.email}
+                        onChange={handleInputChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        fullWidth
+                        label="Phone"
+                        name="phone"
+                        value={formValues.phone}
+                        onChange={handleInputChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        fullWidth
+                        label="CNIC"
+                        name="cnic"
+                        value={formValues.cnic}
+                        onChange={handleInputChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        fullWidth
+                        label="Father's CNIC (optional)"
+                        name="fatherCnic"
+                        value={formValues.fatherCnic}
+                        onChange={handleInputChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        fullWidth
+                        label="Father's name"
+                        name="fatherName"
+                        value={formValues.fatherName}
+                        onChange={handleInputChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        fullWidth
+                        label="Date of birth"
+                        name="dob"
+                        type="date"
+                        value={formValues.dob}
+                        onChange={handleInputChange}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <FormControl fullWidth>
+                        <InputLabel>Select gender</InputLabel>
+                        <Select
+                          name="gender"
+                          value={formValues.gender}
+                          onChange={handleInputChange}
+                        >
+                          <MenuItem value="Male">Male</MenuItem>
+                          <MenuItem value="Female">Female</MenuItem>
+                          <MenuItem value="Other">Other</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        fullWidth
+                        label="Address"
+                        name="address"
+                        value={formValues.address}
+                        onChange={handleInputChange}
+                      />
+                    </Grid>
+                  </Grid>
                 </MDBox>
-              </MDBox>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} lg={8}>
-            <Card>
-              <MDBox p={2} lineHeight={0}>
-                <MDTypography variant="h5">Notifications</MDTypography>
-                <MDTypography variant="button" color="text" fontWeight="regular">
-                  Notifications on this page use Toasts from Bootstrap. Read more details here.
-                </MDTypography>
-              </MDBox>
-              <MDBox p={2}>
-                <Grid container spacing={3}>
-                  <Grid item xs={12} sm={6} lg={3}>
-                    <MDButton variant="gradient" color="success" onClick={openSuccessSB} fullWidth>
-                      success notification
-                    </MDButton>
-                    {renderSuccessSB}
-                  </Grid>
-                  <Grid item xs={12} sm={6} lg={3}>
-                    <MDButton variant="gradient" color="info" onClick={openInfoSB} fullWidth>
-                      info notification
-                    </MDButton>
-                    {renderInfoSB}
-                  </Grid>
-                  <Grid item xs={12} sm={6} lg={3}>
-                    <MDButton variant="gradient" color="warning" onClick={openWarningSB} fullWidth>
-                      warning notification
-                    </MDButton>
-                    {renderWarningSB}
-                  </Grid>
-                  <Grid item xs={12} sm={6} lg={3}>
-                    <MDButton variant="gradient" color="error" onClick={openErrorSB} fullWidth>
-                      error notification
-                    </MDButton>
-                    {renderErrorSB}
-                  </Grid>
-                </Grid>
               </MDBox>
             </Card>
           </Grid>
         </Grid>
       </MDBox>
-      <Footer />
     </DashboardLayout>
   );
 }
