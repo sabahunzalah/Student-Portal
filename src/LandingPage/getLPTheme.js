@@ -283,7 +283,7 @@ export default function getLPTheme(mode) {
           root: ({ theme, ownerState }) => ({
             boxSizing: "border-box",
             boxShadow: "none",
-            borderRadius: "10px",
+            borderRadius: "40px",
             textTransform: "none",
             "&:active": {
               transform: "scale(0.98)",
