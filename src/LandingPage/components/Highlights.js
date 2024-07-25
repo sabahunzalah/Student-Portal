@@ -11,31 +11,35 @@ import QueryStatsRoundedIcon from "@mui/icons-material/QueryStatsRounded";
 import SettingsSuggestRoundedIcon from "@mui/icons-material/SettingsSuggestRounded";
 import SupportAgentRoundedIcon from "@mui/icons-material/SupportAgentRounded";
 import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
+import Amna_image from "../../assets/images/amna1.png";
 
 const items = [
   {
-    icon: <SettingsSuggestRoundedIcon />,
-    title: "Adaptable performance",
-    description:
-      "Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.",
+    icon: <img />,
+    title: "Alan Kay",
+    description: "The best way to predict the future is to invent it",
   },
   {
     icon: <ConstructionRoundedIcon />,
-    title: "Built to last",
-    description:
-      "Experience unmatched durability that goes above and beyond with lasting investment.",
+    title: "Bill Gates",
+    description: "Software is a great combination between artistry and engineering.",
   },
   {
     icon: <ThumbUpAltRoundedIcon />,
-    title: "Great user experience",
-    description:
-      "Integrate our product into your routine with an intuitive and easy-to-use interface.",
+    title: "Zig Ziglar",
+    description: "You don't have to be great to start, but you have to start to be great.",
   },
   {
-    icon: <AutoFixHighRoundedIcon />,
-    title: "Innovative functionality",
+    icon: (
+      <img
+        src={Amna_image}
+        alt="Amna Shehzad"
+        style={{ width: "120px", height: "120px", borderRadius: "50%" }}
+      />
+    ),
+    title: "Amna Shehzad",
     description:
-      "Stay ahead with features that set new standards, addressing your evolving needs better than the rest.",
+      "The Youngest Web Developer of Pakistan. She has been Granted an Internship position by the University of Karachi",
   },
   {
     icon: <SupportAgentRoundedIcon />,
@@ -59,7 +63,7 @@ export default function Highlights() {
         pt: { xs: 4, sm: 12 },
         pb: { xs: 8, sm: 16 },
         color: "white",
-        bgcolor: "#06090a",
+        bgcolor: "#82bd3e",
       }}
     >
       <Container
@@ -77,12 +81,11 @@ export default function Highlights() {
             textAlign: { sm: "left", md: "center" },
           }}
         >
-          <Typography component="h2" variant="h4">
-           Motivational Blogs
+          <Typography component="h1" variant="h4">
+            Motivational Blogs
           </Typography>
-          <Typography variant="body1" sx={{ color: "grey.400" }}>
-            Explore why our product stands out: adaptability, durability, user-friendly design, and
-            innovation. Enjoy reliable customer support and precision in every detail.
+          <Typography variant="body1" sx={{ color: "black.400" }}>
+            Explore why SMIT stands out!
           </Typography>
         </Box>
         <Grid container spacing={2.5}>
@@ -103,12 +106,12 @@ export default function Highlights() {
                   backgroundColor: "grey.900",
                 }}
               >
-                <Box sx={{ opacity: "50%" }}>{item.icon}</Box>
+                <Box sx={{ opacity: "100%" }}>{item.icon}</Box>
                 <div>
-                  <Typography fontWeight="medium" gutterBottom>
+                  <Typography fontWeight="larger" gutterBottom>
                     {item.title}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: "grey.400" }}>
+                  <Typography variant="body2" sx={{ color: "#82BD3E" }}>
                     {item.description}
                   </Typography>
                 </div>
