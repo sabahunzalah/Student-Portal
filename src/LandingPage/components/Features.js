@@ -54,7 +54,7 @@ export default function Features() {
         <Grid item xs={12} md={6}>
           <div>
             <Typography component="h2" variant="h4" color="text.primary">
-              Product features
+              SMIT Motive
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{ mb: { xs: 2, sm: 4 } }}>
               Here you can provide a brief overview of the key features of the product. For example,
