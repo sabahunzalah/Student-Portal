@@ -142,7 +142,7 @@ function AppAppBar({ mode, toggleColorMode }) {
             }}
             style={{ width: "250px" }}
           >
-            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+            {/* <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} /> */}
             <Button
               // color="success"
               // variant="text"
