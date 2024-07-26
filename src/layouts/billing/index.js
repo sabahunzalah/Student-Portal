@@ -39,7 +39,7 @@ function Billing() {
       <MDBox mt={8}>
         <MDBox mb={3}>
           <Grid container spacing={3}>
-            <Grid item xs={12} lg={8}>
+            <Grid item xs={10} lg={8}>
               <Grid container spacing={3}>
                 <Grid item xs={12} xl={6}>
                   <MasterCard number={4562112245947852} holder="jack peterson" expires="11/22" />
