@@ -131,7 +131,7 @@ function SwipeableTextMobileStepper() {
           display: "flex",
           alignItems: "center",
           padding: "25px",
-          height: 50,
+          height: 60,
           pl: 2,
           bgcolor: "background.default",
         }}
