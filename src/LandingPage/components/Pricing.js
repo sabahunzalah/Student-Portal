@@ -70,7 +70,7 @@ export default function Pricing() {
         }}
       >
         <Typography component="h2" variant="h4" color="text.primary">
-        Courses
+          Courses
         </Typography>
         <Typography variant="body1" color="text.secondary">
           Quickly build an effective pricing table for your potential customers with this layout.{" "}
