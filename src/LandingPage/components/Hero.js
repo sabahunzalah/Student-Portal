@@ -14,11 +14,12 @@ export default function Hero() {
       id="hero"
       sx={(theme) => ({
         width: "100%",
+        border: "2px solid black",
         backgroundImage:
           theme.palette.mode === "light"
-            ? "linear-gradient(180deg, #CEE5FD, #FFF)"
+            ? "linear-gradient(180deg, #82bd3e, #FFF)"
             : `linear-gradient(#02294F, ${alpha("#090E10", 0.0)})`,
-        backgroundSize: "100% 20%",
+        backgroundSize: "100% 30%",
         backgroundRepeat: "no-repeat",
       })}
     >
@@ -42,7 +43,7 @@ export default function Hero() {
               fontSize: "clamp(3.5rem, 10vw, 4rem)",
             }}
           >
-            Our latest&nbsp;
+            Welcome to&nbsp;
             <Typography
               component="span"
               variant="h1"
@@ -52,7 +53,7 @@ export default function Hero() {
                   theme.palette.mode === "light" ? "primary.main" : "primary.light",
               }}
             >
-              products
+              SMIT
             </Typography>
           </Typography>
           <Typography
@@ -70,7 +71,7 @@ export default function Hero() {
             useFlexGap
             sx={{ pt: 2, width: { xs: "100%", sm: "auto" } }}
           >
-            <TextField
+            {/* <TextField
               id="outlined-basic"
               hiddenLabel
               size="small"
@@ -81,18 +82,18 @@ export default function Hero() {
                 autoComplete: "off",
                 "aria-label": "Enter your email address",
               }}
-            />
-            <Button variant="contained" color="primary">
+            /> */}
+            {/* <Button variant="contained" color="primary">
               Start now
-            </Button>
+            </Button> */}
           </Stack>
-          <Typography variant="caption" textAlign="center" sx={{ opacity: 0.8 }}>
+          {/* <Typography variant="caption" textAlign="center" sx={{ opacity: 0.8 }}>
             By clicking &quot;Start now&quot; you agree to our&nbsp;
             <Link href="#" color="primary">
               Terms & Conditions
             </Link>
             .
-          </Typography>
+          </Typography> */}
         </Stack>
         <Box
           id="image"
@@ -107,7 +108,7 @@ export default function Hero() {
                 : 'url("/static/images/templates/templates-images/hero-dark.png")',
             backgroundSize: "cover",
             borderRadius: "10px",
-            outline: "1px solid",
+            outline: "1px solid green",
             outlineColor:
               theme.palette.mode === "light" ? alpha("#BFCCD9", 0.5) : alpha("#9CCCFC", 0.1),
             boxShadow:

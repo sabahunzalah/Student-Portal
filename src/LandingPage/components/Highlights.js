@@ -292,7 +292,7 @@ export default function Highlights() {
             textAlign: { sm: "left", md: "center" },
           }}
         >
-          <Typography component="h1" variant="h4">
+          <Typography component="h2" variant="h4">
             Motivational Blogs
           </Typography>
           <Typography variant="body1" sx={{ color: "black.400" }}>
@@ -316,7 +316,7 @@ export default function Highlights() {
                   background: "transparent",
                   backgroundColor: "grey.900",
                   perspective: "1000px",
-                  backgroundImage: "linear-gradient(to right, #82bd3e, #4caf50)"
+                  backgroundImage: "linear-gradient(to right, #82bd3e, #4caf50)",
                 }}
               >
                 <Box

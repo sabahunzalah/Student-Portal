@@ -15,8 +15,8 @@ import { useNavigate } from "react-router-dom";
 import Image1 from "../../assets/images/smit-stud.png";
 
 const logoStyle = {
-  width: "120px",
-  height: "80px",
+  width: "100px",
+  height: "60px",
   cursor: "pointer",
 };
 
@@ -76,7 +76,7 @@ function AppAppBar({ mode, toggleColorMode }) {
             maxHeight: 40,
             border: "1px solid",
             borderColor: "divider",
-            padding: "50px",
+            padding: "30px",
             boxShadow:
               theme.palette.mode === "light"
                 ? `0 0 1px rgba(85, 166, 246, 0.1), 1px 1.5px 2px -1px rgba(85, 166, 246, 0.15), 4px 4px 12px -2.5px rgba(85, 166, 246, 0.15)`
@@ -101,14 +101,14 @@ function AppAppBar({ mode, toggleColorMode }) {
               // alt="logo of sitemark"
             />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <MenuItem onClick={() => scrollToSection("features")} sx={{ py: "6px", px: "12px" }}>
+              <MenuItem onClick={() => scrollToSection("features")} sx={{ pt: "12px", px: "12px" }}>
                 <Typography variant="h6" color="text.primary">
                   SMIT Motive
                 </Typography>
               </MenuItem>
               <MenuItem
                 onClick={() => scrollToSection("testimonials")}
-                sx={{ py: "6px", px: "12px" }}
+                sx={{ pt: "12px", px: "12px" }}
               >
                 <Typography variant="h6" color="text.primary">
                   Emerging Technologies
@@ -116,18 +116,18 @@ function AppAppBar({ mode, toggleColorMode }) {
               </MenuItem>
               <MenuItem
                 onClick={() => scrollToSection("highlights")}
-                sx={{ py: "6px", px: "12px" }}
+                sx={{ pt: "12px", px: "12px" }}
               >
                 <Typography variant="h6" color="text.primary">
                   Motivational Blogs
                 </Typography>
               </MenuItem>
-              <MenuItem onClick={() => scrollToSection("pricing")} sx={{ py: "6px", px: "12px" }}>
+              <MenuItem onClick={() => scrollToSection("pricing")} sx={{ pt: "12px", px: "12px" }}>
                 <Typography variant="h6" color="text.primary">
                   Courses
                 </Typography>
               </MenuItem>
-              <MenuItem onClick={() => scrollToSection("faq")} sx={{ py: "6px", px: "12px" }}>
+              <MenuItem onClick={() => scrollToSection("faq")} sx={{ pt: "12px", px: "12px" }}>
                 <Typography variant="h6" color="text.primary">
                   FAQ
                 </Typography>
