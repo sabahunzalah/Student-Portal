@@ -10,7 +10,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import ReactPlayer from "react-player";
-import Color from "color"; // Assuming you're using the 'color' library
+import Color from "color";
 
 // import DevicesRoundedIcon from "@mui/icons-material/DevicesRounded";
 // import EdgesensorHighRoundedIcon from "@mui/icons-material/EdgesensorHighRounded;

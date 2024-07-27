@@ -83,15 +83,15 @@ export default function LandingPage() {
       <Box sx={{ bgcolor: "background.default" }}>
         {/* <LogoCollection /> */}
         <Features />
-        <Divider />
+        {/* <Divider /> */}
         <Testimonials />
         <Divider />
-        <Motivational />
+        <Highlights />
         <Divider />
         <Pricing />
-        <Divider />
+        {/* <Divider /> */}
         <FAQ />
-        <Divider />
+        {/* <Divider /> */}
         <Footer />
       </Box>
       <ToggleCustomTheme showCustomTheme={showCustomTheme} toggleCustomTheme={toggleCustomTheme} />

@@ -6,10 +6,15 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
+import Color from "color";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export default function FAQ() {
+  const greenColor = Color("#82bd3e");
+  const blueColor = Color("#127168");
+  const mixedColor = greenColor.mix(blueColor, 0.5);
+  const newGradient = `linear-gradient(180deg, ${mixedColor.hex()}, #FFF)`;
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -20,13 +25,17 @@ export default function FAQ() {
     <Container
       id="faq"
       sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
+        // pt: { xs: 4, sm: 12 },
+        // pb: { xs: 8, sm: 16 },
         position: "relative",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         gap: { xs: 3, sm: 6 },
+        // backgroundImage: newGradient,
+        // backgroundSize: "100% 40%",
+        // backgroundRepeat: "no-repeat",
+        // borderRadius: "10%",
       }}
     >
       <Typography
@@ -41,11 +50,22 @@ export default function FAQ() {
         Frequently asked questions
       </Typography>
       <Box sx={{ width: "100%" }}>
-        <Accordion expanded={expanded === "panel1"} onChange={handleChange("panel1")}>
+        <Accordion
+          expanded={expanded === "panel1"}
+          onChange={handleChange("panel1")}
+          style={{
+            border: "1px solid grey",
+          }}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1d-content"
             id="panel1d-header"
+            style={{
+              backgroundImage: newGradient,
+              backgroundSize: "100% 100%",
+              backgroundRepeat: "no-repeat",
+            }}
           >
             <Typography component="h3" variant="subtitle2">
               How do I contact customer support if I have a question or issue?
@@ -59,11 +79,22 @@ export default function FAQ() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion expanded={expanded === "panel2"} onChange={handleChange("panel2")}>
+        <Accordion
+          expanded={expanded === "panel2"}
+          onChange={handleChange("panel2")}
+          style={{
+            border: "1px solid grey",
+          }}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2d-content"
             id="panel2d-header"
+            style={{
+              backgroundImage: newGradient,
+              backgroundSize: "100% 100%",
+              backgroundRepeat: "no-repeat",
+            }}
           >
             <Typography component="h3" variant="subtitle2">
               Can I return the product if it doesn&apos;t meet my expectations?
@@ -77,11 +108,22 @@ export default function FAQ() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion expanded={expanded === "panel3"} onChange={handleChange("panel3")}>
+        <Accordion
+          expanded={expanded === "panel3"}
+          onChange={handleChange("panel3")}
+          style={{
+            border: "1px solid grey",
+          }}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3d-content"
             id="panel3d-header"
+            style={{
+              backgroundImage: newGradient,
+              backgroundSize: "100% 100%",
+              backgroundRepeat: "no-repeat",
+            }}
           >
             <Typography component="h3" variant="subtitle2">
               What makes your product stand out from others in the market?
@@ -95,11 +137,22 @@ export default function FAQ() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion expanded={expanded === "panel4"} onChange={handleChange("panel4")}>
+        <Accordion
+          expanded={expanded === "panel4"}
+          onChange={handleChange("panel4")}
+          style={{
+            border: "1px solid grey",
+          }}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel4d-content"
             id="panel4d-header"
+            style={{
+              backgroundImage: newGradient,
+              backgroundSize: "100% 100%",
+              backgroundRepeat: "no-repeat",
+            }}
           >
             <Typography component="h3" variant="subtitle2">
               Is there a warranty on the product, and what does it cover?

@@ -92,14 +92,7 @@ function AppAppBar({ mode, toggleColorMode }) {
               px: 0,
             }}
           >
-            <img
-              // src={
-              //   "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg"
-              // }
-              src={Image1}
-              style={logoStyle}
-              // alt="logo of sitemark"
-            />
+            <img src={Image1} style={logoStyle} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <MenuItem onClick={() => scrollToSection("features")} sx={{ pt: "12px", px: "12px" }}>
                 <Typography variant="h6" color="text.primary">
@@ -144,24 +137,24 @@ function AppAppBar({ mode, toggleColorMode }) {
           >
             {/* <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} /> */}
             <Button
-              // color="success"
-              // variant="text"
+              color="success"
+              variant="text"
               size="large"
               component="a"
               href="#"
               onClick={handleSignIn}
-              style={{ color: "#82bd3e", fontSize: "20px" }}
+              // style={{ color: "#82bd3e", fontSize: "20px" }}
             >
               Sign in
             </Button>
             <Button
-              // color="success"
-              // variant="contained"
+              color="success"
+              variant="contained"
               size="large"
               component="a"
               href="#"
               onClick={handleSignUp}
-              style={{ background: "#82bd3e", border: "none", fontSize: "20px", color: "white" }} // No border
+              // style={{ background: "#82bd3e", border: "none", fontSize: "20px", color: "white" }}
             >
               Sign up
             </Button>
