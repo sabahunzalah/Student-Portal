@@ -12,7 +12,7 @@ import Saad_image from "../../assets/images/saad.png";
 import Ghous_image from "../../assets/images/ghous ahmad.png";
 import Hunain_image from "../../assets/images/hunain.png";
 import Dilip_image from "../../assets/images/dilip.png";
-import "./Highlights.css";
+import "./Motivational.css";
 
 const items = [
   {
@@ -57,7 +57,7 @@ const items = [
   },
 ];
 
-export default function Highlights() {
+export default function Motivational() {
   const [flippedIndex, setFlippedIndex] = React.useState(null);
 
   return (
