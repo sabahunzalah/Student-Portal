@@ -103,7 +103,7 @@ function AppAppBar({ mode, toggleColorMode }) {
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <MenuItem onClick={() => scrollToSection("features")} sx={{ pt: "12px", px: "12px" }}>
                 <Typography variant="h6" color="text.primary">
-                  SMIT Motive
+                  Vision & Mission
                 </Typography>
               </MenuItem>
               <MenuItem

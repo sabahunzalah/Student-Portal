@@ -9,37 +9,40 @@ import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
-import DevicesRoundedIcon from "@mui/icons-material/DevicesRounded";
-import EdgesensorHighRoundedIcon from "@mui/icons-material/EdgesensorHighRounded";
-import ViewQuiltRoundedIcon from "@mui/icons-material/ViewQuiltRounded";
+import ReactPlayer from "react-player";
+import Color from "color"; // Assuming you're using the 'color' library
+
+// import DevicesRoundedIcon from "@mui/icons-material/DevicesRounded";
+// import EdgesensorHighRoundedIcon from "@mui/icons-material/EdgesensorHighRounded;
+// import ViewQuiltRoundedIcon from "@mui/icons-material/ViewQuiltRounded";
 
 const items = [
   {
-    icon: <ViewQuiltRoundedIcon />,
-    title: "Dashboard",
+    title: "Vision",
     description:
-      "This item could provide a snapshot of the most important metrics or data points related to the product.",
-    imageLight: 'url("/static/images/templates/templates-images/dash-light.png")',
-    imageDark: 'url("/static/images/templates/templates-images/dash-dark.png")',
+      "Our vision is to propel our students into the 21st century through cutting-edge innovation and modern technology. We aim to enhance everyday life for everyone. This program not only provides financial benefits to the youth but also fosters profound, long-lasting psychological impacts, such as reducing frustration among unemployed individuals. Additionally, our training initiatives empower participants with valuable skills, equipping them for a brighter, more prosperous future.",
   },
   {
-    icon: <EdgesensorHighRoundedIcon />,
-    title: "Mobile integration",
-    description: "This item could provide information about the mobile app version of the product.",
-    imageLight: 'url("/static/images/templates/templates-images/mobile-light.png")',
-    imageDark: 'url("/static/images/templates/templates-images/mobile-dark.png")',
-  },
-  {
-    icon: <DevicesRoundedIcon />,
-    title: "Available on all platforms",
+    title: "Mission",
     description:
-      "This item could let users know the product is available on all platforms, such as web, mobile, and desktop.",
-    imageLight: 'url("/static/images/templates/templates-images/devices-light.png")',
-    imageDark: 'url("/static/images/templates/templates-images/devices-dark.png")',
+      "Our vision is to propel our students into the 21st century through cutting-edge innovation and modern technology. We aim to enhance everyday life for everyone. This program not only provides financial benefits to the youth but also fosters profound, long-lasting psychological impacts, such as reducing frustration among unemployed individuals. Additionally, our training initiatives empower participants with valuable skills, equipping them for a brighter, more prosperous future.",
+  },
+];
+
+const videos = [
+  {
+    title: "Video Title",
+    description: "Video Description",
+    videourl: "https://youtu.be/e90_EGZfr04?si=kcN6izQ7iF3IPody",
   },
 ];
 
 export default function Features() {
+  const greenColor = Color("#82bd3e");
+  const blueColor = Color("#127168");
+  const mixedColor = greenColor.mix(blueColor, 0.5);
+  const newGradient = `linear-gradient(180deg, ${mixedColor.hex()}, #FFF)`;
+
   const [selectedItemIndex, setSelectedItemIndex] = React.useState(0);
 
   const handleItemClick = (index) => {
@@ -49,17 +52,12 @@ export default function Features() {
   const selectedFeature = items[selectedItemIndex];
 
   return (
-    <Container id="features" sx={{ py: { xs: 8, sm: 16 } }}>
+    <Container id="features" sx={{ py: { xs: 2, sm: 4 } }}>
       <Grid container spacing={6}>
         <Grid item xs={12} md={6}>
           <div>
-            <Typography component="h2" variant="h4" color="text.primary">
-              SMIT Motive
-            </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ mb: { xs: 2, sm: 4 } }}>
-              Here you can provide a brief overview of the key features of the product. For example,
-              you could list the number of features, the types of features, add-ons, or the benefits
-              of the features.
+            <Typography component="h2" variant="h4" color="#5392c7">
+              Vision & Mission
             </Typography>
           </div>
           <Grid container item gap={1} sx={{ display: { xs: "auto", sm: "none" } }}>
@@ -71,9 +69,9 @@ export default function Features() {
                 sx={{
                   borderColor: (theme) => {
                     if (theme.palette.mode === "light") {
-                      return selectedItemIndex === index ? "primary.light" : "";
+                      return selectedItemIndex === index ? "primary.success" : "";
                     }
-                    return selectedItemIndex === index ? "primary.light" : "";
+                    return selectedItemIndex === index ? "primary.success" : "";
                   },
                   background: (theme) => {
                     if (theme.palette.mode === "light") {
@@ -126,7 +124,6 @@ export default function Features() {
                   "&:hover > svg": { transform: "translateX(2px)" },
                 }}
               >
-                <span>Learn more</span>
                 <ChevronRightRoundedIcon fontSize="small" sx={{ mt: "1px", ml: "2px" }} />
               </Link>
             </Box>
@@ -134,6 +131,7 @@ export default function Features() {
           <Stack
             direction="column"
             justifyContent="center"
+            // border="1px solid black"
             alignItems="flex-start"
             spacing={2}
             useFlexGap
@@ -149,11 +147,14 @@ export default function Features() {
                   p: 3,
                   height: "fit-content",
                   width: "100%",
-                  background: "none",
-                  backgroundColor: selectedItemIndex === index ? "action.selected" : undefined,
+                  backgroundImage: newGradient,
+                  backgroundSize: "100% 100%",
+                  backgroundRepeat: "no-repeat",
+                  // background: "none",
+                  // backgroundColor: selectedItemIndex === index ? "#f5fcea" : undefined,
                   borderColor: (theme) => {
                     if (theme.palette.mode === "light") {
-                      return selectedItemIndex === index ? "primary.light" : "grey.200";
+                      return selectedItemIndex === index ? "#eaf7d9" : "grey.200";
                     }
                     return selectedItemIndex === index ? "primary.dark" : "grey.800";
                   },
@@ -182,7 +183,7 @@ export default function Features() {
                     {icon}
                   </Box>
                   <Box sx={{ textTransform: "none" }}>
-                    <Typography color="text.primary" variant="body2" fontWeight="bold">
+                    <Typography color="text.primary" variant="h6" fontWeight="bold">
                       {title}
                     </Typography>
                     <Typography color="text.secondary" variant="body2" sx={{ my: 0.5 }}>
@@ -201,10 +202,7 @@ export default function Features() {
                       onClick={(event) => {
                         event.stopPropagation();
                       }}
-                    >
-                      <span>Learn more</span>
-                      <ChevronRightRoundedIcon fontSize="small" sx={{ mt: "1px", ml: "2px" }} />
-                    </Link>
+                    ></Link>
                   </Box>
                 </Box>
               </Card>
@@ -212,28 +210,31 @@ export default function Features() {
           </Stack>
         </Grid>
         <Grid item xs={12} md={6} sx={{ display: { xs: "none", sm: "flex" }, width: "100%" }}>
-          <Card
-            variant="outlined"
-            sx={{
-              height: "100%",
-              width: "100%",
-              display: { xs: "none", sm: "flex" },
-              pointerEvents: "none",
-            }}
-          >
-            <Box
+          {videos.map(({ videourl }, index) => (
+            <Card
+              key={index}
+              variant="outlined"
               sx={{
-                m: "auto",
-                width: 420,
-                height: 500,
-                backgroundSize: "contain",
-                backgroundImage: (theme) =>
-                  theme.palette.mode === "light"
-                    ? items[selectedItemIndex].imageLight
-                    : items[selectedItemIndex].imageDark,
+                height: "100%",
+                width: "100%",
               }}
-            />
-          </Card>
+            >
+              <Box
+                sx={{
+                  m: "auto",
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <ReactPlayer
+                  url={videourl}
+                  controls={true} // Ensures controls are available
+                  width="100%"
+                  height="100%"
+                />
+              </Box>
+            </Card>
+          ))}
         </Grid>
       </Grid>
     </Container>
