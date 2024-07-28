@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -6,11 +7,16 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Radio from "@mui/material/Radio";
+import Button from "@mui/material/Button";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
+import "./RegisterForm.css";
 
 function Register() {
   // State for form fields
@@ -28,15 +34,25 @@ function Register() {
     dob: "",
     gender: "",
     address: "",
+    lastQualification: "",
+    hasLaptop: "",
+    picture: null,
   });
 
   // Handle input change
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, files } = e.target;
     setFormValues({
       ...formValues,
-      [name]: value,
+      [name]: type === "file" ? files[0] : value,
     });
+  };
+
+  // Handle form submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Implement form submission logic
+    console.log(formValues);
   };
 
   return (
@@ -49,7 +65,7 @@ function Register() {
                 <MDTypography variant="h2">Registration Form</MDTypography>
               </MDBox>
               <MDBox pt={1} pb={3} px={3} mb={5}>
-                <MDBox component="form" role="form">
+                <MDBox component="form" role="form" onSubmit={handleSubmit}>
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                       <FormControl fullWidth>
@@ -102,12 +118,21 @@ function Register() {
                         </Select>
                       </FormControl>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} sm={6}>
                       <TextField
                         fullWidth
                         label="Full name"
                         name="fullName"
                         value={formValues.fullName}
+                        onChange={handleInputChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        fullWidth
+                        label="Father's name"
+                        name="fatherName"
+                        value={formValues.fatherName}
                         onChange={handleInputChange}
                       />
                     </Grid>
@@ -150,15 +175,6 @@ function Register() {
                     <Grid item xs={12} sm={6}>
                       <TextField
                         fullWidth
-                        label="Father's name"
-                        name="fatherName"
-                        value={formValues.fatherName}
-                        onChange={handleInputChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        fullWidth
                         label="Date of birth"
                         name="dob"
                         type="date"
@@ -191,6 +207,52 @@ function Register() {
                         value={formValues.address}
                         onChange={handleInputChange}
                       />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        fullWidth
+                        label="Last Qualification"
+                        name="lastQualification"
+                        value={formValues.lastQualification}
+                        onChange={handleInputChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <FormControl component="fieldset">
+                        <FormControlLabel
+                          control={
+                            <Radio
+                              checked={formValues.hasLaptop === "yes"}
+                              onChange={handleInputChange}
+                              value="yes"
+                              name="hasLaptop"
+                            />
+                          }
+                          label="Do you have a laptop?"
+                        />
+                        <FormControlLabel
+                          control={
+                            <Radio
+                              checked={formValues.hasLaptop === "no"}
+                              onChange={handleInputChange}
+                              value="no"
+                              name="hasLaptop"
+                            />
+                          }
+                          label="No"
+                        />
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Button variant="contained" component="label">
+                        Upload Picture
+                        <input type="file" name="picture" hidden onChange={handleInputChange} />
+                      </Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Button type="submit" variant="contained" color="success">
+                        Submit
+                      </Button>
                     </Grid>
                   </Grid>
                 </MDBox>

@@ -1,0 +1,39 @@
+/* RegisterForm.css */
+
+.MuiTextField-root {
+    border-color: #8FC54B;
+  }
+  
+  .MuiTextField-root input {
+    border: 1px solid #8FC54B;
+    transition: border-color 0.3s;
+  }
+  
+  .MuiTextField-root input:hover {
+    border-color: blue;
+  }
+  
+  .MuiInputLabel-root {
+    color: #126FB3;
+  }
+  
+  .MuiSelect-root {
+    border: 1px solid #8FC54B;
+  }
+  
+  .MuiSelect-root:hover {
+    border-color: blue;
+  }
+  
+  .MuiSelect-root .MuiSelect-select {
+    border: 1px solid #8FC54B;
+  }
+  
+  .MuiSelect-root .MuiSelect-select:hover {
+    border-color: blue;
+  }
+  
+  .MuiFormControl-root {
+    margin-bottom: 16px;
+  }
+  
