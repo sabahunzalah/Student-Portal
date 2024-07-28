@@ -1,82 +1,70 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import Amna_image from "../../assets/images/amna1.png";
+import Grid from "@mui/material/Grid";
 import Anas_image from "../../assets/images/anas .png";
-import Saad_image from "../../assets/images/saad.png";
-import Ghous_image from "../../assets/images/ghous.png";
+import Amna_image from "../../assets/images/amna1.png";
 import Hunain_image from "../../assets/images/hunain.png";
+import Ghous_image from "../../assets/images/ghous.png";
+import Saad_image from "../../assets/images/saad-pasta.jpg";
 import Dilip_image from "../../assets/images/dilip.png";
-import "./Motivational.css";
-import Color from "color";
+import MotivationalCard from "./Card";
 
 const items = [
   {
     icon: Anas_image,
     title: "Anas Asif",
-    description: "Our Shining Star...Youngest Web and Mobile App Developer",
-    videoUrl: "https://www.youtube.com/embed/-VIVJzVtiq8", // YouTube embed URL
+    description:
+      "Anas Asif is a shining star in web and mobile app development. With his innovative mindset and dedication, he has made significant contributions at a very young age. Learn more about his journey and projects.",
+    videoUrl: "https://www.youtube.com/embed/-VIVJzVtiq8",
   },
   {
     icon: Amna_image,
     title: "Amna Shehzad",
     description:
-      "Youngest Mern Stack Developer,Ui and Ux designer,Vector designer,Data Science Trainee,Power Bi Developer",
+      "Amna Shehzad is a versatile tech professional excelling as a MERN Stack Developer, UI/UX designer, Vector designer, Data Science Trainee, and Power BI Developer. Her diverse skill set makes her a valuable asset in any tech environment.",
     videoUrl: "https://www.youtube.com/embed/rJotBlhaCC0",
   },
   {
     icon: Hunain_image,
     title: "Hunain Pasha",
     description:
-      "Full-stack Software Engineer in building high-quality, reliable full-stack Applications.",
+      "Hunain Pasha is a full-stack software engineer specializing in building high-quality, reliable full-stack applications. His expertise ensures that his applications are not only functional but also scalable and maintainable.",
     videoUrl: "https://www.youtube.com/embed/6gDfrPOEkIU",
   },
   {
     icon: Ghous_image,
     title: "Ghous Ahmad",
     description:
-      "Full Stack Developer over 6 years of Experience in working on a diverse range of projects, from mobile apps to web apps",
+      "Ghous Ahmad is a full stack developer with over 6 years of experience. He is known for tackling complex technical challenges and delivering innovative solutions that drive business success.",
     videoUrl: "https://www.youtube.com/embed/CPo1aNag0kE",
   },
   {
     icon: Saad_image,
     title: "Saad Pasta",
     description:
-      "Full-stack Software Engineer with 5+ years of experience.Developed 2 Open Source projects which have over 5000+ stars on GitHub",
+      "Saad Pasta is a full-stack software engineer with 5+ years of experience. He developed 2 open-source projects that have over 5000+ stars on GitHub, making him a respected figure in the tech community.",
     videoUrl: "https://www.youtube.com/embed/jsap0rbLn5I",
   },
   {
     icon: Dilip_image,
     title: "Dilip Armani",
-    description: "Full Stack Developer",
+    description:
+      "Dilip Armani is a full stack developer with 2+ years of experience. Known for his dedication and ability to quickly adapt to new technologies, Dilip is committed to delivering high-quality code and solutions.",
     videoUrl: "https://www.youtube.com/embed/85tn03aEN4U",
   },
 ];
 
 export default function Motivational() {
-  const greenColor = Color("#82bd3e");
-  const blueColor = Color("#127168");
-  const mixedColor = greenColor.mix(blueColor, 0.5);
-  const newGradient = `linear-gradient(180deg, ${mixedColor.hex()}, #FFF)`;
-  const [flippedIndex, setFlippedIndex] = React.useState(null);
-
   return (
     <Box
-      // id="highlights"
-      sx={
-        {
-          // pt: { xs: 4, sm: 12 },
-          // pb: { xs: 8, sm: 16 },
-          // color: "white",
-          // background: "linear-gradient(135deg, #97C39C, #75B07C)",
-          // boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Added box shadow
-        }
-      }
+      sx={{
+        pt: { xs: 4, sm: 12 },
+        pb: { xs: 8, sm: 16 },
+        color: "white",
+        // background: "linear-gradient(135deg, #97C39C, #75B07C)",
+      }}
     >
       <Container
         sx={{
@@ -86,14 +74,8 @@ export default function Motivational() {
           alignItems: "center",
           gap: { xs: 3, sm: 6 },
         }}
-        // style={{ border: "2px solid black" }}
       >
-        <Box
-          sx={{
-            width: { sm: "100%", md: "60%" },
-            textAlign: { sm: "left", md: "center" },
-          }}
-        >
+        <Box sx={{ width: { sm: "100%", md: "60%" }, textAlign: { sm: "left", md: "center" } }}>
           <Typography
             component="h1"
             variant="h4"
@@ -108,74 +90,12 @@ export default function Motivational() {
         <Grid container spacing={2.5}>
           {items.map((item, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <Stack
-                direction="column"
-                color="inherit"
-                component={Card}
-                spacing={1}
-                sx={{
-                  p: 3,
-                  height: "350px",
-                  // border: "1px solid gray",
-                  // border: "transparent",
-                  backgroundImage: newGradient,
-                  backgroundSize: "100% 50%",
-                  backgroundRepeat: "no-repeat",
-                  // borderRadius: "12px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Box
-                  sx={{ position: "relative", cursor: "pointer" }}
-                  onClick={() => setFlippedIndex(flippedIndex === index ? null : index)}
-                  style={{ width: "100px", height: "100px" }}
-                >
-                  {flippedIndex === index ? (
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src={`${item.videoUrl}?autoplay=1`}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      style={{ borderRadius: "12px", border: "2px solid black" }}
-                    ></iframe>
-                  ) : (
-                    <>
-                      <img
-                        src={item.icon}
-                        alt={item.title}
-                        style={{ width: "100%", height: "100px" }}
-                      />
-                      <PlayArrowIcon
-                        sx={{
-                          position: "absolute",
-                          top: "50%",
-                          left: "50%",
-                          transform: "translate(-50%, -50%)",
-                          color: "white",
-                          fontSize: "3rem",
-                        }}
-                      />
-                    </>
-                  )}
-                </Box>
-                <div>
-                  <Typography
-                    fontWeight="bold"
-                    gutterBottom
-                    align="center"
-                    sx={{ fontSize: "1.5rem", color: "#5392C7" }}
-                  >
-                    {item.title}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: "#82BD3E", fontSize: "1rem" }}>
-                    {item.description}
-                  </Typography>
-                </div>
-              </Stack>
+              <MotivationalCard
+                title={item.title}
+                icon={item.icon}
+                description={item.description}
+                videoUrl={item.videoUrl}
+              />
             </Grid>
           ))}
         </Grid>
