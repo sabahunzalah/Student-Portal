@@ -8,7 +8,7 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Banner from "../../assets/images/realBanner.png";
-import Color from "color"; // Assuming you're using the 'color' library
+import Color from "color";
 
 export default function Hero() {
   const greenColor = Color("#82bd3e");

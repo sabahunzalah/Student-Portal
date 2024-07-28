@@ -13,6 +13,7 @@ import Ghous_image from "../../assets/images/ghous.png";
 import Hunain_image from "../../assets/images/hunain.png";
 import Dilip_image from "../../assets/images/dilip.png";
 import "./Motivational.css";
+import Color from "color";
 
 const items = [
   {
@@ -58,18 +59,24 @@ const items = [
 ];
 
 export default function Motivational() {
+  const greenColor = Color("#82bd3e");
+  const blueColor = Color("#127168");
+  const mixedColor = greenColor.mix(blueColor, 0.5);
+  const newGradient = `linear-gradient(180deg, ${mixedColor.hex()}, #FFF)`;
   const [flippedIndex, setFlippedIndex] = React.useState(null);
 
   return (
     <Box
-      id="highlights"
-      sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
-        color: "white",
-        background: "linear-gradient(135deg, #97C39C, #75B07C)",
-        boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Added box shadow
-      }}
+      // id="highlights"
+      sx={
+        {
+          // pt: { xs: 4, sm: 12 },
+          // pb: { xs: 8, sm: 16 },
+          // color: "white",
+          // background: "linear-gradient(135deg, #97C39C, #75B07C)",
+          // boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Added box shadow
+        }
+      }
     >
       <Container
         sx={{
@@ -79,6 +86,7 @@ export default function Motivational() {
           alignItems: "center",
           gap: { xs: 3, sm: 6 },
         }}
+        // style={{ border: "2px solid black" }}
       >
         <Box
           sx={{
@@ -108,10 +116,12 @@ export default function Motivational() {
                 sx={{
                   p: 3,
                   height: "350px",
-                  border: "1px solid",
-                  borderColor: "#F0F7FE.400",
-                  backgroundColor: "#F8F8F8",
-                  borderRadius: "12px",
+                  // border: "1px solid gray",
+                  // border: "transparent",
+                  backgroundImage: newGradient,
+                  backgroundSize: "100% 50%",
+                  backgroundRepeat: "no-repeat",
+                  // borderRadius: "12px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -120,6 +130,7 @@ export default function Motivational() {
                 <Box
                   sx={{ position: "relative", cursor: "pointer" }}
                   onClick={() => setFlippedIndex(flippedIndex === index ? null : index)}
+                  style={{ width: "100px", height: "100px" }}
                 >
                   {flippedIndex === index ? (
                     <iframe
@@ -129,14 +140,14 @@ export default function Motivational() {
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
-                      style={{ borderRadius: "12px" }}
+                      style={{ borderRadius: "12px", border: "2px solid black" }}
                     ></iframe>
                   ) : (
                     <>
                       <img
                         src={item.icon}
                         alt={item.title}
-                        style={{ width: "150px", height: "150px", borderRadius: "50%" }}
+                        style={{ width: "100%", height: "100px" }}
                       />
                       <PlayArrowIcon
                         sx={{
