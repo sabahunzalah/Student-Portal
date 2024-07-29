@@ -59,11 +59,12 @@ const items = [
 export default function Motivational() {
   return (
     <Box
+      id="successStories"
       sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
-        color: "white",
+        // pt: { xs: 4, sm: 12 },
+        // pb: { xs: 8, sm: 16 },
         // background: "linear-gradient(135deg, #97C39C, #75B07C)",
+        color: "white",
       }}
     >
       <Container

@@ -111,7 +111,7 @@ function SwipeableTextMobileStepper() {
     //       bgcolor: "background.default",
     //     }}
     //   >
-    <Box sx={{ maxWidth: 1200, flexGrow: 1, margin: "0 auto" }}>
+    <Box id="courses" sx={{ maxWidth: 1200, flexGrow: 1, margin: "0 auto" }}>
       <Box
         sx={{
           display: "flex",
