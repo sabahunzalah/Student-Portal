@@ -39,15 +39,11 @@ export default function FAQ() {
       }}
     >
       <Typography
-        component="h2"
+        component="h1"
         variant="h4"
-        color="text.primary"
-        sx={{
-          width: { sm: "100%", md: "60%" },
-          textAlign: { sm: "left", md: "center" },
-        }}
+        sx={{ fontSize: "3rem", fontWeight: "bold", color: "#127168", fontFamily: "inherit" }}
       >
-        Frequently asked questions
+        Frequently Asked Questions
       </Typography>
       <Box sx={{ width: "100%" }}>
         <Accordion

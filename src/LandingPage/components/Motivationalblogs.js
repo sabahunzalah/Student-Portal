@@ -59,11 +59,12 @@ const items = [
 export default function Motivational() {
   return (
     <Box
+      id="successStories"
       sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
-        color: "white",
+        pt: { xs: 2, sm: 6 },
+        pb: { xs: 4, sm: 8 },
         // background: "linear-gradient(135deg, #97C39C, #75B07C)",
+        color: "white",
       }}
     >
       <Container
@@ -79,9 +80,9 @@ export default function Motivational() {
           <Typography
             component="h1"
             variant="h4"
-            sx={{ fontSize: "3rem", fontWeight: "bold", color: "#0958A7" }}
+            sx={{ fontSize: "3rem", fontWeight: "bold", color: "#127168", fontFamily: "inherit" }}
           >
-            Motivational Blogs
+            Success Stories
           </Typography>
           <Typography variant="body1" sx={{ color: "#0958A7", fontSize: "1rem" }}>
             Explore why SMIT stands out!

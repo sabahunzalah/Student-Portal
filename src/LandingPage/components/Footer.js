@@ -7,6 +7,7 @@ import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import Image1 from "../../assets/images/smit-stud.png";
 
 import FacebookIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -57,19 +58,11 @@ export default function Footer() {
         >
           <Box sx={{ width: { xs: "100%", sm: "60%" } }}>
             <Box sx={{ ml: "-15px" }}>
-              <img
-                src={
-                  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg"
-                }
-                style={logoStyle}
-                alt="logo of sitemark"
-              />
+              <img src={Image1} style={logoStyle} alt="logo of sitemark" />
             </Box>
-            <Typography variant="body2" fontWeight={600} gutterBottom>
-              Newsletter
-            </Typography>
+
             <Typography variant="body2" color="text.secondary" mb={2}>
-              Subscribe to our newsletter for weekly updates and promotions.
+              Subscribe to get more information.
             </Typography>
             <Stack direction="row" spacing={1} useFlexGap>
               <TextField
@@ -85,7 +78,18 @@ export default function Footer() {
                   "aria-label": "Enter your email address",
                 }}
               />
-              <Button variant="contained" color="primary" sx={{ flexShrink: 0 }}>
+              <Button
+                component="a"
+                href="#"
+                style={{
+                  background: "#127168",
+                  border: "none",
+                  fontSize: "17px",
+                  color: "white",
+                  fontFamily: "inherit",
+                  padding: "20px",
+                }}
+              >
                 Subscribe
               </Button>
             </Stack>
@@ -98,22 +102,22 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
+          <Typography variant="h5" fontWeight={600} color="#127168">
             Product
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             Features
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             Testimonials
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             Highlights
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             Pricing
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             FAQs
           </Link>
         </Box>
@@ -124,16 +128,16 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
+          <Typography variant="h5" fontWeight={600} color="#127168">
             Company
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             About us
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             Careers
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             Press
           </Link>
         </Box>
@@ -144,16 +148,16 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
+          <Typography variant="h5" fontWeight={600} color="#127168">
             Legal
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             Terms
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             Privacy
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             Contact
           </Link>
         </Box>
@@ -169,13 +173,13 @@ export default function Footer() {
         }}
       >
         <div>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" href="#" style={{ color: "#127168" }}>
             Privacy Policy
           </Link>
           <Typography display="inline" sx={{ mx: 0.5, opacity: 0.5 }}>
             &nbsp;•&nbsp;
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" href="#" style={{ color: "#127168" }}>
             Terms of Service
           </Link>
           <Copyright />
@@ -190,27 +194,29 @@ export default function Footer() {
           }}
         >
           <IconButton
-            color="inherit"
             href="https://github.com/mui"
             aria-label="GitHub"
             sx={{ alignSelf: "center" }}
+            style={{ color: "#127168" }}
           >
             <FacebookIcon />
           </IconButton>
           <IconButton
-            color="inherit"
+            color="#127168"
             href="https://x.com/MaterialUI"
             aria-label="X"
             sx={{ alignSelf: "center" }}
+            style={{ color: "#127168" }}
           >
             <FacebookIcon />
             {/* <TwitterIcon /> */}
           </IconButton>
           <IconButton
-            color="inherit"
+            color="#127168"
             href="https://www.linkedin.com/company/mui/"
             aria-label="LinkedIn"
             sx={{ alignSelf: "center" }}
+            style={{ color: "#127168" }}
           >
             <LinkedInIcon />
           </IconButton>

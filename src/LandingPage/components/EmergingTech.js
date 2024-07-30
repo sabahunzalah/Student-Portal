@@ -67,18 +67,22 @@ const userEmergingTech = [
   },
 ];
 
+// const greenColor = Color("#82bd3e");
+// const blueColor = Color("#127168");
+// const mixedColor = greenColor.mix(blueColor, 1.2);
+// const newGradient = `linear-gradient(180deg, #bbd0fa, #0B73B7, #32a852)`;
 const greenColor = Color("#82bd3e");
 const blueColor = Color("#127168");
-const mixedColor = greenColor.mix(blueColor, 1.2);
-const newGradient = `linear-gradient(180deg, #bbd0fa, #0B73B7, #32a852)`;
+const mixedColor = blueColor.mix(greenColor, 0.2);
+const newGradient = `linear-gradient(180deg, ${mixedColor.hex()}, #FFF)`;
 
 export default function EmergingTech() {
   return (
     <Container
       id="EmergingTech"
       sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
+        // pt: { xs: 4, sm: 12 },
+        // pb: { xs: 8, sm: 16 },
         position: "relative",
         display: "flex",
         flexDirection: "column",
@@ -94,11 +98,11 @@ export default function EmergingTech() {
       >
         <Typography
           component="h2"
-          variant="h4"
+          variant="h3"
           sx={{
-            fontFamily: "cursive , sans-serif",
+            fontFamily: "inherit",
             fontSize: "3rem",
-            color: "#0B73B7",
+            color: "#127168",
             fontWeight: "bold",
           }}
         >
@@ -107,9 +111,9 @@ export default function EmergingTech() {
         <Typography
           variant="body1"
           sx={{
-            fontFamily: "monospace, sans-serif",
+            fontFamily: "inherit",
             fontSize: "1.5rem",
-            color: "#82bd3e",
+            color: "#0B73B7",
             marginTop: "1rem",
           }}
         >
@@ -131,6 +135,9 @@ export default function EmergingTech() {
                 overflow: "hidden",
                 transition: "all 0.3s ease",
                 backgroundImage: newGradient, // Set card background to gradient
+                backgroundSize: "100% 100%",
+                backgroundRepeat: "no-repeat",
+                border: "none",
                 "&:hover .card-content": {
                   opacity: 1,
                 },
