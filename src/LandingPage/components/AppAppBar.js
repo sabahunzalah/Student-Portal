@@ -129,7 +129,7 @@ function AppAppBar() {
                   color="text.primary"
                   style={{ color: "black", fontFamily: "inherit" }}
                 >
-                  Motivational Blogs
+                  Success Stories
                 </Typography>
               </MenuItem>
               <MenuItem onClick={() => scrollToSection("courses")} sx={{ pt: "12px", px: "9.5px" }}>
@@ -166,7 +166,8 @@ function AppAppBar() {
               href="#"
               onClick={handleSignIn}
               style={{
-                color: "#82bd3e",
+                color: "#127168",
+                border: "none",
                 fontSize: "17px",
                 backgroundColor: "white",
                 fontFamily: "inherit",
@@ -179,7 +180,7 @@ function AppAppBar() {
               href="#"
               onClick={handleSignUp}
               style={{
-                background: "#82bd3e",
+                background: "#127168",
                 border: "none",
                 fontSize: "17px",
                 color: "white",
@@ -235,7 +236,7 @@ function AppAppBar() {
                   onClick={() => scrollToSection("successStories")}
                   style={{ color: "black", fontFamily: "inherit" }}
                 >
-                  Motivational Blogs
+                  Success Stories
                 </MenuItem>
                 <MenuItem
                   onClick={() => scrollToSection("courses")}

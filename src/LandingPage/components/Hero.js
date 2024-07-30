@@ -48,13 +48,13 @@ export default function Hero() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          pt: { xs: 8, sm: 18 },
-          pb: { xs: 6, sm: 10 },
+          pt: { xs: 12, sm: 12 },
+          pb: { xs: 4, sm: 4 },
         }}
       >
         <Stack spacing={2} useFlexGap sx={{ width: { xs: "100%", sm: "70%" } }}>
           <Typography
-            variant="h1"
+            variant="h3"
             sx={{
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
