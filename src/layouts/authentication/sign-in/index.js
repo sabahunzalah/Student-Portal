@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState } from "react";
 
 // react-router-dom components
@@ -39,46 +24,76 @@ import MDButton from "components/MDButton";
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 
 // Images
-import bgImage from "assets/images/desk.jpg";
-import logo from "assets/images/smit-stud.png";
+import bgImage from "assets/images/pngtree-school-computer-lab-background-vector-image-image_15717581.jpg";
+import logo from "assets/images/smit-stud-removebg-preview.png";
+import { BorderColor } from "@mui/icons-material";
+import Color from "color";
+
 function Basic() {
+  const greenColor = Color("#82bd3e");
+  const blueColor = Color("#127168");
+  const mixedColor = greenColor.mix(blueColor, 0.5);
+  const newGradient = `linear-gradient(180deg, ${mixedColor.hex()}, #FFF)`;
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
   return (
-    <BasicLayout image={bgImage}>
-      <Card>
+    <BasicLayout image={bgImage} style={{ border: "3px solid red", height: "100px" }}>
+      <Card
+        style={{
+          paddingTop: "30px",
+          paddingBottom: "130px",
+          height: "550px",
+          backgroundImage: newGradient,
+          backgroundSize: "100% 50%",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <MDBox
-          variant="contained"
-          bgColor="light"
           borderRadius="lg"
           coloredShadow="#8dc63f"
           mx={2}
           mt={-3}
-          p={2}
+          // p={2}
           mb={1}
           textAlign="center"
         >
-          <MDBox variant="contained" circular bgColor="light" borderRadius="sm" p={0}>
-            <img src={logo} style={{ width: "150px", height: "100px" }} />
-          </MDBox>
-          <MDTypography variant="h3" fontWeight="medium" color="success" mt={2}>
+          <img src={logo} style={{ width: "140px", height: "100px" }} />
+
+          <MDTypography
+            variant="h3"
+            fontWeight="medium"
+            color="success"
+            mt={0.5}
+            style={{ color: "#127168" }}
+          >
             Sign In
           </MDTypography>
-          <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
+          <Grid
+            container
+            spacing={3}
+            justifyContent="center"
+            sx={{ mt: 0.5, mb: 2 }}
+            style={{ padding: "0px" }}
+          >
             <Grid item xs={3}>
-              <MDTypography component={MuiLink} href="#" variant="h1" color="success">
+              <MDTypography
+                component={MuiLink}
+                href="#"
+                variant="h2"
+                style={{ color: "#127168", padding: "3px" }}
+              >
                 <FacebookIcon color="inherit" />
               </MDTypography>
             </Grid>
             <Grid item xs={3}>
-              <MDTypography component={MuiLink} href="#" variant="h1" color="success">
+              <MDTypography component={MuiLink} href="#" variant="h2" style={{ color: "#127168" }}>
                 <GitHubIcon color="inherit" />
               </MDTypography>
             </Grid>
             <Grid item xs={3}>
-              <MDTypography component={MuiLink} href="#" variant="h1" color="success">
+              <MDTypography component={MuiLink} href="#" variant="h2" style={{ color: "#127168" }}>
                 <GoogleIcon color="inherit" />
               </MDTypography>
             </Grid>
@@ -87,25 +102,64 @@ function Basic() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth />
+              <MDInput
+                type="email"
+                label="Email"
+                fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "darkgray",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#127168",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#127168",
+                    },
+                  },
+                  "& .MuiInputLabel-root": {
+                    "&.Mui-focused": {
+                      color: "#127168",
+                    },
+                  },
+                }}
+              />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" fullWidth />
+              <MDInput
+                type="password"
+                label="Password"
+                fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "darkgray",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#127168",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#127168",
+                    },
+                  },
+                  "& .MuiInputLabel-root": {
+                    "&.Mui-focused": {
+                      color: "#127168",
+                    },
+                  },
+                }}
+              />
             </MDBox>
-            <MDBox display="flex" alignItems="center" ml={-1}>
-              <Switch checked={rememberMe} onChange={handleSetRememberMe} />
-              <MDTypography
-                variant="button"
-                fontWeight="regular"
-                color="text"
-                onClick={handleSetRememberMe}
-                sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
+
+            <MDBox mt={4} mb={1} color="#127168">
+              <MDButton
+                variant="gradient"
+                fullWidth
+                color="success"
+                size="large"
+                // style={{ border: "2px solid #127168" }}
               >
-                &nbsp;&nbsp;Remember me
-              </MDTypography>
-            </MDBox>
-            <MDBox mt={4} mb={1} color="#8dc63f">
-              <MDButton variant="gradient" fullWidth color="success" size="large">
                 sign in
               </MDButton>
             </MDBox>

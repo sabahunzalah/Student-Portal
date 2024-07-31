@@ -9,11 +9,11 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
+// import Dialog from "@mui/material/Dialog";
+// import DialogContent from "@mui/material/DialogContent";
+// import DialogTitle from "@mui/material/DialogTitle";
+// import IconButton from "@mui/material/IconButton";
+// import CloseIcon from "@mui/icons-material/Close";
 import Grid from "@mui/material/Grid";
 import imageSets from "./ImageData";
 import { Typography } from "@mui/material";
@@ -172,7 +172,7 @@ ImageStepper.propTypes = {
 export default function ResponsiveGallery() {
   return (
     <Grid container spacing={2} justifyContent="center">
-      {imageSets.map((imageSet, index) => (
+      {imageSets.map((item, index) => (
         <Grid item xs={12} key={index}>
           <Box
             sx={{
@@ -183,7 +183,7 @@ export default function ResponsiveGallery() {
               justifyContent: "center", // Center the ImageStepper if needed
             }}
           >
-            <ImageStepper imageSet={imageSet} />
+            <ImageStepper imageSet={item} />
           </Box>
         </Grid>
       ))}
