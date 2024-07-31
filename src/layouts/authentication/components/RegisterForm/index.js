@@ -66,10 +66,20 @@ function Register() {
                     <Grid item xs={12} sm={6}>
                       <InputLabel className="form-label">Select city</InputLabel>
                       <FormControl fullWidth className="inp">
-                        <Select name="city" value={formValues.city} onChange={handleInputChange}>
+                        <Select
+                          name="city"
+                          value={formValues.city}
+                          onChange={handleInputChange}
+                          sx={{ height: 50 }}
+                          placeholder="Select City"
+                        >
+                          <MenuItem value="Select City">Select City</MenuItem>
                           <MenuItem value="Karachi">Karachi</MenuItem>
                           <MenuItem value="Lahore">Lahore</MenuItem>
                           <MenuItem value="Islamabad">Islamabad</MenuItem>
+                          <MenuItem value="Hyderabad">Hyderabad</MenuItem>
+                          <MenuItem value="Bahadurabad">Bahadurabad</MenuItem>
+                          <MenuItem value="Multan">Multan</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>
@@ -80,10 +90,11 @@ function Register() {
                           name="campus"
                           value={formValues.campus}
                           onChange={handleInputChange}
+                          sx={{ height: 50 }}
                         >
-                          <MenuItem value="SMIT">SMIT</MenuItem>
-                          <MenuItem value="CHS">CHS</MenuItem>
-                          <MenuItem value="Korangi">Korangi</MenuItem>
+                          <MenuItem value="Select City">Select City</MenuItem>
+                          <MenuItem value="Bahadurabad">Bahadurabad</MenuItem>
+                          <MenuItem value="Gulshan">Gulshan</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>
@@ -94,6 +105,7 @@ function Register() {
                           name="course"
                           value={formValues.course}
                           onChange={handleInputChange}
+                          sx={{ height: 50 }}
                         >
                           <MenuItem value="Software Engineering">Software Engineering</MenuItem>
                           <MenuItem value="Data Science">Data Science</MenuItem>
@@ -108,9 +120,18 @@ function Register() {
                           name="classPreference"
                           value={formValues.classPreference}
                           onChange={handleInputChange}
+                          sx={{ height: 50 }}
                         >
-                          <MenuItem value="Morning">Morning</MenuItem>
-                          <MenuItem value="Evening">Evening</MenuItem>
+                          <MenuItem value="Select class preference">
+                            Select class preference
+                          </MenuItem>
+                          <MenuItem value="Weekdays (Monday to Friday)">
+                            Weekdays (Monday to Friday)
+                          </MenuItem>
+                          <MenuItem value="Weekend (Saturday , Sunday)">
+                            Weekend (Saturday , Sunday)
+                          </MenuItem>
+                          <MenuItem value="Both">Both</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>
@@ -124,7 +145,7 @@ function Register() {
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                      <InputLabel className="form-label">Father`&apos;` Name</InputLabel>
+                      <InputLabel className="form-label">Father`&apos;`s Name</InputLabel>
                       <TextField
                         fullWidth
                         name="fatherName"
@@ -210,6 +231,7 @@ function Register() {
                           name="gender"
                           value={formValues.gender}
                           onChange={handleInputChange}
+                          sx={{ height: 50 }}
                         >
                           <MenuItem value="Male">Male</MenuItem>
                           <MenuItem value="Female">Female</MenuItem>
