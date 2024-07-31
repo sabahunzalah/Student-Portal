@@ -47,6 +47,15 @@ function Cover() {
       >
         <MDBox borderRadius="lg" coloredShadow="#8dc63f" mx={2} mt={-3} mb={1} textAlign="center">
           <img src={logo} style={{ width: "140px", height: "100px" }} />
+          <MDTypography
+            variant="h3"
+            fontWeight="medium"
+            color="success"
+            mt={0.5}
+            style={{ color: "#127168" }}
+          >
+            Sign Up
+          </MDTypography>
           <Grid
             container
             spacing={3}
