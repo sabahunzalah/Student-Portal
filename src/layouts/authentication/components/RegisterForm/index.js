@@ -278,6 +278,7 @@ function Register() {
                         )}
                       </div>
                     </Grid>
+                    <hr />
 
                     <Grid item xs={12}>
                       <Button
