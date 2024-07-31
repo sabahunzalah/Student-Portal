@@ -103,19 +103,21 @@ export default function Footer() {
           }}
         >
           <Typography variant="h5" fontWeight={600} color="#127168">
-            Product
+            Products
           </Typography>
           <Link color="#127168" href="#">
-            Features
+            Vision & Mission
+          </Link>
+
+          <Link color="#127168" href="#">
+            Emerging Technologies
           </Link>
           <Link color="#127168" href="#">
-            Testimonials
+            Success Stories
           </Link>
+
           <Link color="#127168" href="#">
-            Highlights
-          </Link>
-          <Link color="#127168" href="#">
-            Pricing
+            Courses
           </Link>
           <Link color="#127168" href="#">
             FAQs
