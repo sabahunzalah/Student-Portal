@@ -70,6 +70,7 @@ function RegisterForm() {
       > */}
       <Card
         sx={{
+          border: "2px solid red",
           width: "100%",
           padding: 4,
           backgroundImage: newGradient,
@@ -112,21 +113,25 @@ function RegisterForm() {
             Services-Education-Registration
           </MDTypography>
         </MDBox>
-        <MDBox pt={5} pb={4} px={2}>
+        <MDBox pt={5} pb={4} px={20}>
           <MDBox component="form" role="form" onSubmit={handleSubmit}>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
                 <InputLabel className="form-label">Select city</InputLabel>
                 <FormControl fullWidth>
                   <Select
+                    displayEmpty
+                    labelId="demo-controlled-open-select-label"
+                    id="demo-controlled-open-select"
                     name="city"
                     value={formValues.city}
                     onChange={handleInputChange}
-                    sx={{ height: 50 }}
-                    placeholder="Select City"
+                    sx={{ height: 50, border: "2px solid red" }}
                     className="inp"
                   >
-                    <MenuItem value="Select City">Select City</MenuItem>
+                    <MenuItem value="" disabled>
+                      Select City
+                    </MenuItem>
                     <MenuItem value="Karachi">Karachi</MenuItem>
                     <MenuItem value="Lahore">Lahore</MenuItem>
                     <MenuItem value="Islamabad">Islamabad</MenuItem>
@@ -140,13 +145,19 @@ function RegisterForm() {
                 <InputLabel className="form-label">Select campus</InputLabel>
                 <FormControl fullWidth>
                   <Select
+                    displayEmpty
+                    labelId="demo-controlled-open-select-label"
+                    id="demo-controlled-open-select"
                     name="campus"
                     value={formValues.campus}
                     onChange={handleInputChange}
                     sx={{ height: 50 }}
                     className="inp"
+                    placeholder="Select Campus"
                   >
-                    <MenuItem value="Select City">Select City</MenuItem>
+                    <MenuItem value="" disabled>
+                      Select Campus
+                    </MenuItem>
                     <MenuItem value="Bahadurabad">Bahadurabad</MenuItem>
                     <MenuItem value="Gulshan">Gulshan</MenuItem>
                   </Select>
