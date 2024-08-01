@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState, useEffect, useMemo } from "react";
 
 // react-router components
@@ -53,6 +38,7 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 import LandingPage from "LandingPage/LandingPage";
+import Register from "./layouts/authentication/RegisterForm/index"; // Import your Register component
 
 export default function DashboardMain() {
   const [controller, dispatch] = useMaterialUIController();
@@ -141,9 +127,9 @@ export default function DashboardMain() {
       sx={{ cursor: "pointer" }}
       onClick={handleConfiguratorOpen}
     >
-      <Icon fontSize="small" color="inherit">
+      {/* <Icon fontSize="small" color="inherit">
         settings
-      </Icon>
+      </Icon> */}
     </MDBox>
   );
 
@@ -151,7 +137,7 @@ export default function DashboardMain() {
     <CacheProvider value={rtlCache}>
       <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
         <CssBaseline />
-        {layout === "dashboard" && (
+        {layout === "dashboard" && pathname !== "/authentication/RegisterForm/register" && (
           <>
             <Sidenav
               color={sidenavColor}
@@ -168,6 +154,8 @@ export default function DashboardMain() {
         {layout === "vr" && <Configurator />}
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/authentication/RegisterForm/register" element={<Register />} />{" "}
+          {/* Add the Register route */}
           {getRoutes(routes)}
           <Route path="*" element={<Navigate to="/dashboard" />} />
         </Routes>
@@ -176,11 +164,11 @@ export default function DashboardMain() {
   ) : (
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
-      {layout === "dashboard" && (
+      {layout === "dashboard" && pathname !== "/authentication/RegisterForm/register" && (
         <>
           <Sidenav
             color={sidenavColor}
-            // brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
             brandName="Admission Portal"
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
@@ -193,6 +181,8 @@ export default function DashboardMain() {
       {layout === "vr" && <Configurator />}
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/authentication/RegisterForm/register" element={<Register />} />{" "}
+        {/* Add the Register route */}
         {getRoutes(routes)}
         <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>

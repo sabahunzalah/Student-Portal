@@ -45,7 +45,16 @@ function Cover() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <MDBox borderRadius="lg" coloredShadow="#8dc63f" mx={2} mt={-3} mb={1} textAlign="center">
+        <MDBox
+          borderRadius="lg"
+          coloredShadow="#8dc63f"
+          mx={2}
+          mt={-3}
+          mb={1}
+          textAlign="center"
+          component={Link}
+          to="/dashboard"
+        >
           <img src={logo} style={{ width: "140px", height: "100px" }} />
           <MDTypography
             variant="h3"

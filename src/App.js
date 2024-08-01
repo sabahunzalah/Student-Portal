@@ -155,19 +155,19 @@ export default function DashboardMain() {
         <CssBaseline />
         {layout === "dashboard" && path !== "/" && (
           <>
-            <Sidenav
+            {/* <Sidenav
               color={sidenavColor}
               brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
               brandName="Material Dashboard 2"
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
-            />
+            /> */}
             <Configurator />
-            {configsButton}
+            {/* {configsButton} */}
           </>
         )}
-        {layout === "vr" && <Configurator />}
+        {/* {layout === "vr" && <Configurator />} */}
         <Routes>
           <Route path="/" element={<LandingPage />} />
           {getRoutes(routes)}

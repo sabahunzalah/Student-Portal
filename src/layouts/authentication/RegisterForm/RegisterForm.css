@@ -1,27 +1,10 @@
-body {
-  font-family: Arial, sans-serif!important;
-}
 
-.registration-card {
-  background-color: white!important;
-  border-radius: 8px!important;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)!important;
-}
 
-.card-header {
-  background-color: #7AB53A!important;
-  color: white!important;
-  border-top-left-radius: 8px!important;
-  border-top-right-radius: 8px!important;
-}
 
-.card-header h2 {
-  margin: 0!important;
-  color: #126FB3!important;
-}
+
 
 .form-label {
-  color: #126FB3!important; 
+  color: #040b0d!important; 
   margin-bottom: 8px!important;
   display: block!important;
   font-size: 16px!important;
@@ -29,7 +12,8 @@ body {
 }
 
 .inp {
-  margin-bottom: 20px!important;
+  /* margin-bottom: 20px!important; */
+  border: 1px solid rgb(47, 45, 45) !important;
 }
 
 .submit-button {
@@ -58,7 +42,7 @@ body {
 }
 
 .file-input {
-  opacity: 0!important;
+  /* opacity: 0!important; */
   width: 100px!important;
   height: 100px!important;
   position: absolute!important;
@@ -82,4 +66,8 @@ body {
   max-height: 150px!important;
   border-radius: 4px!important;
 
+}
+.heading {
+  font-size: 24px;
+  color: red;
 }
