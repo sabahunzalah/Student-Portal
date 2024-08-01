@@ -6,14 +6,18 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Radio from "@mui/material/Radio";
+import Button from "@mui/material/Button";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
+import "./RegisterForm.css";
 
 function Register() {
-  // State for form fields
   const [formValues, setFormValues] = useState({
     city: "",
     campus: "",
@@ -28,60 +32,80 @@ function Register() {
     dob: "",
     gender: "",
     address: "",
+    lastQualification: "",
+    hasLaptop: "",
+    picture: null,
   });
 
-  // Handle input change
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, files } = e.target;
     setFormValues({
       ...formValues,
-      [name]: value,
+      [name]: type === "file" ? files[0] : value,
     });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formValues);
   };
 
   return (
     <DashboardLayout>
-      <MDBox mt={1} mb={3}>
+      <DashboardNavbar />
+      <MDBox mt={4} mb={4}>
         <Grid container justifyContent="center">
           <Grid item xs={12} lg={8}>
-            <Card>
-              <MDBox p={2}>
+            <Card className="registration-card">
+              <MDBox p={4} className="card-header">
                 <MDTypography variant="h2">Registration Form</MDTypography>
               </MDBox>
-              <MDBox pt={1} pb={3} px={3} mb={5}>
-                <MDBox component="form" role="form">
-                  <Grid container spacing={2}>
+              <MDBox pt={3} pb={4} px={4}>
+                <MDBox component="form" role="form" onSubmit={handleSubmit}>
+                  <Grid container spacing={3}>
                     <Grid item xs={12} sm={6}>
-                      <FormControl fullWidth>
-                        <InputLabel>Select city</InputLabel>
-                        <Select name="city" value={formValues.city} onChange={handleInputChange}>
+                      <InputLabel className="form-label">Select city</InputLabel>
+                      <FormControl fullWidth className="inp">
+                        <Select
+                          name="city"
+                          value={formValues.city}
+                          onChange={handleInputChange}
+                          sx={{ height: 50 }}
+                          placeholder="Select City"
+                        >
+                          <MenuItem value="Select City">Select City</MenuItem>
                           <MenuItem value="Karachi">Karachi</MenuItem>
                           <MenuItem value="Lahore">Lahore</MenuItem>
                           <MenuItem value="Islamabad">Islamabad</MenuItem>
+                          <MenuItem value="Hyderabad">Hyderabad</MenuItem>
+                          <MenuItem value="Bahadurabad">Bahadurabad</MenuItem>
+                          <MenuItem value="Multan">Multan</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>
                     <Grid item xs={12} sm={6}>
+                      <InputLabel className="form-label">Select campus</InputLabel>
                       <FormControl fullWidth>
-                        <InputLabel>Select campus</InputLabel>
                         <Select
                           name="campus"
                           value={formValues.campus}
                           onChange={handleInputChange}
+                          sx={{ height: 50 }}
                         >
-                          <MenuItem value="SMIT">SMIT</MenuItem>
-                          <MenuItem value="CHS">CHS</MenuItem>
-                          <MenuItem value="Korangi">Korangi</MenuItem>
+                          <MenuItem value="Select City">Select City</MenuItem>
+                          <MenuItem value="Bahadurabad">Bahadurabad</MenuItem>
+                          <MenuItem value="Gulshan">Gulshan</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>
                     <Grid item xs={12} sm={6}>
+                      <InputLabel className="form-label">Select course or event</InputLabel>
                       <FormControl fullWidth>
-                        <InputLabel>Select course or event</InputLabel>
                         <Select
                           name="course"
                           value={formValues.course}
                           onChange={handleInputChange}
+                          sx={{ height: 50 }}
                         >
                           <MenuItem value="Software Engineering">Software Engineering</MenuItem>
                           <MenuItem value="Data Science">Data Science</MenuItem>
@@ -90,76 +114,89 @@ function Register() {
                       </FormControl>
                     </Grid>
                     <Grid item xs={12} sm={6}>
+                      <InputLabel className="form-label">Select class preference</InputLabel>
                       <FormControl fullWidth>
-                        <InputLabel>Select class preference</InputLabel>
                         <Select
                           name="classPreference"
                           value={formValues.classPreference}
                           onChange={handleInputChange}
+                          sx={{ height: 50 }}
                         >
-                          <MenuItem value="Morning">Morning</MenuItem>
-                          <MenuItem value="Evening">Evening</MenuItem>
+                          <MenuItem value="Select class preference">
+                            Select class preference
+                          </MenuItem>
+                          <MenuItem value="Weekdays (Monday to Friday)">
+                            Weekdays (Monday to Friday)
+                          </MenuItem>
+                          <MenuItem value="Weekend (Saturday , Sunday)">
+                            Weekend (Saturday , Sunday)
+                          </MenuItem>
+                          <MenuItem value="Both">Both</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} sm={6}>
+                      <InputLabel className="form-label">Full Name</InputLabel>
                       <TextField
                         fullWidth
-                        label="Full name"
                         name="fullName"
                         value={formValues.fullName}
                         onChange={handleInputChange}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
+                      <InputLabel className="form-label">Father`&apos;`s Name</InputLabel>
                       <TextField
                         fullWidth
-                        label="Email"
+                        name="fatherName"
+                        value={formValues.fatherName}
+                        onChange={handleInputChange}
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                      <InputLabel className="form-label">Email</InputLabel>
+                      <TextField
+                        fullWidth
                         name="email"
                         value={formValues.email}
                         onChange={handleInputChange}
                       />
                     </Grid>
+
                     <Grid item xs={12} sm={6}>
+                      <InputLabel className="form-label">Phone Number</InputLabel>
                       <TextField
                         fullWidth
-                        label="Phone"
                         name="phone"
                         value={formValues.phone}
                         onChange={handleInputChange}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
+                      <InputLabel className="form-label">CNIC</InputLabel>
                       <TextField
                         fullWidth
-                        label="CNIC"
                         name="cnic"
                         value={formValues.cnic}
                         onChange={handleInputChange}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
+                      <InputLabel className="form-label">
+                        Father `&apos;` CNIC (optional)
+                      </InputLabel>
                       <TextField
                         fullWidth
-                        label="Father's CNIC (optional)"
                         name="fatherCnic"
                         value={formValues.fatherCnic}
                         onChange={handleInputChange}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
+                      <InputLabel className="form-label">Date of birth</InputLabel>
                       <TextField
                         fullWidth
-                        label="Father's name"
-                        name="fatherName"
-                        value={formValues.fatherName}
-                        onChange={handleInputChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        fullWidth
-                        label="Date of birth"
                         name="dob"
                         type="date"
                         value={formValues.dob}
@@ -170,12 +207,31 @@ function Register() {
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
+                      <InputLabel className="form-label">Last Qualification</InputLabel>
+                      <TextField
+                        fullWidth
+                        name="lastQualification"
+                        value={formValues.lastQualification}
+                        onChange={handleInputChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <InputLabel className="form-label">Address</InputLabel>
+                      <TextField
+                        fullWidth
+                        name="address"
+                        value={formValues.address}
+                        onChange={handleInputChange}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <InputLabel className="form-label">Select gender</InputLabel>
                       <FormControl fullWidth>
-                        <InputLabel>Select gender</InputLabel>
                         <Select
                           name="gender"
                           value={formValues.gender}
                           onChange={handleInputChange}
+                          sx={{ height: 50 }}
                         >
                           <MenuItem value="Male">Male</MenuItem>
                           <MenuItem value="Female">Female</MenuItem>
@@ -183,14 +239,56 @@ function Register() {
                         </Select>
                       </FormControl>
                     </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                      <InputLabel className="form-label" htmlFor="hasLaptop">
+                        Do you have a laptop?
+                      </InputLabel>
+                      <FormControl component="fieldset">
+                        <RadioGroup
+                          id="hasLaptop"
+                          name="hasLaptop"
+                          value={formValues.hasLaptop}
+                          onChange={handleInputChange}
+                        >
+                          <FormControlLabel control={<Radio />} label="Yes" value="yes" />
+                          <FormControlLabel control={<Radio />} label="No" value="no" />
+                        </RadioGroup>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={6} className="photo-upload-section">
+                      <InputLabel className="form-label">Upload Picture</InputLabel>
+                      <div className="photo-upload">
+                        <input
+                          type="file"
+                          name="picture"
+                          id="picture"
+                          onChange={handleInputChange}
+                          className="file-input"
+                        />
+                        <label htmlFor="picture" className="upload-button">
+                          <span>Choose File</span>
+                        </label>
+                        {formValues.picture && (
+                          <img
+                            src={URL.createObjectURL(formValues.picture)}
+                            alt="Uploaded"
+                            className="photo-preview"
+                          />
+                        )}
+                      </div>
+                    </Grid>
+                    <hr />
+
                     <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        label="Address"
-                        name="address"
-                        value={formValues.address}
-                        onChange={handleInputChange}
-                      />
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        color="success"
+                        className="submit-button"
+                      >
+                        Submit
+                      </Button>
                     </Grid>
                   </Grid>
                 </MDBox>
@@ -199,6 +297,7 @@ function Register() {
           </Grid>
         </Grid>
       </MDBox>
+      <Footer />
     </DashboardLayout>
   );
 }

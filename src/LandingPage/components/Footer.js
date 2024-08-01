@@ -5,9 +5,8 @@ import IconButton from "@mui/material/IconButton";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import YouTubeIcon from "@mui/icons-material/YouTube";
+
+import FacebookIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import Color from "color";
 
@@ -68,15 +67,39 @@ export default function Footer() {
           }}
         >
           <Box sx={{ width: { xs: "100%", sm: "60%" } }}>
-            <Box sx={{ ml: "-15px", borderRadius: "50px" }}>
+            <Box sx={{ ml: "-15px" }}>
               <img
                 src={
-                  "https://saylaniwelfare.com/static/media/logo_saylaniwelfare.22bf709605809177256c.png"
+                  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg"
                 }
                 style={logoStyle}
-                alt="logo of SMIT"
+                alt="logo of sitemark"
               />
             </Box>
+            <Typography variant="body2" fontWeight={600} gutterBottom>
+              Newsletter
+            </Typography>
+            <Typography variant="body2" color="text.secondary" mb={2}>
+              Subscribe to our newsletter for weekly updates and promotions.
+            </Typography>
+            <Stack direction="row" spacing={1} useFlexGap>
+              <TextField
+                id="outlined-basic"
+                hiddenLabel
+                size="small"
+                variant="outlined"
+                fullWidth
+                aria-label="Enter your email address"
+                placeholder="Your email address"
+                inputProps={{
+                  autoComplete: "off",
+                  "aria-label": "Enter your email address",
+                }}
+              />
+              <Button variant="contained" color="primary" sx={{ flexShrink: 0 }}>
+                Subscribe
+              </Button>
+            </Stack>
           </Box>
         </Box>
         <Box
@@ -86,22 +109,22 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" padding={2} fontWeight={600}>
-            <h1>Vision</h1>
+          <Typography variant="body2" fontWeight={600}>
+            Product
           </Typography>
-          <Link color="text.secondary" href="Features.js">
+          <Link color="text.secondary" href="#">
             Features
           </Link>
-          <Link color="text.secondary" href="EmergingTech.js">
-            Emerging Technologies
+          <Link color="text.secondary" href="#">
+            Testimonials
           </Link>
-          <Link color="text.secondary" href="Motivationalblogs.js">
-            Motivational Blogs
+          <Link color="text.secondary" href="#">
+            Highlights
           </Link>
-          <Link color="text.secondary" href="Course.js">
-            Courses
+          <Link color="text.secondary" href="#">
+            Pricing
           </Link>
-          <Link color="text.secondary" href="FAQ.js">
+          <Link color="text.secondary" href="#">
             FAQs
           </Link>
         </Box>
@@ -112,17 +135,17 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" padding={2} fontWeight={600}>
-            <h1>Institute</h1>
+          <Typography variant="body2" fontWeight={600}>
+            Company
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             About us
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             Careers
           </Link>
           <Link color="text.secondary" href="#">
-            Students
+            Press
           </Link>
         </Box>
         <Box
@@ -132,16 +155,16 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" padding={2} fontWeight={600}>
-            <h1>Rules</h1>
+          <Typography variant="body2" fontWeight={600}>
+            Legal
           </Typography>
           <Link color="text.secondary" href="#">
-            Terms & Conditions
+            Terms
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             Privacy
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             Contact
           </Link>
         </Box>
@@ -157,13 +180,13 @@ export default function Footer() {
         }}
       >
         <div>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" href="#" style={{ color: "#127168" }}>
             Privacy Policy
           </Link>
           <Typography display="inline" sx={{ mx: 0.5, opacity: 0.5 }}>
             &nbsp;
           </Typography>
-          <Link color="text.primery" href="#">
+          <Link color="text.secondary" href="#">
             Terms of Service
           </Link>
           <Copyright />
@@ -179,17 +202,17 @@ export default function Footer() {
         >
           <IconButton
             color="inherit"
-            href="https://web.facebook.com/saylani.smit/?_rdc=1&_rdr"
-            aria-label="FACEBOOK"
-            sx={{ alignSelf: "center", color: "blue" }}
+            href="https://github.com/mui"
+            aria-label="GitHub"
+            sx={{ alignSelf: "center" }}
           >
             <FacebookIcon />
           </IconButton>
           <IconButton
             color="inherit"
-            href="https://www.instagram.com/saylani.smit/?hl=en"
-            aria-label="Instagram"
-            sx={{ alignSelf: "center", color: "Purple" }}
+            href="https://x.com/MaterialUI"
+            aria-label="X"
+            sx={{ alignSelf: "center" }}
           >
             <InstagramIcon />
           </IconButton>
@@ -203,9 +226,9 @@ export default function Footer() {
           </IconButton>
           <IconButton
             color="inherit"
-            href="https://www.linkedin.com/in/saylanimassittraining/?originalSubdomain=pk"
+            href="https://www.linkedin.com/company/mui/"
             aria-label="LinkedIn"
-            sx={{ alignSelf: "center", color: "blue" }}
+            sx={{ alignSelf: "center" }}
           >
             <LinkedInIcon />
           </IconButton>

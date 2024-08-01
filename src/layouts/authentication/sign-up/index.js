@@ -1,24 +1,7 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// react-router-dom components
 import { Link } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
-import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import MuiLink from "@mui/material/Link";
 
@@ -34,98 +17,161 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 
 // Authentication layout components
-import CoverLayout from "layouts/authentication/components/CoverLayout";
+import BasicLayout from "layouts/authentication/components/BasicLayout";
 
 // Images
-import bgImage from "assets/images/register.avif";
-import logo from "assets/images/smit-stud.png";
+import bgImage from "assets/images/pngtree-computer-lab-with-people-background-image-image_15717583.jpg";
+import logo from "assets/images/smit-stud-removebg-preview.png";
+import Color from "color";
+
 function Cover() {
+  const greenColor = Color("#82bd3e");
+  const blueColor = Color("#127168");
+  const mixedColor = greenColor.mix(blueColor, 0.5);
+  const newGradient = `linear-gradient(180deg, ${mixedColor.hex()}, #FFF)`;
   const handleNav = () => {
     window.location.href = "/dashboard";
   };
+
   return (
-    <CoverLayout image={bgImage}>
-      <Card>
-        <MDBox
-          variant="contained"
-          bgColor="light"
-          borderRadius="lg"
-          coloredShadow="#8dc63f"
-          mx={2}
-          mt={-14}
-          p={2}
-          mb={1}
-          textAlign="center"
-        >
-          <MDBox variant="contained" circular bgColor="light" borderRadius="sm" p={0}>
-            <img src={logo} style={{ width: "150px", height: "100px" }} onClick={handleNav} />
-          </MDBox>
+    <BasicLayout image={bgImage} style={{ border: "3px solid red", height: "100px" }}>
+      <Card
+        style={{
+          paddingTop: "30px",
+          paddingBottom: "130px",
+          height: "550px",
+          backgroundImage: newGradient,
+          backgroundSize: "100% 50%",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <MDBox borderRadius="lg" coloredShadow="#8dc63f" mx={2} mt={-3} mb={1} textAlign="center">
+          <img src={logo} style={{ width: "140px", height: "100px" }} />
           <MDTypography
             variant="h3"
             fontWeight="medium"
             color="success"
-            my={0}
-            component={Link}
-            to="/dashboard"
+            mt={0.5}
+            style={{ color: "#127168" }}
           >
             Sign Up
           </MDTypography>
-          <Grid container spacing={3} justifyContent="center" sx={{ mt: 0, mb: 0 }}>
-            <Grid item xs={3}>
-              <MDTypography component={MuiLink} href="#" variant="h1" color="success">
+          <Grid
+            container
+            spacing={3}
+            justifyContent="center"
+            sx={{ mt: 0.5, mb: 2 }}
+            style={{ padding: "0px" }}
+          >
+            <Grid item xs={3} style={{ padding: "3px" }}>
+              <MDTypography
+                component={MuiLink}
+                href="#"
+                variant="h2"
+                style={{ color: "#127168", padding: "3px" }}
+              >
                 <FacebookIcon color="inherit" />
               </MDTypography>
             </Grid>
-            <Grid item xs={3}>
-              <MDTypography component={MuiLink} href="#" variant="h1" color="success">
+            <Grid item xs={3} style={{ padding: "3px" }}>
+              <MDTypography component={MuiLink} href="#" variant="h2" style={{ color: "#127168" }}>
                 <GitHubIcon color="inherit" />
               </MDTypography>
             </Grid>
-            <Grid item xs={3}>
-              <MDTypography component={MuiLink} href="#" variant="h1" color="success">
+            <Grid item xs={3} style={{ padding: "0px" }}>
+              <MDTypography component={MuiLink} href="#" variant="h2" style={{ color: "#127168" }}>
                 <GoogleIcon color="inherit" />
               </MDTypography>
             </Grid>
           </Grid>
-          {/* <MDTypography display="block" variant="button" color="white" my={1}>
-            Enter your email and password to register
-          </MDTypography> */}
         </MDBox>
-        <MDBox pt={1} pb={3} px={3}>
+        <MDBox pt={0} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="text" label="Name" variant="standard" fullWidth />
+              <MDInput
+                type="text"
+                label="Name"
+                fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "darkgray",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#127168",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#127168",
+                    },
+                  },
+                  "& .MuiInputLabel-root": {
+                    "&.Mui-focused": {
+                      color: "#127168",
+                    },
+                  },
+                }}
+              />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" variant="standard" fullWidth />
+              <MDInput
+                type="email"
+                label="Email"
+                fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "darkgray",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#127168",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#127168",
+                    },
+                  },
+                  "& .MuiInputLabel-root": {
+                    "&.Mui-focused": {
+                      color: "#127168",
+                    },
+                  },
+                }}
+              />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" variant="standard" fullWidth />
+              <MDInput
+                type="password"
+                label="Password"
+                fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "darkgray",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#127168",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#127168",
+                    },
+                  },
+                  "& .MuiInputLabel-root": {
+                    "&.Mui-focused": {
+                      color: "#127168",
+                    },
+                  },
+                }}
+              />
             </MDBox>
-            <MDBox display="flex" alignItems="center" ml={-1}>
-              <Checkbox />
-              <MDTypography
-                variant="button"
-                fontWeight="regular"
-                color="text"
-                sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
-              >
-                &nbsp;&nbsp;I agree the&nbsp;
-              </MDTypography>
-              <MDTypography
-                component="a"
-                href="#"
-                variant="button"
-                fontWeight="bold"
+
+            <MDBox mt={4} mb={1} color="#127168">
+              <MDButton
+                variant="gradient"
+                fullWidth
                 color="success"
-                textGradient
+                size="large"
+                // style={{ border: "2px solid #127168" }}
               >
-                Terms and Conditions
-              </MDTypography>
-            </MDBox>
-            <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="success" fullWidth>
-                sign in
+                sign up
               </MDButton>
             </MDBox>
             <MDBox mt={3} mb={1} textAlign="center">
@@ -146,7 +192,7 @@ function Cover() {
           </MDBox>
         </MDBox>
       </Card>
-    </CoverLayout>
+    </BasicLayout>
   );
 }
 
