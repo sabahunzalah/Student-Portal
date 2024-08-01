@@ -44,10 +44,12 @@ import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
-import Register from "layouts/authentication/components/RegisterForm";
+import Register from "layouts/authentication/RegisterForm/index";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
+import RegisterForm from "layouts/authentication/RegisterForm/register";
+// import Basic from "layouts/authentication/sign-in";
 
 const routes = [
   {
@@ -124,12 +126,20 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Registration Form",
-    key: "register",
+    name: "Registration Form1",
+    key: "register1",
     icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/authentication/register",
-    component: <Register />,
+    route: "/authentication/register1",
+    component: <RegisterForm />,
   },
+  // {
+  //   type: "collapse",
+  //   name: "Registration Form2",
+  //   key: "register2",
+  //   icon: <Icon fontSize="small">dashboard</Icon>,
+  //   route: "/authentication/register2",
+  //   component: <Register />,
+  // },
 ];
 
 export default routes;
