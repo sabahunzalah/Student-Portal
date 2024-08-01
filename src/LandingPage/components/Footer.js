@@ -1,50 +1,41 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import Image1 from "../../assets/images/smit-stud.png";
 
 import FacebookIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import Color from "color";
+// import TwitterIcon from "@mui/icons-material/X";
 
 const logoStyle = {
-  width: "100%",
-  height: "150px",
+  width: "140px",
+  height: "auto",
 };
 
 function Copyright() {
   return (
-    <Typography variant="body2" textAlign="center" color="text.secondary" mt={1}>
+    <Typography variant="body2" color="text.secondary" mt={1}>
       {"Copyright © "}
-      <Link href="https://saylaniwelfare.com/en/services/educ5ation/technical-education/saylani-mass-it-training/">
-        SMIT By Saylaniwelfare Int Trust ;
-      </Link>
+      <Link href="https://mui.com/">Sitemark&nbsp;</Link>
       {new Date().getFullYear()}
     </Typography>
   );
 }
 
 export default function Footer() {
-  const greenColor = Color("#82bd3e");
-  const blueColor = Color("#127168");
-  const mixedColor = greenColor.mix(blueColor, 0.5);
-  const newGradient = `linear-gradient(180deg, ${mixedColor.hex()}, #FFF)`;
   return (
     <Container
       sx={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        width: "100%",
-        backgroundImage: newGradient,
-        borderRadius: "10px",
-        color: "Green",
-        fontSize: "18px",
-        fontFamily: "sans-serif",
-        gap: { xs: 6, sm: 10 },
+        gap: { xs: 4, sm: 8 },
         py: { xs: 8, sm: 10 },
         textAlign: { sm: "center", md: "left" },
       }}
@@ -54,7 +45,6 @@ export default function Footer() {
           display: "flex",
           flexDirection: { xs: "column", sm: "row" },
           width: "100%",
-          paddingLeft: "25px",
           justifyContent: "space-between",
         }}
       >
@@ -68,19 +58,11 @@ export default function Footer() {
         >
           <Box sx={{ width: { xs: "100%", sm: "60%" } }}>
             <Box sx={{ ml: "-15px" }}>
-              <img
-                src={
-                  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg"
-                }
-                style={logoStyle}
-                alt="logo of sitemark"
-              />
+              <img src={Image1} style={logoStyle} alt="logo of sitemark" />
             </Box>
-            <Typography variant="body2" fontWeight={600} gutterBottom>
-              Newsletter
-            </Typography>
+
             <Typography variant="body2" color="text.secondary" mb={2}>
-              Subscribe to our newsletter for weekly updates and promotions.
+              Subscribe to get more information.
             </Typography>
             <Stack direction="row" spacing={1} useFlexGap>
               <TextField
@@ -96,7 +78,18 @@ export default function Footer() {
                   "aria-label": "Enter your email address",
                 }}
               />
-              <Button variant="contained" color="primary" sx={{ flexShrink: 0 }}>
+              <Button
+                component="a"
+                href="#"
+                style={{
+                  background: "#127168",
+                  border: "none",
+                  fontSize: "17px",
+                  color: "white",
+                  fontFamily: "inherit",
+                  padding: "20px",
+                }}
+              >
                 Subscribe
               </Button>
             </Stack>
@@ -109,22 +102,24 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
-            Product
+          <Typography variant="h5" fontWeight={600} color="#127168">
+            Products
           </Typography>
-          <Link color="text.secondary" href="#">
-            Features
+          <Link color="#127168" href="#">
+            Vision & Mission
           </Link>
-          <Link color="text.secondary" href="#">
-            Testimonials
+
+          <Link color="#127168" href="#">
+            Emerging Technologies
           </Link>
-          <Link color="text.secondary" href="#">
-            Highlights
+          <Link color="#127168" href="#">
+            Success Stories
           </Link>
-          <Link color="text.secondary" href="#">
-            Pricing
+
+          <Link color="#127168" href="#">
+            Courses
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             FAQs
           </Link>
         </Box>
@@ -135,7 +130,7 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
+          <Typography variant="h5" fontWeight={600} color="#127168">
             Company
           </Typography>
           <Link color="#127168" href="#">
@@ -144,7 +139,7 @@ export default function Footer() {
           <Link color="#127168" href="#">
             Careers
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             Press
           </Link>
         </Box>
@@ -155,10 +150,10 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
+          <Typography variant="h5" fontWeight={600} color="#127168">
             Legal
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="#127168" href="#">
             Terms
           </Link>
           <Link color="#127168" href="#">
@@ -184,9 +179,9 @@ export default function Footer() {
             Privacy Policy
           </Link>
           <Typography display="inline" sx={{ mx: 0.5, opacity: 0.5 }}>
-            &nbsp;
+            &nbsp;•&nbsp;
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" href="#" style={{ color: "#127168" }}>
             Terms of Service
           </Link>
           <Copyright />
@@ -201,34 +196,29 @@ export default function Footer() {
           }}
         >
           <IconButton
-            color="inherit"
             href="https://github.com/mui"
             aria-label="GitHub"
             sx={{ alignSelf: "center" }}
+            style={{ color: "#127168" }}
           >
             <FacebookIcon />
           </IconButton>
           <IconButton
-            color="inherit"
+            color="#127168"
             href="https://x.com/MaterialUI"
             aria-label="X"
             sx={{ alignSelf: "center" }}
+            style={{ color: "#127168" }}
           >
-            <InstagramIcon />
+            <FacebookIcon />
+            {/* <TwitterIcon /> */}
           </IconButton>
           <IconButton
-            color="inherit"
-            href="https://www.youtube.com/channel/UCqIAX63GnO9xcEfnbgBfwcQ"
-            aria-label="YouTube"
-            sx={{ alignSelf: "center", color: "red" }}
-          >
-            <YouTubeIcon />
-          </IconButton>
-          <IconButton
-            color="inherit"
+            color="#127168"
             href="https://www.linkedin.com/company/mui/"
             aria-label="LinkedIn"
             sx={{ alignSelf: "center" }}
+            style={{ color: "#127168" }}
           >
             <LinkedInIcon />
           </IconButton>
