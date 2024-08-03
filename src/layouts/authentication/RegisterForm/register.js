@@ -20,6 +20,7 @@ import Color from "color";
 import "./RegisterForm.css";
 import syalaniImage from "assets/images/logo-smit-removebg-preview.png";
 import MDButton from "components/MDButton";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 function RegisterForm() {
   const greenColor = Color("#82bd3e");
@@ -138,6 +139,7 @@ function RegisterForm() {
                       onChange={handleInputChange}
                       sx={{ height: 50 }}
                       className="inp"
+                      IconComponent={ArrowDropDownIcon} // Specify the down arrow icon
                     >
                       <MenuItem value="" disabled>
                         Select City
@@ -151,6 +153,31 @@ function RegisterForm() {
                     </Select>
                   </FormControl>
                 </Grid>
+                {/* <Grid item xs={12} sm={12} md={6}>
+                  <InputLabel className="form-label">Select city</InputLabel>
+                  <FormControl fullWidth>
+                    <Select
+                      displayEmpty
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      name="city"
+                      value={formValues.city}
+                      onChange={handleInputChange}
+                      sx={{ height: 50 }}
+                      className="inp"
+                    >
+                      <MenuItem value="" disabled>
+                        Select City
+                      </MenuItem>
+                      <MenuItem value="Karachi">Karachi</MenuItem>
+                      <MenuItem value="Lahore">Lahore</MenuItem>
+                      <MenuItem value="Islamabad">Islamabad</MenuItem>
+                      <MenuItem value="Hyderabad">Hyderabad</MenuItem>
+                      <MenuItem value="Bahadurabad">Bahadurabad</MenuItem>
+                      <MenuItem value="Multan">Multan</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid> */}
                 <Grid item xs={12} sm={12} md={6}>
                   <InputLabel className="form-label">Select campus</InputLabel>
                   <FormControl fullWidth>
@@ -335,6 +362,7 @@ function RegisterForm() {
                       sx={{ height: 50 }}
                       className="inp"
                       placeholder="Select Gender"
+                      
                     >
                       <MenuItem value="" disabled>
                         Select Gender
@@ -361,16 +389,55 @@ function RegisterForm() {
                     </RadioGroup>
                   </FormControl>
                 </Grid>
+                <Grid container spacing={3}>
+                  <Grid item xs={12} sm={6} md={6}>
+                    <InputLabel className="form-label">Upload your picture</InputLabel>
+                    <TextField
+                      fullWidth
+                      name="picture"
+                      type="file"
+                      inputProps={{ accept: "image/*" }}
+                      onChange={handleInputChange}
+                      className="inp"
+                    />
+                  </Grid>
+
+                  <Grid item xs={12} sm={6} md={6}>
+                    <MDTypography variant="body1">
+                      Please ensure that your photo is clear and recent. This photo will be used for
+                      your identification purposes. Ensure the photo meets the following criteria:
+                      <ul>
+                        <li>With white or blue background</li>
+                        <li>File size must be less than 1MB</li>
+                        <li>File type: jpg, jpeg, png</li>
+                        <li>Upload your recent passport size picture</li>
+                        <li>Your Face should be clearly visible without any Glasses</li>
+                      </ul>
+                    </MDTypography>
+                  </Grid>
+                </Grid>
                 <Grid item xs={12}>
-                  <InputLabel className="form-label">Upload your picture</InputLabel>
-                  <TextField
-                    fullWidth
-                    name="picture"
-                    type="file"
-                    inputProps={{ accept: "image/*" }}
-                    onChange={handleInputChange}
-                    className="inp"
-                  />
+                  {/* Horizontal line and list items */}
+                  <hr style={{ margin: "20px 0", borderColor: "#126FB3" }} />
+                  <ul style={{ paddingLeft: "20px", listStyleType: "numbered" }}>
+                    <li>
+                      I hereby, solemnly declare that the data and facts mentioned herein are true
+                      and correct to the best of my knowledge. Further, I will abide by all the
+                      established and future regulations and policies of SMIT
+                    </li>
+                    <li>
+                      I hereby accept the responsibilities of good conduct and guarantee that I will
+                      not be involved in any other activity, political or ethical, but learning
+                      during my stay in the program.
+                    </li>
+                    <li>Defiance will render my admission canceled at any point in time.</li>
+                    <li>
+                      Upon completion, of the course, I will complete the required project by SMIT.
+                    </li>
+                    <li>
+                      It&apos;s mandatory for female students to wear abaya/hijab in the class
+                    </li>
+                  </ul>
                 </Grid>
                 <Grid item xs={12}>
                   <MDBox mb={1} display="flex" justifyContent="center">
@@ -392,7 +459,6 @@ function RegisterForm() {
               </Grid>
             </MDBox>
           )}
-
           {currentView === "downloadId" && (
             <MDBox>
               <MDBox display="flex" justifyContent="center">
@@ -433,7 +499,6 @@ function RegisterForm() {
               </MDBox>
             </MDBox>
           )}
-
           {currentView === "results" && (
             <MDBox pt={1} pb={17.2} px={1}>
               <MDBox display="flex" justifyContent="center">
