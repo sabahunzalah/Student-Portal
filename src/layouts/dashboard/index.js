@@ -14,10 +14,10 @@ function Dashboard() {
 
   const gradientCardStyle = {
     background: "linear-gradient(to bottom right, green, white)",
-    height: "100%", 
+    height: "100%",
     width: "100%",
     padding: "20px",
-    borderRadius: "10px", 
+    borderRadius: "10px",
   };
 
   return (
