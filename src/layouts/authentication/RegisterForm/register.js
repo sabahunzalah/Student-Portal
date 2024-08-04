@@ -20,9 +20,46 @@ import Color from "color";
 import "./RegisterForm.css";
 import syalaniImage from "assets/images/logo-smit-removebg-preview.png";
 import MDButton from "components/MDButton";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 function RegisterForm() {
+  const validationSchema = yup.object({
+    city: yup.string().required("City is required"),
+    campus: yup.string().required("Campus is required"),
+    course: yup.string().required("Course or event is required"),
+    classPreference: yup.string().required("Class preference is required"),
+    fullName: yup.string().required("Full Name is required"),
+    email: yup.string().email("Invalid email format").required("Email is required"),
+    cnic: yup
+      .string()
+      .matches(/^\d{5}-\d{7}-\d{1}$/, "Invalid CNIC format")
+      .required("CNIC is required"),
+    fatherName: yup.string().required("Father's Name is required"),
+    phone: yup
+      .string()
+      .matches(/^\d{10}$/, "Phone number must be 10 digits")
+      .required("Phone Number is required"),
+    fatherCnic: yup
+      .string()
+      .matches(/^\d{5}-\d{7}-\d{1}$/, "Invalid CNIC format")
+      .required("Father's CNIC is required"),
+    dob: yup.date().required("Date of Birth is required"),
+    gender: yup.string().required("Gender is required"),
+    address: yup.string().required("Address is required"),
+    lastQualification: yup.string().required("Last Qualification is required"),
+    hasLaptop: yup.string().required("Laptop status is required"),
+    picture: yup
+      .mixed()
+      .test("fileSize", "File size must be less than 1MB", (value) => {
+        return value ? value.size <= 1048576 : true; // 1MB
+      })
+      .test("fileType", "Unsupported file format", (value) => {
+        return value ? ["image/jpg", "image/jpeg", "image/png"].includes(value.type) : true;
+      })
+      .required("Picture is required"),
+  });
   const greenColor = Color("#82bd3e");
   const blueColor = Color("#127168");
   const mixedColor = greenColor.mix(blueColor, 0.5);
@@ -59,6 +96,34 @@ function RegisterForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formValues);
+  };
+  const formik = useFormik({
+    initialValues: {
+      city: "",
+      campus: "",
+      course: "",
+      classPreference: "",
+      fullName: "",
+      email: "",
+      cnic: "",
+      fatherName: "",
+      phone: "",
+      fatherCnic: "",
+      dob: "",
+      gender: "",
+      address: "",
+      lastQualification: "",
+      hasLaptop: "",
+      picture: null,
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
+  const handleFileChange = (e) => {
+    formik.setFieldValue("picture", e.currentTarget.files[0]);
   };
 
   return (
@@ -139,7 +204,7 @@ function RegisterForm() {
                       onChange={handleInputChange}
                       sx={{ height: 50 }}
                       className="inp"
-                      IconComponent={ArrowDropDownIcon} // Specify the down arrow icon
+                      IconComponent={KeyboardArrowDownOutlinedIcon} // Specify the down arrow icon
                     >
                       <MenuItem value="" disabled>
                         Select City
@@ -153,31 +218,7 @@ function RegisterForm() {
                     </Select>
                   </FormControl>
                 </Grid>
-                {/* <Grid item xs={12} sm={12} md={6}>
-                  <InputLabel className="form-label">Select city</InputLabel>
-                  <FormControl fullWidth>
-                    <Select
-                      displayEmpty
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      name="city"
-                      value={formValues.city}
-                      onChange={handleInputChange}
-                      sx={{ height: 50 }}
-                      className="inp"
-                    >
-                      <MenuItem value="" disabled>
-                        Select City
-                      </MenuItem>
-                      <MenuItem value="Karachi">Karachi</MenuItem>
-                      <MenuItem value="Lahore">Lahore</MenuItem>
-                      <MenuItem value="Islamabad">Islamabad</MenuItem>
-                      <MenuItem value="Hyderabad">Hyderabad</MenuItem>
-                      <MenuItem value="Bahadurabad">Bahadurabad</MenuItem>
-                      <MenuItem value="Multan">Multan</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid> */}
+
                 <Grid item xs={12} sm={12} md={6}>
                   <InputLabel className="form-label">Select campus</InputLabel>
                   <FormControl fullWidth>
@@ -362,7 +403,6 @@ function RegisterForm() {
                       sx={{ height: 50 }}
                       className="inp"
                       placeholder="Select Gender"
-                      
                     >
                       <MenuItem value="" disabled>
                         Select Gender
