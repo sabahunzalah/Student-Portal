@@ -175,6 +175,7 @@ export default function DashboardMain() {
             onMouseLeave={handleOnMouseLeave}
           />
           <Configurator />
+        
           {configsButton}
         </>
       )}
