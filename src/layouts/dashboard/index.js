@@ -14,10 +14,10 @@ function Dashboard() {
 
   const gradientCardStyle = {
     background: "linear-gradient(to bottom right, green, white)",
-    height: "100%", // Make sure the gradient covers the whole card
+    height: "100%", 
     width: "100%",
     padding: "20px",
-    borderRadius: "10px", // Optional: to make the corners rounded
+    borderRadius: "10px", 
   };
 
   return (
@@ -121,7 +121,7 @@ function Dashboard() {
             </MDBox>
           </Grid>
           <Grid item xs={10} md={6} lg={4}>
-            <MDBox mb={1}>
+            <MDBox mb={1.5}>
               <ReportsBarChart
                 color="success"
                 title="Monthly Progress"
