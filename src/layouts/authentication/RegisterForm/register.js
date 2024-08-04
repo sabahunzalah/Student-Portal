@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import * as React from "react";
 import Button from "@mui/material/Button";
@@ -21,45 +22,8 @@ import "./RegisterForm.css";
 import syalaniImage from "assets/images/logo-smit-removebg-preview.png";
 import MDButton from "components/MDButton";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
-import { useFormik } from "formik";
-import * as yup from "yup";
 
 function RegisterForm() {
-  const validationSchema = yup.object({
-    city: yup.string().required("City is required"),
-    campus: yup.string().required("Campus is required"),
-    course: yup.string().required("Course or event is required"),
-    classPreference: yup.string().required("Class preference is required"),
-    fullName: yup.string().required("Full Name is required"),
-    email: yup.string().email("Invalid email format").required("Email is required"),
-    cnic: yup
-      .string()
-      .matches(/^\d{5}-\d{7}-\d{1}$/, "Invalid CNIC format")
-      .required("CNIC is required"),
-    fatherName: yup.string().required("Father's Name is required"),
-    phone: yup
-      .string()
-      .matches(/^\d{10}$/, "Phone number must be 10 digits")
-      .required("Phone Number is required"),
-    fatherCnic: yup
-      .string()
-      .matches(/^\d{5}-\d{7}-\d{1}$/, "Invalid CNIC format")
-      .required("Father's CNIC is required"),
-    dob: yup.date().required("Date of Birth is required"),
-    gender: yup.string().required("Gender is required"),
-    address: yup.string().required("Address is required"),
-    lastQualification: yup.string().required("Last Qualification is required"),
-    hasLaptop: yup.string().required("Laptop status is required"),
-    picture: yup
-      .mixed()
-      .test("fileSize", "File size must be less than 1MB", (value) => {
-        return value ? value.size <= 1048576 : true; // 1MB
-      })
-      .test("fileType", "Unsupported file format", (value) => {
-        return value ? ["image/jpg", "image/jpeg", "image/png"].includes(value.type) : true;
-      })
-      .required("Picture is required"),
-  });
   const greenColor = Color("#82bd3e");
   const blueColor = Color("#127168");
   const mixedColor = greenColor.mix(blueColor, 0.5);
@@ -83,6 +47,7 @@ function RegisterForm() {
     hasLaptop: "",
     picture: null,
   });
+  const [formErrors, setFormErrors] = useState({});
   const [currentView, setCurrentView] = useState("registration");
 
   const handleInputChange = (e) => {
@@ -93,44 +58,42 @@ function RegisterForm() {
     });
   };
 
+  const validate = () => {
+    const errors = {};
+    if (!formValues.fullName) errors.fullName = "Full Name is required";
+    if (!formValues.email || !/\S+@\S+\.\S+/.test(formValues.email))
+      errors.email = "Valid Email is required";
+    if (!formValues.phone || !/^\d{10}$/.test(formValues.phone))
+      errors.phone = "Valid Phone Number is required";
+    if (!formValues.cnic || !/^\d{5}-\d{7}-\d{1}$/.test(formValues.cnic))
+      errors.cnic = "Valid CNIC is required";
+    if (!formValues.fatherCnic || !/^\d{5}-\d{7}-\d{1}$/.test(formValues.fatherCnic))
+      errors.fatherCnic = "Valid Father's CNIC is required";
+    if (!formValues.dob) errors.dob = "Date of Birth is required";
+    if (!formValues.address) errors.address = "Address is required";
+    if (!formValues.lastQualification) errors.lastQualification = "Last Qualification is required";
+    if (!formValues.gender) errors.gender = "Gender is required";
+    if (!formValues.hasLaptop) errors.hasLaptop = "Laptop status is required";
+    if (formValues.picture && formValues.picture.size > 1048576)
+      errors.picture = "File size must be less than 1MB";
+    if (formValues.picture && !["image/jpeg", "image/png"].includes(formValues.picture.type))
+      errors.picture = "Invalid file type. Only jpg, jpeg, png are allowed";
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValues);
-  };
-  const formik = useFormik({
-    initialValues: {
-      city: "",
-      campus: "",
-      course: "",
-      classPreference: "",
-      fullName: "",
-      email: "",
-      cnic: "",
-      fatherName: "",
-      phone: "",
-      fatherCnic: "",
-      dob: "",
-      gender: "",
-      address: "",
-      lastQualification: "",
-      hasLaptop: "",
-      picture: null,
-    },
-    validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
-
-  const handleFileChange = (e) => {
-    formik.setFieldValue("picture", e.currentTarget.files[0]);
+    if (validate()) {
+      console.log(formValues);
+    }
   };
 
   return (
     <PageLayout>
       <Card
         sx={{
-          // border: "2px solid red",
           backgroundImage: newGradient,
           backgroundSize: "100% 30% ",
           backgroundRepeat: "no-repeat",
@@ -204,7 +167,7 @@ function RegisterForm() {
                       onChange={handleInputChange}
                       sx={{ height: 50 }}
                       className="inp"
-                      IconComponent={KeyboardArrowDownOutlinedIcon} // Specify the down arrow icon
+                      IconComponent={KeyboardArrowDownOutlinedIcon}
                     >
                       <MenuItem value="" disabled>
                         Select City
@@ -232,11 +195,11 @@ function RegisterForm() {
                       sx={{ height: 50 }}
                       className="inp"
                     >
-                      <option value="" disabled>
+                      <MenuItem value="" disabled>
                         Select Campus
-                      </option>
-                      <option value="Bahadurabad">Bahadurabad</option>
-                      <option value="Gulshan">Gulshan</option>
+                      </MenuItem>
+                      <MenuItem value="Bahadurabad">Bahadurabad</MenuItem>
+                      <MenuItem value="Gulshan">Gulshan</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
@@ -297,6 +260,8 @@ function RegisterForm() {
                     onChange={handleInputChange}
                     className="inp"
                     placeholder="Full Name"
+                    error={!!formErrors.fullName}
+                    helperText={formErrors.fullName}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -319,6 +284,8 @@ function RegisterForm() {
                     onChange={handleInputChange}
                     className="inp"
                     placeholder="Email"
+                    error={!!formErrors.email}
+                    helperText={formErrors.email}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -330,6 +297,8 @@ function RegisterForm() {
                     onChange={handleInputChange}
                     className="inp"
                     placeholder="Phone Number"
+                    error={!!formErrors.phone}
+                    helperText={formErrors.phone}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -341,6 +310,8 @@ function RegisterForm() {
                     onChange={handleInputChange}
                     className="inp"
                     placeholder="XXXXX-XXXXXXXXX"
+                    error={!!formErrors.cnic}
+                    helperText={formErrors.cnic}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -352,6 +323,8 @@ function RegisterForm() {
                     onChange={handleInputChange}
                     className="inp"
                     placeholder="XXXXX-XXXXXXXXX"
+                    error={!!formErrors.fatherCnic}
+                    helperText={formErrors.fatherCnic}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -366,6 +339,8 @@ function RegisterForm() {
                       shrink: true,
                     }}
                     className="inp"
+                    error={!!formErrors.dob}
+                    helperText={formErrors.dob}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -377,6 +352,8 @@ function RegisterForm() {
                     onChange={handleInputChange}
                     className="inp"
                     placeholder="Last Qualification"
+                    error={!!formErrors.lastQualification}
+                    helperText={formErrors.lastQualification}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -388,6 +365,8 @@ function RegisterForm() {
                     onChange={handleInputChange}
                     className="inp"
                     placeholder="Address"
+                    error={!!formErrors.address}
+                    helperText={formErrors.address}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -402,7 +381,6 @@ function RegisterForm() {
                       onChange={handleInputChange}
                       sx={{ height: 50 }}
                       className="inp"
-                      placeholder="Select Gender"
                     >
                       <MenuItem value="" disabled>
                         Select Gender
@@ -427,6 +405,11 @@ function RegisterForm() {
                       <FormControlLabel control={<Radio />} label="Yes" value="yes" />
                       <FormControlLabel control={<Radio />} label="No" value="no" />
                     </RadioGroup>
+                    {formErrors.hasLaptop && (
+                      <MDTypography variant="body2" color="error">
+                        {formErrors.hasLaptop}
+                      </MDTypography>
+                    )}
                   </FormControl>
                 </Grid>
                 <Grid container spacing={3}>
@@ -439,6 +422,8 @@ function RegisterForm() {
                       inputProps={{ accept: "image/*" }}
                       onChange={handleInputChange}
                       className="inp"
+                      error={!!formErrors.picture}
+                      helperText={formErrors.picture}
                     />
                   </Grid>
 
@@ -457,7 +442,6 @@ function RegisterForm() {
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  {/* Horizontal line and list items */}
                   <hr style={{ margin: "20px 0", borderColor: "#126FB3" }} />
                   <ul style={{ paddingLeft: "20px", listStyleType: "numbered" }}>
                     <li>
@@ -505,7 +489,6 @@ function RegisterForm() {
                 <Grid item xs={12} sm={12} md={6}>
                   <InputLabel>CNIC(Which you provided during the submission)</InputLabel>
                   <TextField
-                    // fullWidth
                     name="cnic"
                     value={formValues.cnic}
                     onChange={handleInputChange}
@@ -547,7 +530,7 @@ function RegisterForm() {
                   <TextField
                     fullWidth
                     name="rollnumber"
-                    value={formValues.cnic}
+                    value={formValues.rollnumber}
                     onChange={handleInputChange}
                     className="downloadinp"
                     placeholder="Roll Number"
