@@ -10,7 +10,7 @@ import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 
 function Dashboard() {
-  const { sales, tasks } = reportsLineChartData;
+  const { fees, voucher } = reportsLineChartData;
 
   const gradientCardStyle = {
     background: "linear-gradient(to bottom right, green, white)",
@@ -56,7 +56,7 @@ function Dashboard() {
                   count=""
                   percentage={{
                     color: "success",
-                    label: <h3>Review Applications (Approve/Reject)</h3>,
+                    label: <h3>Manage Course / Catalog</h3>,
                   }}
                 />
               </div>
@@ -85,7 +85,7 @@ function Dashboard() {
                   count=""
                   percentage={{
                     color: "success",
-                    label: <h3>Manage Course / Catalog</h3>,
+                    label: <h3>Review Applications (Approve/Reject)</h3>,
                   }}
                 />
               </div>

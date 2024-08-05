@@ -48,13 +48,14 @@ import Register from "layouts/authentication/RegisterForm/index";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
+import ReviewsIcon from "@mui/icons-material/Reviews";
 import RegisterForm from "layouts/authentication/RegisterForm/register";
 // import Basic from "layouts/authentication/sign-in";
 
 const routes = [
   {
     type: "collapse",
-    name: "Dashboard",
+    name: "Manage Applications",
     key: "dashboard",
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/dashboard",
@@ -62,7 +63,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Courses",
+    name: "Manage Course / Catalog",
     key: "tables",
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/tables",
@@ -70,7 +71,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Quiz",
+    name: "SendNotifications to Users",
     key: "rtl",
     icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
     route: "/billing",
@@ -78,20 +79,28 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Fees",
+    name: "Review Applications",
+    key: "rtl",
+    icon: <Icon fontSize="small">ReviewsIcon</Icon>,
+    route: "/billing",
+    component: <RTL />,
+  },
+  {
+    type: "collapse",
+    name: "Manage Inspirational Videos",
+    key: "rtl",
+    icon: <Icon fontSize="small">Videos</Icon>,
+    route: "/rtl",
+    component: <RTL />,
+  },
+  {
+    type: "collapse",
+    name: "Fees & voucher",
     key: "billing",
     icon: <Icon fontSize="small">receipt_long</Icon>,
     route: "/billing",
     component: <Billing />,
   },
-  // {
-  //   type: "collapse",
-  //   name: "RTL",
-  //   key: "rtl",
-  //   icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-  //   route: "/rtl",
-  //   component: <RTL />,
-  // },
   {
     type: "collapse",
     name: "Notifications",
@@ -102,7 +111,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Profile",
+    name: "Admin Profile",
     key: "profile",
     icon: <Icon fontSize="small">person</Icon>,
     route: "/profile",
@@ -110,7 +119,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Sign In",
+    name: "Admin Sign In",
     key: "sign-in",
     icon: <Icon fontSize="small">login</Icon>,
     route: "/authentication/sign-in",
@@ -118,7 +127,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Sign Up",
+    name: "Admin Sign Up",
     key: "sign-up",
     icon: <Icon fontSize="small">assignment</Icon>,
     route: "/authentication/sign-up",
@@ -126,7 +135,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Registration Form1",
+    name: "Admin Registration Form",
     key: "register1",
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/authentication/register1",
