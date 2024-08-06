@@ -44,7 +44,7 @@ import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
-import Register from "layouts/authentication/RegisterForm/index";
+// import Register from "layouts/authentication/RegisterForm/index";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
