@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -27,6 +28,7 @@ import logo from "assets/images/smit-stud-removebg-preview.png";
 import Color from "color";
 
 function Cover() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -62,8 +64,10 @@ function Cover() {
         email,
         password,
       });
+      console.log("API response:", response); // Debugging line
       if (response.data.success) {
         localStorage.setItem("token", response.data.jwtToken); // Assuming the token is returned
+        alert(`Registration successful. Please check your email for verification link.`);
         navigate("/dashboard");
       } else {
         // Handle sign-up failure, e.g., user already exists
