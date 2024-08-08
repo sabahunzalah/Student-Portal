@@ -31,8 +31,8 @@ import DataTable from "examples/Tables/DataTable";
 // Data
 import data from "layouts/dashboard/components/Projects/data";
 
-function Projects() {
-  const { columns, rows } = data();
+function Attendance() {
+  const { columns, rows } = data(); // Assuming data() returns attendance data
   const [menu, setMenu] = useState(null);
 
   const openMenu = ({ currentTarget }) => setMenu(currentTarget);
@@ -53,9 +53,9 @@ function Projects() {
       open={Boolean(menu)}
       onClose={closeMenu}
     >
-      <MenuItem onClick={closeMenu}>Action</MenuItem>
-      <MenuItem onClick={closeMenu}>Another action</MenuItem>
-      <MenuItem onClick={closeMenu}>Something else</MenuItem>
+      <MenuItem onClick={closeMenu}>View Details</MenuItem>
+      <MenuItem onClick={closeMenu}>Download Report</MenuItem>
+      <MenuItem onClick={closeMenu}>Send Reminder</MenuItem>
     </Menu>
   );
 
@@ -63,8 +63,8 @@ function Projects() {
     <Card>
       <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
         <MDBox>
-          <MDTypography variant="h6" gutterBottom>
-            Projects
+          <MDTypography variant="h5" gutterBottom>
+            Attendance
           </MDTypography>
           <MDBox display="flex" alignItems="center" lineHeight={0}>
             <Icon
@@ -74,10 +74,10 @@ function Projects() {
                 mt: -0.5,
               }}
             >
-              done
+              check_circle
             </Icon>
-            <MDTypography variant="button" fontWeight="regular" color="text">
-              &nbsp;<strong>30 done</strong> this month
+            <MDTypography variant="button" fontWeight="regular" color="success">
+              &nbsp;<strong>85%</strong> attendance this month
             </MDTypography>
           </MDBox>
         </MDBox>
@@ -101,4 +101,4 @@ function Projects() {
   );
 }
 
-export default Projects;
+export default Attendance;

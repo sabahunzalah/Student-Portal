@@ -4,14 +4,10 @@
 =========================================================
 * Material Dashboard 2 React - v2.2.0
 =========================================================
-
 * Product Page: https://www.creative-tim.com/product/material-dashboard-react
 * Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
 Coded by www.creative-tim.com
-
  =========================================================
-
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
@@ -20,191 +16,133 @@ import Tooltip from "@mui/material/Tooltip";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
-import MDProgress from "components/MDProgress";
 
 // Images
-import logoXD from "assets/images/small-logos/logo-xd.svg";
-import logoAtlassian from "assets/images/small-logos/logo-atlassian.svg";
-import logoSlack from "assets/images/small-logos/logo-slack.svg";
-import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
-import logoJira from "assets/images/small-logos/logo-jira.svg";
-import logoInvesion from "assets/images/small-logos/logo-invision.svg";
-import team1 from "assets/images/team-1.jpg";
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
+import studentImage from "assets/images/stdnt.jpeg";
 
 export default function data() {
-  const avatars = (members) =>
-    members.map(([image, name]) => (
-      <Tooltip key={name} title={name} placeholder="bottom">
-        <MDAvatar
-          src={image}
-          alt="name"
-          size="xs"
-          sx={{
-            border: ({ borders: { borderWidth }, palette: { white } }) =>
-              `${borderWidth[2]} solid ${white.main}`,
-            cursor: "pointer",
-            position: "relative",
+  const Profile = ({ image, name, course, roll, batch, email, gender, info }) => (
+    <MDBox display="flex" alignItems="start" lineHeight={1} py={2}>
+      <MDAvatar src={image} name={name} size="lg" />
+      <MDBox ml={2}>
+        <MDTypography variant="h4" color="success" fontWeight="medium">
+          {name}
+        </MDTypography>
+        <MDTypography variant="body1" color="text">
+          {course}
+        </MDTypography>
+        <MDTypography variant="body1" color="text">
+          Roll Number: {roll}
+        </MDTypography>
+        <MDTypography variant="body1" color="text">
+          Batch: {batch}
+        </MDTypography>
+        <MDTypography variant="body1" color="text">
+          Email: {email}
+        </MDTypography>
+        <MDTypography variant="body1" color="text">
+          Gender: {gender}
+        </MDTypography>
+        <MDTypography variant="body2" color="success" fontWeight="medium">
+          {info}
+        </MDTypography>
+      </MDBox>
+    </MDBox>
+  );
 
-            "&:not(:first-of-type)": {
-              ml: -1.25,
-            },
+  const CourseDetails = ({ currentCourses, upcomingClasses, schedule, materials }) => (
+    <MDBox lineHeight={1} py={2}>
+      <MDTypography variant="h4" color="success" fontWeight="medium">
+        Course Details
+      </MDTypography>
+      <MDTypography variant="body1" color="text">
+        Current Courses: {currentCourses}
+      </MDTypography>
+      <MDTypography variant="body1" color="text">
+        Upcoming Classes: {upcomingClasses}
+      </MDTypography>
+      <MDTypography variant="body1" color="text">
+        Class Schedule: {schedule}
+      </MDTypography>
+      <MDTypography variant="body1" color="text">
+        Course Materials and Resources: {materials}
+      </MDTypography>
+    </MDBox>
+  );
 
-            "&:hover, &:focus": {
-              zIndex: "10",
-            },
-          }}
-        />
-      </Tooltip>
-    ));
-
-  const Company = ({ image, name }) => (
-    <MDBox display="flex" alignItems="center" lineHeight={1}>
-      <MDAvatar src={image} name={name} size="sm" />
-      <MDTypography variant="button" fontWeight="medium" ml={1} lineHeight={1}>
-        {name}
+  const AcademicPerformance = ({ grades, gpa }) => (
+    <MDBox lineHeight={1} py={2}>
+      <MDTypography variant="h4" color="success" fontWeight="medium">
+        Academic Performance
+      </MDTypography>
+      <MDTypography variant="body1" color="text">
+        Grades for Completed Courses: {grades}
+      </MDTypography>
+      <MDTypography variant="body1" color="text">
+        GPA: {gpa}
       </MDTypography>
     </MDBox>
   );
 
   return {
     columns: [
-      { Header: "companies", accessor: "companies", width: "45%", align: "left" },
-      { Header: "members", accessor: "members", width: "10%", align: "left" },
-      { Header: "budget", accessor: "budget", align: "center" },
-      { Header: "completion", accessor: "completion", align: "center" },
+      {
+        Header: (
+          <MDTypography variant="h4" color="success" fontWeight="medium">
+            Profile Information
+          </MDTypography>
+        ),
+        accessor: "profile",
+        width: "45%",
+        align: "left",
+      },
+      {
+        Header: (
+          <MDTypography variant="h4" color="success" fontWeight="medium">
+            Course Details
+          </MDTypography>
+        ),
+        accessor: "courses",
+        width: "30%",
+        align: "left",
+      },
+      {
+        Header: (
+          <MDTypography variant="h4" color="success" fontWeight="medium">
+            Academic Performance
+          </MDTypography>
+        ),
+        accessor: "performance",
+        width: "25%",
+        align: "left",
+      },
     ],
 
     rows: [
       {
-        companies: <Company image={logoXD} name="Material UI XD Version" />,
-        members: (
-          <MDBox display="flex" py={1}>
-            {avatars([
-              [team1, "Ryan Tompson"],
-              [team2, "Romina Hadid"],
-              [team3, "Alexander Smith"],
-              [team4, "Jessica Doe"],
-            ])}
-          </MDBox>
+        profile: (
+          <Profile
+            image={studentImage}
+            name="John Doe"
+            course="Web and Mobile Development"
+            roll="12345"
+            batch="2024"
+            email="john.doe@example.com"
+            gender="Male"
+            info="John is a dedicated student focusing on modern web and mobile technologies."
+          />
         ),
-        budget: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            $14,000
-          </MDTypography>
+        courses: (
+          <CourseDetails
+            currentCourses="HTML, CSS, JavaScript, React"
+            upcomingClasses="Node.js, Express, MongoDB"
+            schedule="Mon-Fri, 9 AM - 5 PM"
+            materials="Books, PDFs, Online tutorials"
+          />
         ),
-        completion: (
-          <MDBox width="8rem" textAlign="left">
-            <MDProgress value={60} color="info" variant="gradient" label={false} />
-          </MDBox>
-        ),
+        performance: <AcademicPerformance grades="A, A-, B+" gpa="3.8" />,
       },
-      {
-        companies: <Company image={logoAtlassian} name="Add Progress Track" />,
-        members: (
-          <MDBox display="flex" py={1}>
-            {avatars([
-              [team2, "Romina Hadid"],
-              [team4, "Jessica Doe"],
-            ])}
-          </MDBox>
-        ),
-        budget: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            $3,000
-          </MDTypography>
-        ),
-        completion: (
-          <MDBox width="8rem" textAlign="left">
-            <MDProgress value={10} color="info" variant="gradient" label={false} />
-          </MDBox>
-        ),
-      },
-      {
-        companies: <Company image={logoSlack} name="Fix Platform Errors" />,
-        members: (
-          <MDBox display="flex" py={1}>
-            {avatars([
-              [team1, "Ryan Tompson"],
-              [team3, "Alexander Smith"],
-            ])}
-          </MDBox>
-        ),
-        budget: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            Not set
-          </MDTypography>
-        ),
-        completion: (
-          <MDBox width="8rem" textAlign="left">
-            <MDProgress value={100} color="success" variant="gradient" label={false} />
-          </MDBox>
-        ),
-      },
-      {
-        companies: <Company image={logoSpotify} name="Launch our Mobile App" />,
-        members: (
-          <MDBox display="flex" py={1}>
-            {avatars([
-              [team4, "Jessica Doe"],
-              [team3, "Alexander Smith"],
-              [team2, "Romina Hadid"],
-              [team1, "Ryan Tompson"],
-            ])}
-          </MDBox>
-        ),
-        budget: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            $20,500
-          </MDTypography>
-        ),
-        completion: (
-          <MDBox width="8rem" textAlign="left">
-            <MDProgress value={100} color="success" variant="gradient" label={false} />
-          </MDBox>
-        ),
-      },
-      {
-        companies: <Company image={logoJira} name="Add the New Pricing Page" />,
-        members: (
-          <MDBox display="flex" py={1}>
-            {avatars([[team4, "Jessica Doe"]])}
-          </MDBox>
-        ),
-        budget: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            $500
-          </MDTypography>
-        ),
-        completion: (
-          <MDBox width="8rem" textAlign="left">
-            <MDProgress value={25} color="info" variant="gradient" label={false} />
-          </MDBox>
-        ),
-      },
-      {
-        companies: <Company image={logoInvesion} name="Redesign New Online Shop" />,
-        members: (
-          <MDBox display="flex" py={1}>
-            {avatars([
-              [team1, "Ryan Tompson"],
-              [team4, "Jessica Doe"],
-            ])}
-          </MDBox>
-        ),
-        budget: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            $2,000
-          </MDTypography>
-        ),
-        completion: (
-          <MDBox width="8rem" textAlign="left">
-            <MDProgress value={40} color="info" variant="gradient" label={false} />
-          </MDBox>
-        ),
-      },
+      // Add more rows as needed
     ],
   };
 }
