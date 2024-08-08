@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import { Grid, IconButton } from "@mui/material";
@@ -46,15 +46,16 @@ function RegisterForm() {
     hasLaptop: "",
     picture: null,
   });
+
   const [formErrors, setFormErrors] = useState({});
   const [currentView, setCurrentView] = useState("registration");
-
+  const [submittedForms, setSubmittedForms] = useState([]); // State to hold all submitted form data
   const handleInputChange = (e) => {
     const { name, value, type, files } = e.target;
-    setFormValues({
-      ...formValues,
+    setFormValues((prevValues) => ({
+      ...prevValues,
       [name]: type === "file" ? files[0] : value,
-    });
+    }));
   };
 
   const validate = () => {
@@ -62,7 +63,7 @@ function RegisterForm() {
     if (!formValues.fullName) errors.fullName = "Full Name is required";
     if (!formValues.email || !/\S+@\S+\.\S+/.test(formValues.email))
       errors.email = "Valid Email is required";
-    if (!formValues.phone || !/^\d{10}$/.test(formValues.phone))
+    if (!formValues.phone || !/^\+92\d{10}$/.test(formValues.phone))
       errors.phone = "Valid Phone Number is required";
     if (!formValues.cnic || !/^\d{5}-\d{7}-\d{1}$/.test(formValues.cnic))
       errors.cnic = "Valid CNIC is required";
@@ -85,9 +86,37 @@ function RegisterForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log(formValues);
+      setSubmittedForms((prevSubmittedForms) => [...prevSubmittedForms, formValues]);
+      // console.log("Submitted Forms:", formValues);
+    
+      setFormValues({
+        city: "",
+        campus: "",
+        course: "",
+        classPreference: "",
+        fullName: "",
+        email: "",
+        cnic: "",
+        fatherName: "",
+        phone: "",
+        fatherCnic: "",
+        dob: "",
+        gender: "",
+        address: "",
+        lastQualification: "",
+        hasLaptop: "",
+        picture: null,
+      });
+  
+      setImage(null);
+      setFormErrors({});
+      setFormError({}); 
     }
   };
+  
+  useEffect(() => {
+    console.log("Updated submittedForms:", submittedForms); // show form data in console
+  }, [submittedForms]);
   const [image, setImage] = useState(null);
   const [formError, setFormError] = useState({});
 
@@ -98,9 +127,12 @@ function RegisterForm() {
         setFormError({ picture: "Please upload a valid image file." });
         return;
       }
-      // Update the image preview
       const imageUrl = URL.createObjectURL(file);
       setImage(imageUrl);
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        picture: file,
+      }));
       setFormError({});
     }
   };
@@ -319,7 +351,7 @@ function RegisterForm() {
                     value={formValues.phone}
                     onChange={handleInputChange}
                     className="inp"
-                    placeholder="Phone Number"
+                    placeholder="+92XXXXXXXXXX"
                     error={!!formErrors.phone}
                     helperText={formErrors.phone}
                   />
@@ -332,7 +364,7 @@ function RegisterForm() {
                     value={formValues.cnic}
                     onChange={handleInputChange}
                     className="inp"
-                    placeholder="XXXXX-XXXXXXXXX"
+                    placeholder="XXXXX-XXXXXXXX-X"
                     error={!!formErrors.cnic}
                     helperText={formErrors.cnic}
                   />
@@ -345,7 +377,7 @@ function RegisterForm() {
                     value={formValues.fatherCnic}
                     onChange={handleInputChange}
                     className="inp"
-                    placeholder="XXXXX-XXXXXXXXX"
+                    placeholder="XXXXX-XXXXXXXX-X"
                     error={!!formErrors.fatherCnic}
                     helperText={formErrors.fatherCnic}
                   />
@@ -533,7 +565,7 @@ function RegisterForm() {
                     value={formValues.cnic}
                     onChange={handleInputChange}
                     className="downloadinp"
-                    placeholder="XXXXX-XXXXXXXXX"
+                    placeholder="XXXXX-XXXXXXXX-X"
                     sx={{
                       marginTop: "10px",
                       marginBottom: "10px",
