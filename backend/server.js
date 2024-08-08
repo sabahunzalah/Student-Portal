@@ -1,23 +1,26 @@
 import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
 import mongoose from "mongoose";
-import apiRoutes from "./routes/index.js";
+import dotenv from "dotenv";
+import cors from "cors";
+import apiRoutes from "./routes/AuthRouter.js";
+import productRoutes from "./routes/ProductRouter.js";
 
+dotenv.config({ path: "../.env" }); // Load environment variables
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("Error connecting to MongoDB:", err)); // Connect to MongoDB
 
-
-// Load environment variables from a specific path
-dotenv.config({ path: '../.env' });
-
-// Initialize express app
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
+app.use(express.json()); // Middleware to parse JSON
+app.use(cors()); // Middleware for CORS
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`app is running on port ${PORT}`);
-  });
-//   app.post("/post", (req, res) => {
-//     res.send("Sylani Mass It Training");
-//   });
-  app.use("/api",apiRoutes)
+
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+
+app.use("/api", apiRoutes);
+app.use("/Products", productRoutes);

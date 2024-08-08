@@ -3,7 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -31,5 +31,11 @@
     ],
     "react/jsx-curly-spacing": [2, "never"]
   },
-  "settings": { "import/resolver": { "node": { "paths": ["src"] } } }
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  }
 }
