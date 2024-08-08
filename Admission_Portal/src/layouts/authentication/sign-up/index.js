@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useState } from "react";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -25,12 +27,51 @@ import logo from "assets/images/smit-stud-removebg-preview.png";
 import Color from "color";
 
 function Cover() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const greenColor = Color("#82bd3e");
   const blueColor = Color("#127168");
   const mixedColor = greenColor.mix(blueColor, 0.5);
   const newGradient = `linear-gradient(180deg, ${mixedColor.hex()}, #FFF)`;
-  const handleNav = () => {
-    window.location.href = "/dashboard";
+
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   try {
+  //     const response = await axios.post("http://localhost:8080/api/signup", {
+  //       name,
+  //       email,
+  //       password,
+  //     });
+  //     alert(`Registration successful. Please check your email for verification link.`);
+  //     console.log("Signup successful:", response.data);
+  //     // Redirect or handle successful signup
+  //     window.location.href = "/dashboard";
+  //   } catch (error) {
+  //     console.error("Error signing up:", error.response?.data || error.message);
+  //   }
+  // };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post("http://localhost:8080/api/signup", {
+        name,
+        email,
+        password,
+      });
+      if (response.data.success) {
+        localStorage.setItem("token", response.data.jwtToken); // Assuming the token is returned
+        navigate("/dashboard");
+      } else {
+        // Handle sign-up failure, e.g., user already exists
+        console.error("Signup error:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Error signing up:", error.response?.data || error.message);
+    }
   };
 
   return (
@@ -52,8 +93,8 @@ function Cover() {
           mt={-3}
           mb={1}
           textAlign="center"
-          component={Link}
-          to="/dashboard"
+          // component={Link}
+          // to="/dashboard"
         >
           <img src={logo} style={{ width: "140px", height: "100px" }} />
           <MDTypography
@@ -95,12 +136,14 @@ function Cover() {
           </Grid>
         </MDBox>
         <MDBox pt={0} pb={3} px={3}>
-          <MDBox component="form" role="form">
+          <MDBox component="form" role="form" onSubmit={handleSubmit}>
             <MDBox mb={2}>
               <MDInput
                 type="text"
                 label="Name"
                 fullWidth
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     "& fieldset": {
@@ -126,6 +169,8 @@ function Cover() {
                 type="email"
                 label="Email"
                 fullWidth
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     "& fieldset": {
@@ -151,6 +196,8 @@ function Cover() {
                 type="password"
                 label="Password"
                 fullWidth
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     "& fieldset": {
@@ -173,14 +220,8 @@ function Cover() {
             </MDBox>
 
             <MDBox mt={4} mb={1} color="#127168">
-              <MDButton
-                variant="gradient"
-                fullWidth
-                color="success"
-                size="large"
-                // style={{ border: "2px solid #127168" }}
-              >
-                sign up
+              <MDButton type="submit" variant="gradient" fullWidth color="success" size="large">
+                Sign Up
               </MDButton>
             </MDBox>
             <MDBox mt={3} mb={1} textAlign="center">
