@@ -39,8 +39,11 @@ import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 import LandingPage from "LandingPage/LandingPage";
 import Register from "./layouts/authentication/RegisterForm/index"; // Import your Register component
+import AdminDashboard from "layouts/AdminDashboard";
+import { AdminRoutes } from "routes";
 
 export default function DashboardMain() {
+  const role = localStorage.getItem("role");
   const [controller, dispatch] = useMaterialUIController();
   const {
     miniSidenav,
@@ -143,6 +146,20 @@ export default function DashboardMain() {
               color={sidenavColor}
               brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
               brandName="Material Dashboard 2"
+              routes={role === "student-portal" ? routes : AdminRoutes}
+              onMouseEnter={handleOnMouseEnter}
+              onMouseLeave={handleOnMouseLeave}
+            />
+            <Configurator />
+            {configsButton}
+          </>
+        )}
+        {layout === "/admin-dashboard" && pathname !== "/authentication/RegisterForm/register" && (
+          <>
+            <Sidenav
+              color={sidenavColor}
+              brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+              brandName={role === "student-portal" ? "Student Portal" : "Admin Portal"}
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
@@ -158,6 +175,7 @@ export default function DashboardMain() {
           {/* Add the Register route */}
           {getRoutes(routes)}
           <Route path="*" element={<Navigate to="/dashboard" />} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
         </Routes>
       </ThemeProvider>
     </CacheProvider>
@@ -178,12 +196,27 @@ export default function DashboardMain() {
           {configsButton}
         </>
       )}
+      {layout === "/admin-dashboard" && pathname !== "/authentication/RegisterForm/register" && (
+        <>
+          <Sidenav
+            color={sidenavColor}
+            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+            brandName="Teacher Portal"
+            routes={routes}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+          />
+          <Configurator />
+          {configsButton}
+        </>
+      )}
       {layout === "vr" && <Configurator />}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/authentication/RegisterForm/register" element={<Register />} />{" "}
         {/* Add the Register route */}
         {getRoutes(routes)}
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
     </ThemeProvider>
