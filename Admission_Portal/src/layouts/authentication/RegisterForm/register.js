@@ -13,7 +13,6 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import { Box, Container } from "@mui/material";
 import PageLayout from "examples/LayoutContainers/PageLayout";
 import Color from "color";
 import "./RegisterForm.css";
@@ -21,6 +20,7 @@ import syalaniImage from "assets/images/logo-smit-removebg-preview.png";
 import MDButton from "components/MDButton";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { PhotoCamera } from "@mui/icons-material";
+import IdCard from "./IdCard";
 
 function RegisterForm() {
   const greenColor = Color("#82bd3e");
@@ -87,8 +87,9 @@ function RegisterForm() {
     e.preventDefault();
     if (validate()) {
       setSubmittedForms((prevSubmittedForms) => [...prevSubmittedForms, formValues]);
+      setShowIdCard(true); //show id card
       // console.log("Submitted Forms:", formValues);
-    
+
       setFormValues({
         city: "",
         campus: "",
@@ -107,18 +108,19 @@ function RegisterForm() {
         hasLaptop: "",
         picture: null,
       });
-  
+
       setImage(null);
       setFormErrors({});
-      setFormError({}); 
+      setFormError({});
     }
   };
-  
+
   useEffect(() => {
     console.log("Updated submittedForms:", submittedForms); // show form data in console
   }, [submittedForms]);
   const [image, setImage] = useState(null);
   const [formError, setFormError] = useState({});
+  const [showIdCard, setShowIdCard] = useState(false); // New state to control ID card visibility
 
   const handleInputChangeImg = (event) => {
     const file = event.target.files[0];
@@ -579,6 +581,7 @@ function RegisterForm() {
                     type="submit"
                     variant="text"
                     color="primary"
+                    onClick={() => setShowIdCard(true)}
                     fullWidth
                     style={{
                       color: "white",
@@ -592,8 +595,10 @@ function RegisterForm() {
                   </Button>
                 </Grid>
               </MDBox>
+              {showIdCard && <IdCard formValues={formValues} />}
             </MDBox>
           )}
+
           {currentView === "results" && (
             <MDBox pt={1} pb={17.2} px={1}>
               <MDBox display="flex" justifyContent="center">
