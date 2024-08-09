@@ -20,9 +20,14 @@ const userSchema =mongoose.Schema({
         unique:true,
 
     },
+    role: {
+        type: String,
+        required: true,
+        enum: ["register", "admin-portal", "student-portal"],
+    },
     date:{
         type:Date,
         default:Date.now,
-    }
+    },
 })
 export default mongoose.model("/user",userSchema);

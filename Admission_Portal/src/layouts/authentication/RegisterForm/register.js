@@ -88,7 +88,7 @@ function RegisterForm() {
     if (validate()) {
       setSubmittedForms((prevSubmittedForms) => [...prevSubmittedForms, formValues]);
       // console.log("Submitted Forms:", formValues);
-    
+
       setFormValues({
         city: "",
         campus: "",
@@ -107,13 +107,13 @@ function RegisterForm() {
         hasLaptop: "",
         picture: null,
       });
-  
+
       setImage(null);
       setFormErrors({});
-      setFormError({}); 
+      setFormError({});
     }
   };
-  
+
   useEffect(() => {
     console.log("Updated submittedForms:", submittedForms); // show form data in console
   }, [submittedForms]);

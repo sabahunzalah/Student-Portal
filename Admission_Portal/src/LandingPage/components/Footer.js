@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -7,11 +8,12 @@ import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import Image1 from "../../assets/images/smit-stud.png";
-
-import FacebookIcon from "@mui/icons-material/GitHub";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GoogleIcon from "@mui/icons-material/Google";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-// import TwitterIcon from "@mui/icons-material/X";
 
 const logoStyle = {
   width: "140px",
@@ -29,6 +31,27 @@ function Copyright() {
 }
 
 export default function Footer() {
+  const [email, setEmail] = React.useState("");
+  const [open, setOpen] = React.useState(false);
+
+  const handleSubscribe = () => {
+    if (!validateEmail(email)) {
+      setOpen(true);
+    } else {
+      // Handle the subscription logic here
+      console.log("Subscribed with email:", email);
+    }
+  };
+
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Container
       sx={{
@@ -57,7 +80,7 @@ export default function Footer() {
           }}
         >
           <Box sx={{ width: { xs: "100%", sm: "60%" } }}>
-            <Box sx={{ ml: "-15px" }}>
+            <Box sx={{ ml: "-15px" }} component="a" href="#">
               <img src={Image1} style={logoStyle} alt="logo of sitemark" />
             </Box>
 
@@ -77,10 +100,11 @@ export default function Footer() {
                   autoComplete: "off",
                   "aria-label": "Enter your email address",
                 }}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <Button
-                component="a"
-                href="#"
+                onClick={handleSubscribe}
                 style={{
                   background: "#127168",
                   border: "none",
@@ -95,6 +119,7 @@ export default function Footer() {
             </Stack>
           </Box>
         </Box>
+
         <Box
           sx={{
             display: { xs: "none", sm: "flex" },
@@ -164,6 +189,7 @@ export default function Footer() {
           </Link>
         </Box>
       </Box>
+
       <Box
         sx={{
           display: "flex",
@@ -196,27 +222,26 @@ export default function Footer() {
           }}
         >
           <IconButton
-            href="https://github.com/mui"
-            aria-label="GitHub"
+            href="https://www.saylaniwelfare.com/"
+            aria-label="X"
             sx={{ alignSelf: "center" }}
-            style={{ color: "#127168" }}
+            style={{ color: "#127168", width: "20px" }}
           >
-            <FacebookIcon />
+            <GoogleIcon color="inherit" />
           </IconButton>
           <IconButton
             color="#127168"
-            href="https://x.com/MaterialUI"
+            href="https://www.facebook.com/saylani.smit/"
             aria-label="X"
             sx={{ alignSelf: "center" }}
             style={{ color: "#127168" }}
           >
             <FacebookIcon />
-            {/* <TwitterIcon /> */}
           </IconButton>
           <IconButton
             color="#127168"
-            href="https://www.linkedin.com/company/mui/"
-            aria-label="LinkedIn"
+            href="https://www.linkedin.com/company/saylani-welfare-international-trust-official/?originalSubdomain=pk"
+            aria-label="X"
             sx={{ alignSelf: "center" }}
             style={{ color: "#127168" }}
           >
@@ -224,6 +249,18 @@ export default function Footer() {
           </IconButton>
         </Stack>
       </Box>
+
+      {/* Snackbar for error message */}
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+          Please enter a valid email address.
+        </Alert>
+      </Snackbar>
     </Container>
   );
 }

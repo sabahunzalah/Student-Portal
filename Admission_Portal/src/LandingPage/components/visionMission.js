@@ -157,6 +157,12 @@ export default function VisionMission() {
                   backgroundSize: "100% 100%",
                   backgroundRepeat: "no-repeat",
                   borderColor: selectedItemIndex === index ? "#eaf7d9" : "grey.200",
+                  "&:hover": {
+                    backgroundColor: "#127168", // Example hover background color
+                    borderColor: "#82bd3e", // Example hover border color
+                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                    transition: "all 0.3s ease",
+                  },
                 }}
               >
                 <Box
@@ -176,12 +182,19 @@ export default function VisionMission() {
                     <Typography color="text.primary" variant="h6" fontWeight="bold">
                       {title}
                     </Typography>
-                    <Typography color="text.secondary" variant="body2" sx={{ my: 0.5 }}>
+                    <Typography
+                      color="text.primary"
+                      variant="body1"
+                      sx={{
+                        my: 1,
+                        textAlign: "justify", // Set text alignment to justify
+                      }}
+                    >
                       {description}
                     </Typography>
                     <Link
                       color="primary"
-                      variant="body2"
+                      variant="h6"
                       fontWeight="bold"
                       sx={{
                         display: "inline-flex",

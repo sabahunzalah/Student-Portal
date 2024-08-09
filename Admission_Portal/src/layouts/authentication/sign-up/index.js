@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import MuiLink from "@mui/material/Link";
+import FormControl from "@mui/material/FormControl";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -32,7 +35,7 @@ function Cover() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [role, setRoles] = useState("");
   const greenColor = Color("#82bd3e");
   const blueColor = Color("#127168");
   const mixedColor = greenColor.mix(blueColor, 0.5);
@@ -63,6 +66,7 @@ function Cover() {
         name,
         email,
         password,
+        role,
       });
       console.log("API response:", response); // Debugging line
       if (response.data.success) {
@@ -84,7 +88,7 @@ function Cover() {
         style={{
           paddingTop: "30px",
           paddingBottom: "130px",
-          height: "550px",
+          height: "580px",
           backgroundImage: newGradient,
           backgroundSize: "100% 50%",
           backgroundRepeat: "no-repeat",
@@ -105,35 +109,35 @@ function Cover() {
             variant="h3"
             fontWeight="medium"
             color="success"
-            mt={0.5}
+            mt={0.3}
             style={{ color: "#127168" }}
           >
             Sign Up
           </MDTypography>
           <Grid
             container
-            spacing={3}
+            spacing={1}
             justifyContent="center"
             sx={{ mt: 0.5, mb: 2 }}
             style={{ padding: "0px" }}
           >
-            <Grid item xs={3} style={{ padding: "3px" }}>
+            <Grid item xs={3} style={{ padding: "2px" }}>
               <MDTypography
                 component={MuiLink}
                 href="#"
-                variant="h2"
-                style={{ color: "#127168", padding: "3px" }}
+                variant="h3"
+                style={{ color: "#127168", padding: "2px" }}
               >
                 <FacebookIcon color="inherit" />
               </MDTypography>
             </Grid>
-            <Grid item xs={3} style={{ padding: "3px" }}>
-              <MDTypography component={MuiLink} href="#" variant="h2" style={{ color: "#127168" }}>
+            <Grid item xs={3} style={{ padding: "2px" }}>
+              <MDTypography component={MuiLink} href="#" variant="h3" style={{ color: "#127168" }}>
                 <GitHubIcon color="inherit" />
               </MDTypography>
             </Grid>
             <Grid item xs={3} style={{ padding: "0px" }}>
-              <MDTypography component={MuiLink} href="#" variant="h2" style={{ color: "#127168" }}>
+              <MDTypography component={MuiLink} href="#" variant="h3" style={{ color: "#127168" }}>
                 <GoogleIcon color="inherit" />
               </MDTypography>
             </Grid>
@@ -222,13 +226,33 @@ function Cover() {
                 }}
               />
             </MDBox>
-
-            <MDBox mt={4} mb={1} color="#127168">
+            <MDBox mb={2}>
+              <FormControl fullWidth>
+                <Select
+                  displayEmpty
+                  labelId="signup-select-label"
+                  id="signup-select"
+                  name="role"
+                  value={role}
+                  onChange={(e) => setRoles(e.target.value)}
+                  sx={{ height: 50 }}
+                  className="inp"
+                >
+                  <MenuItem value="" disabled>
+                    Are you signing up for?
+                  </MenuItem>
+                  <MenuItem value="register">Registration Form</MenuItem>
+                  <MenuItem value="admin-portal">Admin Dashboard</MenuItem>
+                  <MenuItem value="student-portal">Student Dashboard</MenuItem>
+                </Select>
+              </FormControl>
+            </MDBox>
+            <MDBox mt={2} mb={1} color="#127168">
               <MDButton type="submit" variant="gradient" fullWidth color="success" size="large">
                 Sign Up
               </MDButton>
             </MDBox>
-            <MDBox mt={3} mb={1} textAlign="center">
+            <MDBox mt={2} mb={1} textAlign="center">
               <MDTypography variant="button" color="text">
                 Already have an account?{" "}
                 <MDTypography
