@@ -72,7 +72,12 @@ function Cover() {
       if (response.data.success) {
         localStorage.setItem("token", response.data.jwtToken); // Assuming the token is returned
         alert(`Registration successful. Please check your email for verification link.`);
-        navigate("/dashboard");
+        localStorage.setItem("role", role);
+        if (role === "register") {
+          navigate("/register");
+        } else {
+          navigate("/dashboard");
+        }
       } else {
         // Handle sign-up failure, e.g., user already exists
         console.error("Signup error:", response.data.message);
@@ -241,7 +246,7 @@ function Cover() {
                   <MenuItem value="" disabled>
                     Are you signing up for?
                   </MenuItem>
-                  <MenuItem value="register">Registration Form</MenuItem>
+                  {/* <MenuItem value="register">Registration Form</MenuItem> */}
                   <MenuItem value="admin-portal">Admin Dashboard</MenuItem>
                   <MenuItem value="student-portal">Student Dashboard</MenuItem>
                 </Select>

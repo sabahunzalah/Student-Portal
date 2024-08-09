@@ -49,6 +49,7 @@ import SignUp from "layouts/authentication/sign-up";
 // @mui icons
 import Icon from "@mui/material/Icon";
 import RegisterForm from "layouts/authentication/RegisterForm/register";
+import AdminDashboard from "layouts/AdminDashboard";
 // import Basic from "layouts/authentication/sign-in";
 
 const routes = [
@@ -62,20 +63,28 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Register Course",
+    key: "register1",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/authentication/register1",
+    component: <RegisterForm />,
+  },
+  {
+    type: "collapse",
     name: "Courses",
     key: "tables",
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/tables",
     component: <Tables />,
   },
-  {
-    type: "collapse",
-    name: "Quiz",
-    key: "rtl",
-    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-    route: "/billing",
-    component: <RTL />,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Quiz",
+  //   key: "rtl",
+  //   icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
+  //   route: "/billing",
+  //   component: <RTL />,
+  // },
   {
     type: "collapse",
     name: "Fees",
@@ -84,14 +93,6 @@ const routes = [
     route: "/billing",
     component: <Billing />,
   },
-  // {
-  //   type: "collapse",
-  //   name: "RTL",
-  //   key: "rtl",
-  //   icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-  //   route: "/rtl",
-  //   component: <RTL />,
-  // },
   {
     type: "collapse",
     name: "Notifications",
@@ -124,22 +125,15 @@ const routes = [
     route: "/authentication/sign-up",
     component: <SignUp />,
   },
+];
+export const AdminRoutes = [
   {
     type: "collapse",
-    name: "Registration Form1",
-    key: "register1",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/authentication/register1",
-    component: <RegisterForm />,
+    name: "Admin Dashboard",
+    key: "admin-dashboard",
+    icon: <Icon fontSize="small">admin_panel_settings</Icon>,
+    route: "/admin-dashboard",
+    component: <AdminDashboard />,
   },
-  // {
-  //   type: "collapse",
-  //   name: "Registration Form2",
-  //   key: "register2",
-  //   icon: <Icon fontSize="small">dashboard</Icon>,
-  //   route: "/authentication/register2",
-  //   component: <Register />,
-  // },
 ];
-
 export default routes;

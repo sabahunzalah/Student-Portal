@@ -22,6 +22,7 @@ import syalaniImage from "../../../assets/images/logo-smit-removebg-preview.png"
 import MDButton from "components/MDButton";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { PhotoCamera } from "@mui/icons-material";
+import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 function RegisterForm() {
   const greenColor = Color("#82bd3e");
@@ -139,7 +140,7 @@ function RegisterForm() {
   };
 
   return (
-    <PageLayout>
+    <DashboardLayout>
       <Card
         sx={{
           backgroundImage: newGradient,
@@ -636,7 +637,7 @@ function RegisterForm() {
           )}
         </MDBox>
       </Card>
-    </PageLayout>
+    </DashboardLayout>
   );
 }
 
