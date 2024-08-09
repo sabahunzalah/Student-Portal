@@ -63,12 +63,12 @@ export default function FAQ() {
               backgroundRepeat: "no-repeat",
             }}
           >
-            <Typography component="h3" variant="subtitle2">
+            <Typography component="h3" variant="h6">
               How do I contact customer support if I have a question or issue?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography variant="body2" gutterBottom sx={{ maxWidth: { sm: "100%", md: "70%" } }}>
+            <Typography variant="h6" gutterBottom sx={{ maxWidth: { sm: "100%", md: "70%" } }}>
               You can reach our customer support team by emailing
               <Link> support@email.com </Link>
               or calling our toll-free number. We&apos;re here to assist you promptly.
@@ -92,12 +92,12 @@ export default function FAQ() {
               backgroundRepeat: "no-repeat",
             }}
           >
-            <Typography component="h3" variant="subtitle2">
+            <Typography component="h3" variant="h6">
               Can I return the product if it doesn&apos;t meet my expectations?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography variant="body2" gutterBottom sx={{ maxWidth: { sm: "100%", md: "70%" } }}>
+            <Typography variant="h6" gutterBottom sx={{ maxWidth: { sm: "100%", md: "70%" } }}>
               Absolutely! We offer a hassle-free return policy. If you&apos;re not completely
               satisfied, you can return the product within [number of days] days for a full refund
               or exchange.
@@ -121,12 +121,12 @@ export default function FAQ() {
               backgroundRepeat: "no-repeat",
             }}
           >
-            <Typography component="h3" variant="subtitle2">
+            <Typography component="h3" variant="h6">
               What makes your product stand out from others in the market?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography variant="body2" gutterBottom sx={{ maxWidth: { sm: "100%", md: "70%" } }}>
+            <Typography variant="h6" gutterBottom sx={{ maxWidth: { sm: "100%", md: "70%" } }}>
               Our product distinguishes itself through its adaptability, durability, and innovative
               features. We prioritize user satisfaction and continually strive to exceed
               expectations in every aspect.
@@ -150,12 +150,12 @@ export default function FAQ() {
               backgroundRepeat: "no-repeat",
             }}
           >
-            <Typography component="h3" variant="subtitle2">
+            <Typography component="h3" variant="h6">
               Is there a warranty on the product, and what does it cover?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography variant="body2" gutterBottom sx={{ maxWidth: { sm: "100%", md: "70%" } }}>
+            <Typography variant="h6" gutterBottom sx={{ maxWidth: { sm: "100%", md: "70%" } }}>
               Yes, our product comes with a [length of warranty] warranty. It covers defects in
               materials and workmanship. If you encounter any issues covered by the warranty, please
               contact our customer support for assistance.
