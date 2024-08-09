@@ -183,7 +183,7 @@ function DataTable({
           )}
         </MDBox>
       ) : null}
-      <Table {...getTableProps()}>
+      {/* <Table {...getTableProps()}>
         <MDBox component="thead">
           {headerGroups.map((headerGroup, key) => (
             <TableRow key={key} {...headerGroup.getHeaderGroupProps()}>
@@ -220,9 +220,9 @@ function DataTable({
             );
           })}
         </TableBody>
-      </Table>
+      </Table> */}
 
-      <MDBox
+      {/* <MDBox
         display="flex"
         flexDirection={{ xs: "column", sm: "row" }}
         justifyContent="space-between"
@@ -264,7 +264,7 @@ function DataTable({
             )}
           </MDPagination>
         )}
-      </MDBox>
+      </MDBox> */}
     </TableContainer>
   );
 }
