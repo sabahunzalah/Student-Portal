@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as React from "react";
 import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Grid from "@mui/material/Grid";
+import { Grid, IconButton } from "@mui/material";
 import Card from "@mui/material/Card";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -14,12 +13,14 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import { Box, Container } from "@mui/material";
+// import { Box, Container } from "@mui/material";
 import PageLayout from "examples/LayoutContainers/PageLayout";
 import Color from "color";
 import "./RegisterForm.css";
 import syalaniImage from "assets/images/logo-smit-removebg-preview.png";
 import MDButton from "components/MDButton";
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import { PhotoCamera } from "@mui/icons-material";
 
 function RegisterForm() {
   const greenColor = Color("#82bd3e");
@@ -45,26 +46,101 @@ function RegisterForm() {
     hasLaptop: "",
     picture: null,
   });
-  const [currentView, setCurrentView] = useState("registration");
 
+  const [formErrors, setFormErrors] = useState({});
+  const [currentView, setCurrentView] = useState("registration");
+  const [submittedForms, setSubmittedForms] = useState([]); // State to hold all submitted form data
   const handleInputChange = (e) => {
     const { name, value, type, files } = e.target;
-    setFormValues({
-      ...formValues,
+    setFormValues((prevValues) => ({
+      ...prevValues,
       [name]: type === "file" ? files[0] : value,
-    });
+    }));
+  };
+
+  const validate = () => {
+    const errors = {};
+    if (!formValues.fullName) errors.fullName = "Full Name is required";
+    if (!formValues.email || !/\S+@\S+\.\S+/.test(formValues.email))
+      errors.email = "Valid Email is required";
+    if (!formValues.phone || !/^\+92\d{10}$/.test(formValues.phone))
+      errors.phone = "Valid Phone Number is required";
+    if (!formValues.cnic || !/^\d{5}-\d{7}-\d{1}$/.test(formValues.cnic))
+      errors.cnic = "Valid CNIC is required";
+    if (!formValues.fatherCnic || !/^\d{5}-\d{7}-\d{1}$/.test(formValues.fatherCnic))
+      errors.fatherCnic = "Valid Father's CNIC is required";
+    if (!formValues.dob) errors.dob = "Date of Birth is required";
+    if (!formValues.address) errors.address = "Address is required";
+    if (!formValues.lastQualification) errors.lastQualification = "Last Qualification is required";
+    if (!formValues.gender) errors.gender = "Gender is required";
+    if (!formValues.hasLaptop) errors.hasLaptop = "Laptop status is required";
+    if (formValues.picture && formValues.picture.size > 1048576)
+      errors.picture = "File size must be less than 1MB";
+    if (formValues.picture && !["image/jpeg", "image/png"].includes(formValues.picture.type))
+      errors.picture = "Invalid file type. Only jpg, jpeg, png are allowed";
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValues);
+    if (validate()) {
+      setSubmittedForms((prevSubmittedForms) => [...prevSubmittedForms, formValues]);
+      // console.log("Submitted Forms:", formValues);
+
+      setFormValues({
+        city: "",
+        campus: "",
+        course: "",
+        classPreference: "",
+        fullName: "",
+        email: "",
+        cnic: "",
+        fatherName: "",
+        phone: "",
+        fatherCnic: "",
+        dob: "",
+        gender: "",
+        address: "",
+        lastQualification: "",
+        hasLaptop: "",
+        picture: null,
+      });
+
+      setImage(null);
+      setFormErrors({});
+      setFormError({});
+    }
+  };
+
+  useEffect(() => {
+    console.log("Updated submittedForms:", submittedForms); // show form data in console
+  }, [submittedForms]);
+  const [image, setImage] = useState(null);
+  const [formError, setFormError] = useState({});
+
+  const handleInputChangeImg = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      if (!file.type.startsWith("image/")) {
+        setFormError({ picture: "Please upload a valid image file." });
+        return;
+      }
+      const imageUrl = URL.createObjectURL(file);
+      setImage(imageUrl);
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        picture: file,
+      }));
+      setFormError({});
+    }
   };
 
   return (
     <PageLayout>
       <Card
         sx={{
-          // border: "2px solid red",
           backgroundImage: newGradient,
           backgroundSize: "100% 30% ",
           backgroundRepeat: "no-repeat",
@@ -138,6 +214,7 @@ function RegisterForm() {
                       onChange={handleInputChange}
                       sx={{ height: 50 }}
                       className="inp"
+                      IconComponent={KeyboardArrowDownOutlinedIcon}
                     >
                       <MenuItem value="" disabled>
                         Select City
@@ -151,6 +228,7 @@ function RegisterForm() {
                     </Select>
                   </FormControl>
                 </Grid>
+
                 <Grid item xs={12} sm={12} md={6}>
                   <InputLabel className="form-label">Select campus</InputLabel>
                   <FormControl fullWidth>
@@ -164,11 +242,11 @@ function RegisterForm() {
                       sx={{ height: 50 }}
                       className="inp"
                     >
-                      <option value="" disabled>
+                      <MenuItem value="" disabled>
                         Select Campus
-                      </option>
-                      <option value="Bahadurabad">Bahadurabad</option>
-                      <option value="Gulshan">Gulshan</option>
+                      </MenuItem>
+                      <MenuItem value="Bahadurabad">Bahadurabad</MenuItem>
+                      <MenuItem value="Gulshan">Gulshan</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
@@ -188,9 +266,17 @@ function RegisterForm() {
                       <MenuItem value="" disabled>
                         Select Course
                       </MenuItem>
-                      <MenuItem value="Software Engineering">Software Engineering</MenuItem>
+                      <MenuItem value="Artifical Intelligence">Artifical Intelligence</MenuItem>
+                      <MenuItem value="Graphic Designing">Graphic Designing</MenuItem>
+                      <MenuItem value="UI/UX">UI/UX </MenuItem>
+                      <MenuItem value="Flutter">Flutter</MenuItem>
                       <MenuItem value="Data Science">Data Science</MenuItem>
-                      <MenuItem value="Web Development">Web Development</MenuItem>
+                      <MenuItem value="Mern Stack Development">Mern Stack Development</MenuItem>
+                      <MenuItem value="Software Quality Assurance">
+                        Software Quality Assurance
+                      </MenuItem>
+                      <MenuItem value="SEO">SEO</MenuItem>
+                      <MenuItem value="Php/Laravel">Php/Laravel</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
@@ -229,6 +315,8 @@ function RegisterForm() {
                     onChange={handleInputChange}
                     className="inp"
                     placeholder="Full Name"
+                    error={!!formErrors.fullName}
+                    helperText={formErrors.fullName}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -251,6 +339,8 @@ function RegisterForm() {
                     onChange={handleInputChange}
                     className="inp"
                     placeholder="Email"
+                    error={!!formErrors.email}
+                    helperText={formErrors.email}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -261,7 +351,9 @@ function RegisterForm() {
                     value={formValues.phone}
                     onChange={handleInputChange}
                     className="inp"
-                    placeholder="Phone Number"
+                    placeholder="+92XXXXXXXXXX"
+                    error={!!formErrors.phone}
+                    helperText={formErrors.phone}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -272,7 +364,9 @@ function RegisterForm() {
                     value={formValues.cnic}
                     onChange={handleInputChange}
                     className="inp"
-                    placeholder="XXXXX-XXXXXXXXX"
+                    placeholder="XXXXX-XXXXXXXX-X"
+                    error={!!formErrors.cnic}
+                    helperText={formErrors.cnic}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -283,7 +377,9 @@ function RegisterForm() {
                     value={formValues.fatherCnic}
                     onChange={handleInputChange}
                     className="inp"
-                    placeholder="XXXXX-XXXXXXXXX"
+                    placeholder="XXXXX-XXXXXXXX-X"
+                    error={!!formErrors.fatherCnic}
+                    helperText={formErrors.fatherCnic}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -298,6 +394,8 @@ function RegisterForm() {
                       shrink: true,
                     }}
                     className="inp"
+                    error={!!formErrors.dob}
+                    helperText={formErrors.dob}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -309,6 +407,8 @@ function RegisterForm() {
                     onChange={handleInputChange}
                     className="inp"
                     placeholder="Last Qualification"
+                    error={!!formErrors.lastQualification}
+                    helperText={formErrors.lastQualification}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -320,6 +420,8 @@ function RegisterForm() {
                     onChange={handleInputChange}
                     className="inp"
                     placeholder="Address"
+                    error={!!formErrors.address}
+                    helperText={formErrors.address}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -334,7 +436,6 @@ function RegisterForm() {
                       onChange={handleInputChange}
                       sx={{ height: 50 }}
                       className="inp"
-                      placeholder="Select Gender"
                     >
                       <MenuItem value="" disabled>
                         Select Gender
@@ -359,18 +460,80 @@ function RegisterForm() {
                       <FormControlLabel control={<Radio />} label="Yes" value="yes" />
                       <FormControlLabel control={<Radio />} label="No" value="no" />
                     </RadioGroup>
+                    {formErrors.hasLaptop && (
+                      <MDTypography variant="body2" color="error">
+                        {formErrors.hasLaptop}
+                      </MDTypography>
+                    )}
                   </FormControl>
                 </Grid>
+
+                <Grid container spacing={0} style={{ margin: 0 }}>
+                  <Grid item xs={12} sm={2} md={2} style={{ padding: 0 }}>
+                    <InputLabel className="form-label">Upload your picture</InputLabel>
+                    <div className="upload-container">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleInputChangeImg}
+                        id="file-input"
+                        style={{ display: "none" }}
+                      />
+                      <label
+                        htmlFor="file-input"
+                        style={{ display: "block", width: "100%", height: "100%" }}
+                      >
+                        {!image ? (
+                          <>
+                            <IconButton component="span" className="icon">
+                              <PhotoCamera />
+                            </IconButton>
+                            <div className="upload-placeholder">Upload Photo</div>
+                          </>
+                        ) : (
+                          <img src={image} alt="Preview" className="image-preview" />
+                        )}
+                      </label>
+                    </div>
+                    {formError.picture && <div className="form-error">{formError.picture}</div>}
+                  </Grid>
+
+                  <Grid item xs={12} sm={10} md={10} style={{ padding: 0 }}>
+                    <MDTypography variant="body1">
+                      Please ensure that your photo is clear and recent. This photo will be used for
+                      your identification purposes. Ensure the photo meets the following criteria:
+                      <ul>
+                        <li>With white or blue background</li>
+                        <li>File size must be less than 1MB</li>
+                        <li>File type: jpg, jpeg, png</li>
+                        <li>Upload your recent passport size picture</li>
+                        <li>Your face should be clearly visible without any glasses</li>
+                      </ul>
+                    </MDTypography>
+                  </Grid>
+                </Grid>
+
                 <Grid item xs={12}>
-                  <InputLabel className="form-label">Upload your picture</InputLabel>
-                  <TextField
-                    fullWidth
-                    name="picture"
-                    type="file"
-                    inputProps={{ accept: "image/*" }}
-                    onChange={handleInputChange}
-                    className="inp"
-                  />
+                  <hr style={{ margin: "20px 0", borderColor: "#126FB3" }} />
+                  <ul style={{ paddingLeft: "20px", listStyleType: "numbered" }}>
+                    <li>
+                      I hereby, solemnly declare that the data and facts mentioned herein are true
+                      and correct to the best of my knowledge. Further, I will abide by all the
+                      established and future regulations and policies of SMIT
+                    </li>
+                    <li>
+                      I hereby accept the responsibilities of good conduct and guarantee that I will
+                      not be involved in any other activity, political or ethical, but learning
+                      during my stay in the program.
+                    </li>
+                    <li>Defiance will render my admission canceled at any point in time.</li>
+                    <li>
+                      Upon completion, of the course, I will complete the required project by SMIT.
+                    </li>
+                    <li>
+                      It&apos;s mandatory for female students to wear abaya/hijab in the class
+                    </li>
+                  </ul>
                 </Grid>
                 <Grid item xs={12}>
                   <MDBox mb={1} display="flex" justifyContent="center">
@@ -392,19 +555,17 @@ function RegisterForm() {
               </Grid>
             </MDBox>
           )}
-
           {currentView === "downloadId" && (
             <MDBox>
               <MDBox display="flex" justifyContent="center">
                 <Grid item xs={12} sm={12} md={6}>
                   <InputLabel>CNIC(Which you provided during the submission)</InputLabel>
                   <TextField
-                    // fullWidth
                     name="cnic"
                     value={formValues.cnic}
                     onChange={handleInputChange}
                     className="downloadinp"
-                    placeholder="XXXXX-XXXXXXXXX"
+                    placeholder="XXXXX-XXXXXXXX-X"
                     sx={{
                       marginTop: "10px",
                       marginBottom: "10px",
@@ -433,15 +594,15 @@ function RegisterForm() {
               </MDBox>
             </MDBox>
           )}
-
           {currentView === "results" && (
             <MDBox pt={1} pb={17.2} px={1}>
               <MDBox display="flex" justifyContent="center">
                 <Grid item xs={12} sm={12} md={12}>
                   <InputLabel>Roll Number</InputLabel>
                   <TextField
+                    fullWidth
                     name="rollnumber"
-                    value={formValues.cnic}
+                    value={formValues.rollnumber}
                     onChange={handleInputChange}
                     className="downloadinp"
                     placeholder="Roll Number"
@@ -464,7 +625,6 @@ function RegisterForm() {
                       backgroundColor: "#127168",
                       fontSize: "15px",
                       width: "400px",
-                      // marginBottom: "150px",
                     }}
                   >
                     Search

@@ -1,11 +1,9 @@
-import { useState } from "react";
-
-// react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import React, { useState } from "react";
 
 // @mui material components
 import Card from "@mui/material/Card";
-import Switch from "@mui/material/Switch";
 import Grid from "@mui/material/Grid";
 import MuiLink from "@mui/material/Link";
 
@@ -26,7 +24,6 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 // Images
 import bgImage from "assets/images/pngtree-school-computer-lab-background-vector-image-image_15717581.jpg";
 import logo from "assets/images/smit-stud-removebg-preview.png";
-import { BorderColor } from "@mui/icons-material";
 import Color from "color";
 
 function Basic() {
@@ -34,9 +31,35 @@ function Basic() {
   const blueColor = Color("#127168");
   const mixedColor = greenColor.mix(blueColor, 0.5);
   const newGradient = `linear-gradient(180deg, ${mixedColor.hex()}, #FFF)`;
-  const [rememberMe, setRememberMe] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate(); // for programmatic navigation
 
-  const handleSetRememberMe = () => setRememberMe(!rememberMe);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post("http://localhost:8080/api/login", {
+        email,
+        password,
+      });
+
+      if (response.data.success) {
+        // alert(`Welcome, ${response.data.user.name}! You have been successfully logged in.`);
+        // // Redirect to dashboard if login is successful
+        // navigate("/dashboard");
+        localStorage.setItem("token", response.data.jwtToken);
+        navigate("/dashboard");
+      } else {
+        // Handle login failure
+        setErrorMessage("Invalid email or password. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error logging in:", error.response?.data || error.message);
+      alert("An error occurred. Please try again later.");
+    }
+  };
 
   return (
     <BasicLayout image={bgImage} style={{ border: "3px solid red", height: "100px" }}>
@@ -50,15 +73,7 @@ function Basic() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <MDBox
-          borderRadius="lg"
-          coloredShadow="#8dc63f"
-          mx={2}
-          mt={-3}
-          // p={2}
-          mb={1}
-          textAlign="center"
-        >
+        <MDBox borderRadius="lg" coloredShadow="#8dc63f" mx={2} mt={-3} mb={1} textAlign="center">
           <img src={logo} style={{ width: "140px", height: "100px" }} />
 
           <MDTypography
@@ -100,12 +115,14 @@ function Basic() {
           </Grid>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
-          <MDBox component="form" role="form">
+          <MDBox component="form" role="form" onSubmit={handleSubmit}>
             <MDBox mb={2}>
               <MDInput
                 type="email"
                 label="Email"
                 fullWidth
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     "& fieldset": {
@@ -131,6 +148,8 @@ function Basic() {
                 type="password"
                 label="Password"
                 fullWidth
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     "& fieldset": {
@@ -151,16 +170,16 @@ function Basic() {
                 }}
               />
             </MDBox>
-
+            {errorMessage && (
+              <MDBox mb={2} textAlign="center" color="error">
+                <MDTypography variant="body2" color="error">
+                  {errorMessage}
+                </MDTypography>
+              </MDBox>
+            )}
             <MDBox mt={4} mb={1} color="#127168">
-              <MDButton
-                variant="gradient"
-                fullWidth
-                color="success"
-                size="large"
-                // style={{ border: "2px solid #127168" }}
-              >
-                sign in
+              <MDButton type="submit" variant="gradient" fullWidth color="success" size="large">
+                Sign In
               </MDButton>
             </MDBox>
             <MDBox mt={3} mb={1} textAlign="center">

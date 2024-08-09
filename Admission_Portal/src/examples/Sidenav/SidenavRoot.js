@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 // @mui material components
 import Drawer from "@mui/material/Drawer";
 import { styled } from "@mui/material/styles";
-import { createTheme } from "@mui/material/styles";
+// import { createTheme } from "@mui/material/styles";
 import Color from "color";
 
 export default styled(Drawer)(({ theme, ownerState }) => {
