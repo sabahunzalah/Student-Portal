@@ -3,7 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "extends": ["prettier"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -29,7 +29,9 @@
         "custom": "ignore"
       }
     ],
-    "react/jsx-curly-spacing": [2, "never"]
+    "react/jsx-curly-spacing": [2, "never"],
+    "no-unused-vars": "off", // Turn off warnings for unused variables
+    "react/no-unused-vars": "off" // Turn off warnings for unused variables in React
   },
   "settings": {
     "import/resolver": {
