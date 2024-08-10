@@ -23,7 +23,7 @@ const userSchema =mongoose.Schema({
     role: {
         type: String,
         required: true,
-        enum: ["register", "admin-portal", "student-portal"],
+        enum: [ "admin-portal", "student-portal"],
     },
     date:{
         type:Date,

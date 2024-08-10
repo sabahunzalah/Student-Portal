@@ -58,9 +58,37 @@ function Cover() {
   //     console.error("Error signing up:", error.response?.data || error.message);
   //   }
   // };
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   try {
+  //     const response = await axios.post("http://localhost:8080/api/signup", {
+  //       name,
+  //       email,
+  //       password,
+  //       role,
+  //     });
+  //     console.log("API response:", response); // Debugging line
+  //     if (response.data.success) {
+  //       localStorage.setItem("token", response.data.jwtToken); // Assuming the token is returned
+  //       alert(`Registration successful. Please check your email for verification link.`);
+  //       localStorage.setItem("role", role);
+  //       if (role === "register") {
+  //         navigate("/register");
+  //       } else {
+  //         navigate("/dashboard");
+  //       }
+  //     } else {
+  //       // Handle sign-up failure, e.g., user already exists
+  //       console.error("Signup error:", response.data.message);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error signing up:", error.response?.data || error.message);
+  //   }
+  // };
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     try {
       const response = await axios.post("http://localhost:8080/api/signup", {
         name,
@@ -68,24 +96,28 @@ function Cover() {
         password,
         role,
       });
-      console.log("API response:", response); // Debugging line
+  
       if (response.data.success) {
-        localStorage.setItem("token", response.data.jwtToken); // Assuming the token is returned
-        alert(`Registration successful. Please check your email for verification link.`);
+        localStorage.setItem("token", response.data.jwtToken);
         localStorage.setItem("role", role);
-        if (role === "register") {
-          navigate("/register");
-        } else {
-          navigate("/dashboard");
+        localStorage.setItem("name", response.data.name);
+  
+        // Redirect based on role
+        if (role === "admin-portal") {
+          navigate("/admin-dashboard");
+        } else if (role === "student-portal") {
+          navigate("/student-dashboard");
         }
       } else {
-        // Handle sign-up failure, e.g., user already exists
-        console.error("Signup error:", response.data.message);
+        alert(response.data.message);
       }
     } catch (error) {
       console.error("Error signing up:", error.response?.data || error.message);
     }
   };
+  
+  // Similarly for login, you should set the name and role in localStorage and navigate accordingly.
+  
 
   return (
     <BasicLayout image={bgImage} style={{ border: "3px solid red", height: "100px" }}>
