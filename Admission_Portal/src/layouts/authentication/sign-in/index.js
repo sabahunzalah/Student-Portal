@@ -50,6 +50,7 @@ function Basic() {
         // // Redirect to dashboard if login is successful
         // navigate("/dashboard");
         localStorage.setItem("token", response.data.jwtToken);
+        localStorage.setItem("role", response.data.role);
         navigate("/dashboard");
       } else {
         // Handle login failure

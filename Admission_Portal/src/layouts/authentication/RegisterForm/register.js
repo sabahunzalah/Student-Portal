@@ -13,13 +13,16 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+// import { Box, Container } from "@mui/material";
 import PageLayout from "examples/LayoutContainers/PageLayout";
 import Color from "color";
 import "./RegisterForm.css";
-import syalaniImage from "assets/images/logo-smit-removebg-preview.png";
+// import syalaniImage from "assets/images/logo-smit-removebg-preview.png";
+import syalaniImage from "../../../assets/images/logo-smit-removebg-preview.png";
 import MDButton from "components/MDButton";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { PhotoCamera } from "@mui/icons-material";
+import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import IdCard from "./IdCard";
 
 function RegisterForm() {
@@ -90,6 +93,7 @@ function RegisterForm() {
       setShowIdCard(true); //show id card
       // console.log("Submitted Forms:", formValues);
 
+
       setFormValues({
         city: "",
         campus: "",
@@ -109,11 +113,14 @@ function RegisterForm() {
         picture: null,
       });
 
+
       setImage(null);
       setFormErrors({});
       setFormError({});
+      setFormError({});
     }
   };
+
 
   useEffect(() => {
     console.log("Updated submittedForms:", submittedForms); // show form data in console
@@ -140,7 +147,7 @@ function RegisterForm() {
   };
 
   return (
-    <PageLayout>
+    <DashboardLayout>
       <Card
         sx={{
           backgroundImage: newGradient,
@@ -640,7 +647,7 @@ function RegisterForm() {
           )}
         </MDBox>
       </Card>
-    </PageLayout>
+    </DashboardLayout>
   );
 }
 

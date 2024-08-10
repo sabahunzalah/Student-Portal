@@ -3,7 +3,7 @@ import {
   LoginValidation,
   SignupValidation,
 } from "../middlewares/AuthValidation.js";
-import { userLogin, userSignup } from "../controller/AuthController.js";
+import { userLogin, userSignup } from "../Controller/AuthController.js";
 const apiRoutes = express.Router();
 
 apiRoutes.post("/signup", SignupValidation, userSignup);
