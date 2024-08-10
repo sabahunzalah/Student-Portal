@@ -46,12 +46,19 @@ function Basic() {
       });
 
       if (response.data.success) {
-        // alert(`Welcome, ${response.data.user.name}! You have been successfully logged in.`);
-        // // Redirect to dashboard if login is successful
-        // navigate("/dashboard");
+        // Store JWT token and user role in localStorage
         localStorage.setItem("token", response.data.jwtToken);
         localStorage.setItem("role", response.data.role);
-        navigate("/dashboard");
+
+        // Check the user's role and navigate accordingly
+        if (response.data.role === "admin-portal") {
+          navigate("/admin-dashboard"); // Navigate to AdminDashboard
+        } else if (response.data.role === "student-portal") {
+          navigate("/dashboard"); // Navigate to Student Dashboard
+        } else {
+          // Handle any other roles or show an error if the role is unexpected
+          setErrorMessage("Invalid user role. Please contact support.");
+        }
       } else {
         // Handle login failure
         setErrorMessage("Invalid email or password. Please try again.");
