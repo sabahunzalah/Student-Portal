@@ -184,7 +184,7 @@ export default function DashboardMain() {
           <Route path="*" element={<Navigate to="/dashboard" />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/" element={<LandingPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/student-dashboard" element={<Dashboard />} />
         </Routes>
       </ThemeProvider>
     </CacheProvider>

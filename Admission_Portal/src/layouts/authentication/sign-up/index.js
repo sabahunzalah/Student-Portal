@@ -41,54 +41,9 @@ function Cover() {
   const mixedColor = greenColor.mix(blueColor, 0.5);
   const newGradient = `linear-gradient(180deg, ${mixedColor.hex()}, #FFF)`;
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   try {
-  //     const response = await axios.post("http://localhost:8080/api/signup", {
-  //       name,
-  //       email,
-  //       password,
-  //     });
-  //     alert(`Registration successful. Please check your email for verification link.`);
-  //     console.log("Signup successful:", response.data);
-  //     // Redirect or handle successful signup
-  //     window.location.href = "/dashboard";
-  //   } catch (error) {
-  //     console.error("Error signing up:", error.response?.data || error.message);
-  //   }
-  // };
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   try {
-  //     const response = await axios.post("http://localhost:8080/api/signup", {
-  //       name,
-  //       email,
-  //       password,
-  //       role,
-  //     });
-  //     console.log("API response:", response); // Debugging line
-  //     if (response.data.success) {
-  //       localStorage.setItem("token", response.data.jwtToken); // Assuming the token is returned
-  //       alert(`Registration successful. Please check your email for verification link.`);
-  //       localStorage.setItem("role", role);
-  //       if (role === "register") {
-  //         navigate("/register");
-  //       } else {
-  //         navigate("/dashboard");
-  //       }
-  //     } else {
-  //       // Handle sign-up failure, e.g., user already exists
-  //       console.error("Signup error:", response.data.message);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error signing up:", error.response?.data || error.message);
-  //   }
-  // };
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     try {
       const response = await axios.post("http://localhost:8080/api/signup", {
         name,
@@ -96,12 +51,14 @@ function Cover() {
         password,
         role,
       });
-  
+
       if (response.data.success) {
+        alert("Registration successful");
+        console.log(response.data)
         localStorage.setItem("token", response.data.jwtToken);
         localStorage.setItem("role", role);
         localStorage.setItem("name", response.data.name);
-  
+
         // Redirect based on role
         if (role === "admin-portal") {
           navigate("/admin-dashboard");
@@ -115,10 +72,6 @@ function Cover() {
       console.error("Error signing up:", error.response?.data || error.message);
     }
   };
-  
-  // Similarly for login, you should set the name and role in localStorage and navigate accordingly.
-  
-
   return (
     <BasicLayout image={bgImage} style={{ border: "3px solid red", height: "100px" }}>
       <Card
@@ -131,16 +84,7 @@ function Cover() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <MDBox
-          borderRadius="lg"
-          coloredShadow="#8dc63f"
-          mx={2}
-          mt={-3}
-          mb={1}
-          textAlign="center"
-          // component={Link}
-          // to="/dashboard"
-        >
+        <MDBox borderRadius="lg" coloredShadow="#8dc63f" mx={2} mt={-3} mb={1} textAlign="center">
           <img src={logo} style={{ width: "140px", height: "100px" }} />
           <MDTypography
             variant="h3"

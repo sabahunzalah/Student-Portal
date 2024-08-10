@@ -63,15 +63,13 @@ function Basic() {
   // };
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     try {
-      const response = await axios.post("http://localhost:8080/api/signup", {
-        name,
+      const response = await axios.post("http://localhost:8080/api/login", {
         email,
         password,
-        role,
       });
-  
+
       if (response.data.success) {
         // Store JWT token and user role in localStorage
         localStorage.setItem("token", response.data.jwtToken);
@@ -93,9 +91,8 @@ function Basic() {
       console.error("Error signing up:", error.response?.data || error.message);
     }
   };
-  
+
   // Similarly for login, you should set the name and role in localStorage and navigate accordingly.
-  
 
   return (
     <BasicLayout image={bgImage} style={{ border: "3px solid red", height: "100px" }}>
