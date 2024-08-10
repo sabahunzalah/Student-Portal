@@ -36,31 +36,63 @@ function Basic() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate(); // for programmatic navigation
 
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   try {
+  //     const response = await axios.post("http://localhost:8080/api/login", {
+  //       email,
+  //       password,
+  //     });
+
+  //     if (response.data.success) {
+  //       // alert(`Welcome, ${response.data.user.name}! You have been successfully logged in.`);
+  //       // // Redirect to dashboard if login is successful
+  //       // navigate("/dashboard");
+  //       localStorage.setItem("token", response.data.jwtToken);
+  //       localStorage.setItem("role", response.data.role);
+  //       navigate("/dashboard");
+  //     } else {
+  //       // Handle login failure
+  //       setErrorMessage("Invalid email or password. Please try again.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error logging in:", error.response?.data || error.message);
+  //     alert("An error occurred. Please try again later.");
+  //   }
+  // };
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     try {
-      const response = await axios.post("http://localhost:8080/api/login", {
+      const response = await axios.post("http://localhost:8080/api/signup", {
+        name,
         email,
         password,
+        role,
       });
-
+  
       if (response.data.success) {
-        // alert(`Welcome, ${response.data.user.name}! You have been successfully logged in.`);
-        // // Redirect to dashboard if login is successful
-        // navigate("/dashboard");
         localStorage.setItem("token", response.data.jwtToken);
-        localStorage.setItem("role", response.data.role);
-        navigate("/dashboard");
+        localStorage.setItem("role", role);
+        localStorage.setItem("name", response.data.name);
+  
+        // Redirect based on role
+        if (role === "admin-portal") {
+          navigate("/admin-dashboard");
+        } else if (role === "student-portal") {
+          navigate("/student-dashboard");
+        }
       } else {
-        // Handle login failure
-        setErrorMessage("Invalid email or password. Please try again.");
+        alert(response.data.message);
       }
     } catch (error) {
-      console.error("Error logging in:", error.response?.data || error.message);
-      alert("An error occurred. Please try again later.");
+      console.error("Error signing up:", error.response?.data || error.message);
     }
   };
+  
+  // Similarly for login, you should set the name and role in localStorage and navigate accordingly.
+  
 
   return (
     <BasicLayout image={bgImage} style={{ border: "3px solid red", height: "100px" }}>

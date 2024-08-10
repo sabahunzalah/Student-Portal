@@ -40,10 +40,17 @@ import brandDark from "assets/images/logo-ct-dark.png";
 import LandingPage from "LandingPage/LandingPage";
 import Register from "./layouts/authentication/RegisterForm/index"; // Import your Register component
 import AdminDashboard from "layouts/AdminDashboard";
+import React from "react";
+import Dashboard from "layouts/dashboard";
+import SignIn from "layouts/authentication/sign-in";
 import { AdminRoutes } from "routes";
 
 export default function DashboardMain() {
   const role = localStorage.getItem("role");
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return <Navigate to="/authentication/sign-in" />;
+  }
   const [controller, dispatch] = useMaterialUIController();
   const {
     miniSidenav,
@@ -176,6 +183,8 @@ export default function DashboardMain() {
           {getRoutes(routes)}
           <Route path="*" element={<Navigate to="/dashboard" />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </ThemeProvider>
     </CacheProvider>
