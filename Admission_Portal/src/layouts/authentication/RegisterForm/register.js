@@ -23,6 +23,7 @@ import MDButton from "components/MDButton";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { PhotoCamera } from "@mui/icons-material";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
+import IdCard from "./IdCard";
 
 function RegisterForm() {
   const greenColor = Color("#82bd3e");
@@ -89,7 +90,9 @@ function RegisterForm() {
     e.preventDefault();
     if (validate()) {
       setSubmittedForms((prevSubmittedForms) => [...prevSubmittedForms, formValues]);
+      setShowIdCard(true); //show id card
       // console.log("Submitted Forms:", formValues);
+
 
       setFormValues({
         city: "",
@@ -110,17 +113,21 @@ function RegisterForm() {
         picture: null,
       });
 
+
       setImage(null);
       setFormErrors({});
       setFormError({});
+      setFormError({});
     }
   };
+
 
   useEffect(() => {
     console.log("Updated submittedForms:", submittedForms); // show form data in console
   }, [submittedForms]);
   const [image, setImage] = useState(null);
   const [formError, setFormError] = useState({});
+  const [showIdCard, setShowIdCard] = useState(false); // New state to control ID card visibility
 
   const handleInputChangeImg = (event) => {
     const file = event.target.files[0];
@@ -581,6 +588,7 @@ function RegisterForm() {
                     type="submit"
                     variant="text"
                     color="primary"
+                    onClick={() => setShowIdCard(true)}
                     fullWidth
                     style={{
                       color: "white",
@@ -594,8 +602,10 @@ function RegisterForm() {
                   </Button>
                 </Grid>
               </MDBox>
+              {showIdCard && <IdCard formValues={formValues} />}
             </MDBox>
           )}
+
           {currentView === "results" && (
             <MDBox pt={1} pb={17.2} px={1}>
               <MDBox display="flex" justifyContent="center">
