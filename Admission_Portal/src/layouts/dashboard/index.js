@@ -22,16 +22,49 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import MDTypography from "components/MDTypography";
-import Image from "../../assets/images/amna1.png";
-import webpic from "../../assets/images/webpic.jpeg";
+import Image from "../../assets/images/teacher2.png";
+import Image2 from "../../assets/images/laptopbook.jpeg";
+import Image3 from "../../assets/images/clander1.png";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 import { borderRadius, display } from "@mui/system";
 import Color from "color";
+import WavingHandIcon from "@mui/icons-material/WavingHand";
 
 function Dashboard() {
+  const [userName, setUserName] = useState("");
+  const navigate = useNavigate();
+  
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        navigate("/authentication/sign-in");
+        return;
+      }
+
+      try {
+        const response = await axios.get("http://localhost:8080/api/dashboard", {
+          headers: {
+            "x-auth-token": token,
+          },
+        });
+        setUserName(response.data.name);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        navigate("/authentication/sign-in");
+      }
+    };
+
+    fetchUserData();
+  }, [navigate]);
   const greenColor = Color("#82bd3e");
   const blueColor = Color("#127168");
   const mixedColor = greenColor.mix(blueColor, 0.5);
-  const newGradient = `linear-gradient(30deg, ${mixedColor.hex()}, #FFF)`;
+  const newGradient = `linear-gradient(180deg, ${mixedColor.hex()}, #FFF)`;
   const academicPerformanceData = {
     labels: ["Course 1", "Course 2", "Course 3"],
     datasets: [
@@ -59,6 +92,23 @@ function Dashboard() {
       },
     ],
   };
+  const cardDetails = [
+    {
+      image: Image2, // Your image import
+      title: "Courses",
+      description: "Get course detail information.",
+    },
+    {
+      image: Image, // Your image import
+      title: "Teachers",
+      description: "Smit Teachers.",
+    },
+    {
+      image: Image3, // Your image import
+      title: "Class schedule",
+      description: "Timings and Days.",
+    },
+  ];
 
   const attendanceData = {
     labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
@@ -99,9 +149,9 @@ function Dashboard() {
       <DashboardNavbar />
       <MDBox
         sx={{
-          border: "2px solid green",
+          // border: "2px solid green",
           borderRadius: "10px",
-          // backgroundColor: "white",
+          backgroundColor: "white",
           marginTop: 1,
           padding: 2,
 
@@ -115,7 +165,7 @@ function Dashboard() {
             display: "flex",
             justifyContent: "flex start",
             gap: "10px",
-            // backgroundColor: "#ffffff",
+            backgroundColor: "#ffffff",
             // border: "2px solid black",
             borderRadius: "10px",
             padding: 2,
@@ -141,13 +191,15 @@ function Dashboard() {
                 sx={{
                   height: 50,
                   width: 50,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "2rem", // Adjust font size to fit the container
                 }}
               >
-                <img src={Image} style={{ height: "100%", width: "100%", borderRadius: "50px" }} />
+                👋
               </MDTypography>
-              <MDTypography>
-                <h2>Welcome Smit</h2>
-              </MDTypography>
+              <MDTypography>Hi {userName}, welcome to SMIT!</MDTypography>
             </Grid>
           </Grid>
         </MDBox>
@@ -160,50 +212,52 @@ function Dashboard() {
           }}
         >
           <Grid container spacing={3}>
-            {Array(3)
-              .fill("")
-              .map((_, index) => (
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  key={index}
-                  sx={{ display: "flex", justifyContent: "center" }}
+            {cardDetails.map((card, index) => (
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                key={index}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <Card
+                  sx={{
+                    height: 260,
+                    width: "100%",
+                    maxWidth: 300,
+                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                    transition: "box-shadow 0.3s ease-in-out",
+                    "&:hover": {
+                      boxShadow: "0 4px 12px rgba(0, 200, 200, 0.5)",
+                    },
+                  }}
                 >
-                  <Card
+                  <CardMedia
                     sx={{
-                      height: 260,
+                      height: "160px", // Adjust height as needed
                       width: "100%",
-                      maxWidth: 300,
-                      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                      transition: "box-shadow 0.3s ease-in-out",
-                      "&:hover": {
-                        boxShadow: "0 4px 12px rgba(0, 200, 200, 0.5)", // Mixture of light green and blue
-                      },
+                      display: "block",
+                      boxShadow: "inherit",
+                      margin: "0",
+                      overflow: "hidden", // Ensure that the content does not overflow
                     }}
-                  >
-                    <CardMedia
-                      sx={{
-                        height: 140,
-                        backgroundColor: "#ffb534",
-                        display: "block",
-                        boxShadow: "inherit",
-                        margin: "0",
-                      }}
-                      image={webpic}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h4" component="div">
-                        Enrolled course
-                      </Typography>
-                      <Typography variant="h6" color="text.primary">
-                        Web & App Development
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
+                    component="img"
+                    image={card.image}
+                    alt={card.title}
+                    style={{ objectFit: "fill" }} // Ensure the image covers the entire area
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h4" component="div">
+                      {card.title}
+                    </Typography>
+                    <Typography variant="h6" color="text.primary">
+                      {card.description}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
           </Grid>
         </MDBox>
 
