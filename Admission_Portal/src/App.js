@@ -142,6 +142,7 @@ export default function DashboardMain() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
         {role === "register" && (
           <Route path="/authentication/register1" element={<RegisterForm />} />
         )}

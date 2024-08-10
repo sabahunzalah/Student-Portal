@@ -73,15 +73,18 @@ function Basic() {
       });
   
       if (response.data.success) {
+        // Store JWT token and user role in localStorage
         localStorage.setItem("token", response.data.jwtToken);
-        localStorage.setItem("role", role);
-        localStorage.setItem("name", response.data.name);
-  
-        // Redirect based on role
-        if (role === "admin-portal") {
-          navigate("/admin-dashboard");
-        } else if (role === "student-portal") {
-          navigate("/student-dashboard");
+        localStorage.setItem("role", response.data.role);
+
+        // Check the user's role and navigate accordingly
+        if (response.data.role === "admin-portal") {
+          navigate("/admin-dashboard"); // Navigate to AdminDashboard
+        } else if (response.data.role === "student-portal") {
+          navigate("/dashboard"); // Navigate to Student Dashboard
+        } else {
+          // Handle any other roles or show an error if the role is unexpected
+          setErrorMessage("Invalid user role. Please contact support.");
         }
       } else {
         alert(response.data.message);
