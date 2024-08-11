@@ -15,39 +15,16 @@ import MDTypography from "components/MDTypography";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-
+import TickPlacementBars from "./data/BarGrapgh";
+import authorsTableData from "./data/authorsTableData";
+import projectsTableData from "./data/projectsTableData";
+import DataTable from "examples/Tables/DataTable";
 function Dashboard() {
+  const { columns, rows } = authorsTableData();
+  const { columns: pColumns, rows: pRows } = projectsTableData();
   const greenColor = Color("#82bd3e");
   const blueColor = Color("#127168");
   const mixedColor = greenColor.mix(blueColor, 0.5);
-  const newGradient = `linear-gradient(180deg, ${mixedColor.hex()}, #FFF)`;
-  const academicPerformanceData = {
-    labels: ["Course 1", "Course 2", "Course 3"],
-    datasets: [
-      {
-        label: "Grades",
-        data: [88, 92, 85],
-        backgroundColor: "rgba(54, 162, 235, 0.2)",
-        borderColor: "rgba(54, 162, 235, 1)",
-        borderWidth: 1,
-        fill: true,
-      },
-    ],
-  };
-
-  const assignmentsAndExamsData = {
-    labels: ["Assignment 1", "Assignment 2", "Mid-term", "Final Exam"],
-    datasets: [
-      {
-        label: "Grades",
-        data: [85, 90, 75, 80],
-        backgroundColor: "rgba(54, 162, 235, 0.2)",
-        borderColor: "rgba(54, 162, 235, 1)",
-        borderWidth: 1,
-        fill: true,
-      },
-    ],
-  };
   const cardDetails = [
     {
       image: Image2, // Your image import
@@ -66,40 +43,6 @@ function Dashboard() {
     },
   ];
 
-  const attendanceData = {
-    labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
-    datasets: [
-      {
-        label: "Attendance",
-        data: [95, 85, 90, 88],
-        backgroundColor: "rgba(54, 162, 235, 0.2)",
-        borderColor: "rgba(54, 162, 235, 1)",
-        borderWidth: 1,
-        fill: true,
-      },
-    ],
-  };
-
-  const academicPerformanceDetails = [
-    { course: "Course 1", grade: 88 },
-    { course: "Course 2", grade: 92 },
-    { course: "Course 3", grade: 85 },
-  ];
-
-  const assignmentsAndExamsDetails = [
-    { name: "Assignment 1", grade: 85 },
-    { name: "Assignment 2", grade: 90 },
-    { name: "Mid-term", grade: 75 },
-    { name: "Final Exam", grade: 80 },
-  ];
-
-  const attendanceDetails = [
-    { week: "Week 1", attendance: 95 },
-    { week: "Week 2", attendance: 85 },
-    { week: "Week 3", attendance: 90 },
-    { week: "Week 4", attendance: 88 },
-  ];
-
   return (
     <DashboardLayout>
       <MDBox
@@ -109,9 +52,6 @@ function Dashboard() {
           backgroundColor: "#ececec",
           marginTop: 1,
           padding: 2,
-          // backgroundImage: newGradient,
-          // backgroundSize: "100% 100%",
-          // backgroundRepeat: "no-repeat",
         }}
       >
         <MDBox
@@ -214,7 +154,6 @@ function Dashboard() {
             ))}
           </Grid>
         </MDBox>
-
         <MDBox py={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={3}>
@@ -224,6 +163,8 @@ function Dashboard() {
                   icon={quizIcon}
                   count="Quizzes"
                   countColor="success"
+                  amount={2}
+                  label={10}
                 />
               </MDBox>
             </Grid>
@@ -234,6 +175,8 @@ function Dashboard() {
                   icon={projectIcon}
                   count="Projects"
                   countColor="success"
+                  amount={2}
+                  label={25}
                 />
               </MDBox>
             </Grid>
@@ -244,6 +187,8 @@ function Dashboard() {
                   icon={resultIcon}
                   count="Results"
                   countColor="success"
+                  amount={75}
+                  label={100}
                 />
               </MDBox>
             </Grid>
@@ -254,11 +199,20 @@ function Dashboard() {
                   icon={feedbackIcon}
                   count="Feedbacks"
                   countColor="success"
+                  amount={1}
+                  label={3}
                 />
               </MDBox>
             </Grid>
           </Grid>
         </MDBox>
+        <MDBox py={3}>
+          <Grid container>
+            <TickPlacementBars />
+          </Grid>
+        </MDBox>
+        {/* here is the render component for teacher  */}
+      
       </MDBox>
     </DashboardLayout>
   );
