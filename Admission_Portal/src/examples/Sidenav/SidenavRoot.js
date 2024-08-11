@@ -24,7 +24,7 @@ export default styled(Drawer)(({ theme, ownerState }) => {
   const greenColor = Color("#82bd3e");
   const blueColor = Color("#127168");
   const mixedColor = greenColor.mix(blueColor, 0.5);
-  const newGradient = `linear-gradient(180deg, ${mixedColor.hex()}, #FFF)`;
+  const newGradient = `linear-gradient(90deg, ${mixedColor.hex()}, #FFF)`;
 
   const { palette, boxShadows, transitions, breakpoints, functions } = theme;
   const { transparentSidenav, whiteSidenav, miniSidenav, darkMode } = ownerState;
@@ -46,7 +46,6 @@ export default styled(Drawer)(({ theme, ownerState }) => {
 
   // styles for the sidenav when miniSidenav={false}
   const drawerOpenStyles = () => ({
-    // background: "lightgreen",
     backgroundImage: newGradient,
     backgroundSize: "100%",
     backgroundRepeat: "no-repeat",
