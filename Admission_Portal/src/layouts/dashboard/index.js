@@ -2,14 +2,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import MDBox from "components/MDBox";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import Footer from "examples/Footer";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
-import AssignmentsAndExams from "layouts/dashboard/data/AssignmentsAndExams";
-import Attendance from "layouts/dashboard/data/Attendance";
-import AcademicPerformance from "layouts/dashboard/data/AcademicPerformance";
-import { Line } from "react-chartjs-2";
-import Projects from "layouts/dashboard/components/Projects";
-import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 import quizIcon from "assets/images/quiiz.jpeg";
 import projectIcon from "assets/images/projects.jpeg";
 import resultIcon from "assets/images/result.jpeg";
@@ -21,7 +14,6 @@ import Color from "color";
 import MDTypography from "components/MDTypography";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-// import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 
 function Dashboard() {
@@ -60,7 +52,7 @@ function Dashboard() {
     {
       image: Image2, // Your image import
       title: "Courses",
-      description: "Get course detail information.",
+      description: "Courses Information.",
     },
     {
       image: Image, // Your image import
@@ -110,7 +102,6 @@ function Dashboard() {
 
   return (
     <DashboardLayout>
-      <DashboardNavbar />
       <MDBox
         sx={{
           // border: "2px solid green",
@@ -269,19 +260,6 @@ function Dashboard() {
           </Grid>
         </MDBox>
       </MDBox>
-
-      {/* <MDBox>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={8}>
-          </Grid>
-             <Projects />
-          <Grid item xs={12} md={6} lg={4}>
-            <OrdersOverview />
-          </Grid>
-        </Grid>
-      </MDBox> */}
-
-      {/* <Footer /> */}
     </DashboardLayout>
   );
 }

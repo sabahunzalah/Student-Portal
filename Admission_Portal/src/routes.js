@@ -49,6 +49,10 @@ import SignUp from "layouts/authentication/sign-up";
 import Icon from "@mui/material/Icon";
 import RegisterForm from "layouts/authentication/RegisterForm/register";
 import AdminDashboard from "layouts/AdminDashboard";
+import AttendanceProgress from "layouts/AttendanceProgress";
+import Fees from "layouts/Fees";
+import TeacherNotifications from "layouts/TeacherNotifications";
+import Participants from "layouts/Participants";
 // import Basic from "layouts/authentication/sign-in";
 
 const routes = [
@@ -64,7 +68,7 @@ const routes = [
     type: "collapse",
     name: "Register Course",
     key: "register1",
-    icon: <Icon fontSize="small" >dashboard</Icon>,
+    icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/authentication/register1",
     component: <RegisterForm />,
   },
@@ -76,14 +80,6 @@ const routes = [
     route: "/tables",
     component: <Tables />,
   },
-  // {
-  //   type: "collapse",
-  //   name: "Quiz",
-  //   key: "rtl",
-  //   icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-  //   route: "/billing",
-  //   component: <RTL />,
-  // },
   {
     type: "collapse",
     name: "Fees",
@@ -113,7 +109,7 @@ const routes = [
     name: "Sign In",
     key: "sign-in",
     icon: <Icon fontSize="small">login</Icon>,
-    route: "/authentication/sign-in",
+    route: "/authentication/sign-in",   
     component: <SignIn />,
   },
   {
@@ -133,6 +129,38 @@ export const AdminRoutes = [
     icon: <Icon fontSize="small">admin_panel_settings</Icon>,
     route: "/admin-dashboard",
     component: <AdminDashboard />,
+  },
+  {
+    type: "collapse",
+    name: "Attendence",
+    key: "tables",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/attendence",
+    component: <AttendanceProgress />,
+  },
+  {
+    type: "collapse",
+    name: "Fees",
+    key: "Fees",
+    icon: <Icon fontSize="small">receipt_long</Icon>,
+    route: "/fees",
+    component: <Fees />,
+  },
+  {
+    type: "collapse",
+    name: "Notification",
+    key: "Teacher-Notification",
+    icon: <Icon fontSize="small">notifications</Icon>,
+    route: "/admin-notifications",
+    component: <TeacherNotifications />,
+  },
+  {
+    type: "collapse",
+    name: "Participants",
+    key: "profile",
+    icon: <Icon fontSize="small">person</Icon>,
+    route: "/participants",
+    component: <Participants />,
   },
 ];
 export default routes;
