@@ -8,6 +8,8 @@ import AssignmentsAndExams from "layouts/dashboard/data/AssignmentsAndExams";
 import Attendance from "layouts/dashboard/data/Attendance";
 import AcademicPerformance from "layouts/dashboard/data/AcademicPerformance";
 import { Line } from "react-chartjs-2";
+import Projects from "layouts/dashboard/components/Projects";
+import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 import quizIcon from "assets/images/quiiz.jpeg";
 import projectIcon from "assets/images/projects.jpeg";
 import resultIcon from "assets/images/result.jpeg";
@@ -27,7 +29,6 @@ function Dashboard() {
   const blueColor = Color("#127168");
   const mixedColor = greenColor.mix(blueColor, 0.5);
   const newGradient = `linear-gradient(180deg, ${mixedColor.hex()}, #FFF)`;
-
   const academicPerformanceData = {
     labels: ["Course 1", "Course 2", "Course 3"],
     datasets: [
@@ -55,6 +56,23 @@ function Dashboard() {
       },
     ],
   };
+  const cardDetails = [
+    {
+      image: Image2, // Your image import
+      title: "Courses",
+      description: "Get course detail information.",
+    },
+    {
+      image: Image, // Your image import
+      title: "Teachers",
+      description: "Smit Teachers.",
+    },
+    {
+      image: Image3, // Your image import
+      title: "Class schedule",
+      description: "Timings and Days.",
+    },
+  ];
 
   const attendanceData = {
     labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
@@ -70,28 +88,32 @@ function Dashboard() {
     ],
   };
 
-  const cardDetails = [
-    {
-      image: Image2,
-      title: "Courses",
-      description: "Get course detail information.",
-    },
-    {
-      image: Image,
-      title: "Teachers",
-      description: "Smit Teachers.",
-    },
-    {
-      image: Image3,
-      title: "Class schedule",
-      description: "Timings and Days.",
-    },
+  const academicPerformanceDetails = [
+    { course: "Course 1", grade: 88 },
+    { course: "Course 2", grade: 92 },
+    { course: "Course 3", grade: 85 },
+  ];
+
+  const assignmentsAndExamsDetails = [
+    { name: "Assignment 1", grade: 85 },
+    { name: "Assignment 2", grade: 90 },
+    { name: "Mid-term", grade: 75 },
+    { name: "Final Exam", grade: 80 },
+  ];
+
+  const attendanceDetails = [
+    { week: "Week 1", attendance: 95 },
+    { week: "Week 2", attendance: 85 },
+    { week: "Week 3", attendance: 90 },
+    { week: "Week 4", attendance: 88 },
   ];
 
   return (
     <DashboardLayout>
+      <DashboardNavbar />
       <MDBox
         sx={{
+          // border: "2px solid green",
           borderRadius: "10px",
           backgroundColor: "#ececec",
           marginTop: 1,
@@ -107,6 +129,7 @@ function Dashboard() {
             justifyContent: "flex start",
             gap: "10px",
             backgroundColor: "#ffffff",
+            // border: "2px solid black",
             borderRadius: "10px",
             padding: 2,
           }}
@@ -122,8 +145,11 @@ function Dashboard() {
                 justifyContent: "flex start",
                 alignItems: "center",
                 gap: "10px",
+
+                // border: "2px solid black",
               }}
             >
+              {/* <Projects /> */}
               <MDTypography
                 sx={{
                   height: 50,
@@ -131,16 +157,15 @@ function Dashboard() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  fontSize: "2rem",
+                  fontSize: "2rem", // Adjust font size to fit the container
                 }}
               >
                 👋
               </MDTypography>
-              <MDTypography>Hi student, welcome to SMIT!</MDTypography>
+              <MDTypography>Hi student welcome to SMIT!</MDTypography>
             </Grid>
           </Grid>
         </MDBox>
-
         <MDBox
           sx={{
             borderRadius: "10px",
@@ -173,17 +198,17 @@ function Dashboard() {
                 >
                   <CardMedia
                     sx={{
-                      height: "160px",
+                      height: "160px", // Adjust height as needed
                       width: "100%",
                       display: "block",
                       boxShadow: "inherit",
                       margin: "0",
-                      overflow: "hidden",
+                      overflow: "hidden", // Ensure that the content does not overflow
                     }}
                     component="img"
                     image={card.image}
                     alt={card.title}
-                    style={{ objectFit: "fill" }}
+                    style={{ objectFit: "fill" }} // Ensure the image covers the entire area
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h4" component="div">
@@ -245,7 +270,18 @@ function Dashboard() {
         </MDBox>
       </MDBox>
 
-      <Footer />
+      {/* <MDBox>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6} lg={8}>
+          </Grid>
+             <Projects />
+          <Grid item xs={12} md={6} lg={4}>
+            <OrdersOverview />
+          </Grid>
+        </Grid>
+      </MDBox> */}
+
+      {/* <Footer /> */}
     </DashboardLayout>
   );
 }

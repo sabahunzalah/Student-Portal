@@ -21,16 +21,15 @@ import {
   assignmentsAndExamsDetails,
   attendanceDetails,
 } from "./data";
+import BgCardMain from "./components";
 function AdminDashboard() {
   return (
     <DashboardLayout>
       <MDBox>
-        <Grid container spacing={3}>
-          {/* <Grid item xs={12} md={6} lg={8}>
-            <Projects />
-          </Grid> */}
-          <Grid item xs={12} md={6} lg={4}>
-            <OrdersOverview />
+        <Grid container>
+          <Grid item xs={12} md={12} lg={12}>
+            {/* <BgCardMain /> */}
+            {/* <Projects /> */}
           </Grid>
         </Grid>
       </MDBox>
@@ -83,7 +82,7 @@ function AdminDashboard() {
               <MDBox mb={3}>
                 <Line
                   data={academicPerformanceData}
-                  options={{ plugins: { legend: { display: false } } }}
+                  options={{ plugins: { legend: { display: false } } ``}}
                 />
                 <AcademicPerformance data={academicPerformanceDetails} />
               </MDBox>
