@@ -64,14 +64,7 @@ const routes = [
     route: "/student-dashboard",
     component: <Dashboard />,
   },
-  {
-    type: "collapse",
-    name: "Register Course",
-    key: "register1",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/authentication/register1",
-    component: <RegisterForm />,
-  },
+
   {
     type: "collapse",
     name: "Courses",
@@ -106,6 +99,14 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Register Course",
+    key: "register1",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/authentication/register1",
+    component: <RegisterForm />,
+  },
+  {
+    type: "collapse",
     name: "Sign In",
     key: "sign-in",
     icon: <Icon fontSize="small">login</Icon>,
@@ -131,6 +132,7 @@ export const AdminRoutes = [
     component: <AdminDashboard />,
   },
   {
+    
     type: "collapse",
     name: "Attendence",
     key: "tables",
@@ -159,7 +161,7 @@ export const AdminRoutes = [
     name: "Participants",
     key: "profile",
     icon: <Icon fontSize="small">person</Icon>,
-    route: "/participants",
+    route: "/admin-dashboard/participants",
     component: <Participants />,
   },
 ];

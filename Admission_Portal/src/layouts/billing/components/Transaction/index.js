@@ -24,9 +24,9 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
 
-function Transaction({ color, icon, name, description, value }) {
+function Transaction({ color, icon, studentName, transactionDate, feesAmount }) {
   return (
-    <MDBox key={name} component="li" py={1} pr={2} mb={1}>
+    <MDBox key={studentName} component="li" py={1} pr={2} mb={1}>
       <MDBox display="flex" justifyContent="space-between" alignItems="center">
         <MDBox display="flex" alignItems="center">
           <MDBox mr={2}>
@@ -36,22 +36,22 @@ function Transaction({ color, icon, name, description, value }) {
           </MDBox>
           <MDBox display="flex" flexDirection="column">
             <MDTypography variant="button" fontWeight="medium" gutterBottom>
-              {name}
+              {studentName}
             </MDTypography>
             <MDTypography variant="caption" color="text" fontWeight="regular">
-              {description}
+              {transactionDate}
             </MDTypography>
           </MDBox>
         </MDBox>
         <MDTypography variant="button" color={color} fontWeight="medium" textGradient>
-          {value}
+          {feesAmount}
         </MDTypography>
       </MDBox>
     </MDBox>
   );
 }
 
-// Typechecking props of the Transaction
+// Typechecking props of the StudentTransaction
 Transaction.propTypes = {
   color: PropTypes.oneOf([
     "primary",
@@ -64,9 +64,9 @@ Transaction.propTypes = {
     "dark",
   ]).isRequired,
   icon: PropTypes.node.isRequired,
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  studentName: PropTypes.string.isRequired,
+  transactionDate: PropTypes.string.isRequired,
+  feesAmount: PropTypes.string.isRequired,
 };
 
 export default Transaction;

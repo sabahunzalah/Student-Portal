@@ -29,19 +29,19 @@ function Invoices() {
     <Card sx={{ height: "100%" }}>
       <MDBox pt={2} px={2} display="flex" justifyContent="space-between" alignItems="center">
         <MDTypography variant="h6" fontWeight="medium">
-          Invoices
+          Student Invoices
         </MDTypography>
         <MDButton variant="outlined" color="info" size="small">
-          view all
+          View All
         </MDButton>
       </MDBox>
       <MDBox p={2}>
         <MDBox component="ul" display="flex" flexDirection="column" p={0} m={0}>
-          <Invoice date="March, 01, 2020" id="#MS-415646" price="$180" />
-          <Invoice date="February, 10, 2021" id="#RV-126749" price="$250" />
-          <Invoice date="April, 05, 2020" id="#QW-103578" price="$120" />
-          <Invoice date="June, 25, 2019" id="#MS-415646" price="$180" />
-          <Invoice date="March, 01, 2019" id="#AR-803481" price="$300" noGutter />
+          <Invoice date="April 25, 2024" id="#ST-202401" price="Rs 1023" />
+          <Invoice date="May 15, 2024" id="#ST-202401" price="Rs 1023" />
+          <Invoice date="June 20, 2024" id="#ST-202401" price="Rs 1023" />
+          <Invoice date="July 30, 2024" id="#ST-202401" price="Rs 1023" />
+          <Invoice date="August 18, 2024" id="#ST-202401" price="Rs 1023" noGutter />
         </MDBox>
       </MDBox>
     </Card>

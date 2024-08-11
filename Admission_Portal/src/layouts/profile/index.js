@@ -54,7 +54,49 @@ import team4 from "assets/images/team-4.jpg";
 function Overview() {
   return (
     <DashboardLayout>
-      <DashboardNavbar />
+      {/* <DashboardNavbar /> */}
+      <MDBox
+        sx={{
+          display: "flex",
+          justifyContent: "flex start",
+          gap: "10px",
+          backgroundColor: "#ffffff",
+          // border: "2px solid black",
+          borderRadius: "10px",
+          padding: 2,
+        }}
+      >
+        <Grid container spacing={3}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            lg={12}
+            style={{
+              display: "flex",
+              justifyContent: "flex start",
+              alignItems: "center",
+              gap: "10px",
+
+              // border: "2px solid black",
+            }}
+          >
+            <MDTypography
+              sx={{
+                height: 50,
+                width: 50,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "2rem", // Adjust font size to fit the container
+              }}
+            >
+              👋
+            </MDTypography>
+            <MDTypography>Hi student welcome to SMIT!</MDTypography>
+          </Grid>
+        </Grid>
+      </MDBox>
       <MDBox mb={2} />
       <Header>
         <MDBox
