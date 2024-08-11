@@ -4,37 +4,43 @@ import Divider from "@mui/material/Divider";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
-function ComplexStatisticsCard({ color, icon, count, countColor, title, percentage }) {
+function ComplexStatisticsCard({
+  color,
+  icon,
+  count,
+  countColor,
+  title,
+  percentage,
+  amount,
+  label,
+}) {
   return (
     <Card>
-      <MDBox display="flex" justifyContent="space-between" alignItems="center" p={2}>
+      <MDBox display="flex" justifyContent="space-between" alignItems="center" p={1}>
         <MDBox
           display="flex"
           justifyContent="center"
           alignItems="center"
-          width="5rem"
-          height="5rem"
+          width="3rem"
+          height="3rem"
         >
           <img src={icon} alt="icon" style={{ width: "100%", height: "100%" }} />
         </MDBox>
         <MDBox textAlign="right" lineHeight={1.25}>
-          <MDTypography variant="h6" color={countColor ? countColor : "success"}>
+          <MDTypography variant="h5" color={countColor ? countColor : "info"} letterSpacing={2}>
             {count}
           </MDTypography>
         </MDBox>
       </MDBox>
       <Divider />
-      <MDBox pb={2} px={2}>
+      <MDBox px={2}>
         <MDTypography component="p" variant="button" color="text" display="flex">
-          <MDTypography
-            component="span"
-            variant="button"
-            fontWeight="bold"
-            color={percentage.color}
-          >
-            {percentage.amount}
+          <MDTypography component="span" variant="h2" fontWeight="bold" color={percentage.color}>
+            {amount}
           </MDTypography>
-          &nbsp;{percentage.label}
+          <MDTypography variant="h2" fontWeight="bold" color="inherit">
+            &nbsp; / {label}
+          </MDTypography>
         </MDTypography>
       </MDBox>
     </Card>
