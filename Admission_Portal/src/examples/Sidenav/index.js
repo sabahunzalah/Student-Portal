@@ -182,7 +182,7 @@ function Sidenav({ brand, brandName, routes, ...rest }) {
       <MDBox p={2} mt="auto">
         <MDButton
           component="a"
-          href="#"
+          href="/authentication/sign-in"
           rel="noreferrer"
           variant="gradient"
           color={sidenavColor}

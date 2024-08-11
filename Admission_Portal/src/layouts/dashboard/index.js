@@ -18,7 +18,7 @@ import CardContent from "@mui/material/CardContent";
 import TickPlacementBars from "./data/BarGrapgh";
 import authorsTableData from "./data/authorsTableData";
 import projectsTableData from "./data/projectsTableData";
-import DataTable from "examples/Tables/DataTable";
+// import DataTable from "examples/Tables/DataTable";
 function Dashboard() {
   const { columns, rows } = authorsTableData();
   const { columns: pColumns, rows: pRows } = projectsTableData();
