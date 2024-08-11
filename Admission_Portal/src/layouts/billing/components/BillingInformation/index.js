@@ -25,31 +25,31 @@ import Bill from "layouts/billing/components/Bill";
 
 function BillingInformation() {
   return (
-    <Card id="delete-account">
+    <Card id="student-fees-detail">
       <MDBox pt={3} px={2}>
         <MDTypography variant="h6" fontWeight="medium">
-          Billing Information
+          Student Fees Detail
         </MDTypography>
       </MDBox>
       <MDBox pt={1} pb={2} px={2}>
         <MDBox component="ul" display="flex" flexDirection="column" p={0} m={0}>
           <Bill
-            name="oliver liam"
-            company="viking burrito"
-            email="oliver@burrito.com"
-            vat="FRB1235476"
+            name="Ayesha Khan"
+            studentId="ST-202401"
+            email="ayesha.khan@example.com"
+            feesPaid="Rs 1023"
           />
           <Bill
-            name="lucas harper"
-            company="stone tech zone"
-            email="lucas@stone-tech.com"
-            vat="FRB1235476"
+            name="Ahmed Ali"
+            studentId="ST-202402"
+            email="ahmed.ali@example.com"
+            feesPaid="Rs 1023"
           />
           <Bill
-            name="ethan james"
-            company="fiber notion"
-            email="ethan@fiber.com"
-            vat="FRB1235476"
+            name="Sara Malik"
+            studentId="ST-202403"
+            email="sara.malik@example.com"
+            feesPaid="Rs 1023"
             noGutter
           />
         </MDBox>

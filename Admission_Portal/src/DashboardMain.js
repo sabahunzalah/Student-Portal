@@ -42,7 +42,7 @@ import Register from "./layouts/authentication/RegisterForm/index"; // Import yo
 import AdminDashboard from "layouts/AdminDashboard";
 import React from "react";
 import Dashboard from "layouts/dashboard";
-import SignIn from "layouts/authentication/sign-in";
+// import SignIn from "layouts/authentication/sign-in";
 import { AdminRoutes } from "routes";
 
 export default function DashboardMain() {
@@ -166,8 +166,8 @@ export default function DashboardMain() {
             <Sidenav
               color={sidenavColor}
               brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-              brandName={role === "student-portal" ? "Student Portal" : "Admin Portal"}
-              routes={routes}
+              
+              routes={role === "student-portal" ? "Student Portal" : "Admin Portal"}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
             />

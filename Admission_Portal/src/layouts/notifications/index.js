@@ -46,13 +46,13 @@ function Notifications() {
   const openErrorSB = () => setErrorSB(true);
   const closeErrorSB = () => setErrorSB(false);
 
-  const alertContent = (name) => (
+  const alertContent = (title, description) => (
     <MDTypography variant="body2" color="white">
-      A simple {name} alert with{" "}
+      {description}{" "}
       <MDTypography component="a" href="#" variant="body2" fontWeight="medium" color="white">
-        an example link
+        Read more
       </MDTypography>
-      . Give it a click if you like.
+      .
     </MDTypography>
   );
 
@@ -60,9 +60,9 @@ function Notifications() {
     <MDSnackbar
       color="success"
       icon="check"
-      title="Material Dashboard"
-      content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
+      title="Project Marks Updated"
+      content="Congratulations! Your project marks have been updated."
+      dateTime="Just now"
       open={successSB}
       onClose={closeSuccessSB}
       close={closeSuccessSB}
@@ -73,9 +73,9 @@ function Notifications() {
   const renderInfoSB = (
     <MDSnackbar
       icon="notifications"
-      title="Material Dashboard"
-      content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
+      title="Class Schedule Updated"
+      content="Your class schedule has been updated. Check the new timings."
+      dateTime="5 mins ago"
       open={infoSB}
       onClose={closeInfoSB}
       close={closeInfoSB}
@@ -86,9 +86,9 @@ function Notifications() {
     <MDSnackbar
       color="warning"
       icon="star"
-      title="Material Dashboard"
-      content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
+      title="Upcoming Test"
+      content="Don't forget your upcoming test next week. Prepare well!"
+      dateTime="15 mins ago"
       open={warningSB}
       onClose={closeWarningSB}
       close={closeWarningSB}
@@ -100,9 +100,9 @@ function Notifications() {
     <MDSnackbar
       color="error"
       icon="warning"
-      title="Material Dashboard"
-      content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
+      title="Due Fees Alert"
+      content="You have overdue fees. Please clear your dues to avoid penalties."
+      dateTime="30 mins ago"
       open={errorSB}
       onClose={closeErrorSB}
       close={closeErrorSB}
@@ -112,7 +112,47 @@ function Notifications() {
 
   return (
     <DashboardLayout>
-      <DashboardNavbar />
+      {/* <DashboardNavbar /> */}
+      <MDBox
+        sx={{
+          display: "flex",
+          justifyContent: "flex start",
+          gap: "10px",
+          backgroundColor: "#ffffff",
+          borderRadius: "10px",
+          padding: 2,
+        }}
+      >
+        <Grid container spacing={3}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            lg={12}
+            style={{
+              display: "flex",
+              justifyContent: "flex start",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            {/* <Projects /> */}
+            <MDTypography
+              sx={{
+                height: 50,
+                width: 50,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "2rem", // Adjust font size to fit the container
+              }}
+            >
+              👋
+            </MDTypography>
+            <MDTypography>Hi student, welcome to SMIT!</MDTypography>
+          </Grid>
+        </Grid>
+      </MDBox>
       <MDBox mt={6} mb={3}>
         <Grid container spacing={3} justifyContent="center">
           <Grid item xs={12} lg={8}>
@@ -121,29 +161,17 @@ function Notifications() {
                 <MDTypography variant="h5">Alerts</MDTypography>
               </MDBox>
               <MDBox pt={2} px={2}>
-                <MDAlert color="primary" dismissible>
-                  {alertContent("primary")}
+                <MDAlert color="primary" dismissible sx={{ "&:hover": { backgroundColor: "#e0e0e0" } }}>
+                  {alertContent("Project Marks", "Your project marks have been updated.")}
                 </MDAlert>
-                <MDAlert color="secondary" dismissible>
-                  {alertContent("secondary")}
+                <MDAlert color="secondary" dismissible sx={{ "&:hover": { backgroundColor: "#e0e0e0" } }}>
+                  {alertContent("Class Schedule", "Your class schedule has been updated.")}
                 </MDAlert>
-                <MDAlert color="success" dismissible>
-                  {alertContent("success")}
+                <MDAlert color="success" dismissible sx={{ "&:hover": { backgroundColor: "#e0e0e0" } }}>
+                  {alertContent("Upcoming Test", "Prepare for your upcoming test next week.")}
                 </MDAlert>
-                <MDAlert color="error" dismissible>
-                  {alertContent("error")}
-                </MDAlert>
-                <MDAlert color="warning" dismissible>
-                  {alertContent("warning")}
-                </MDAlert>
-                <MDAlert color="info" dismissible>
-                  {alertContent("info")}
-                </MDAlert>
-                <MDAlert color="light" dismissible>
-                  {alertContent("light")}
-                </MDAlert>
-                <MDAlert color="dark" dismissible>
-                  {alertContent("dark")}
+                <MDAlert color="error" dismissible sx={{ "&:hover": { backgroundColor: "#e0e0e0" } }}>
+                  {alertContent("Due Fees", "You have overdue fees. Please clear your dues.")}
                 </MDAlert>
               </MDBox>
             </Card>
@@ -161,25 +189,25 @@ function Notifications() {
                 <Grid container spacing={3}>
                   <Grid item xs={12} sm={6} lg={3}>
                     <MDButton variant="gradient" color="success" onClick={openSuccessSB} fullWidth>
-                      success notification
+                      Project Marks
                     </MDButton>
                     {renderSuccessSB}
                   </Grid>
                   <Grid item xs={12} sm={6} lg={3}>
                     <MDButton variant="gradient" color="info" onClick={openInfoSB} fullWidth>
-                      info notification
+                      Class Schedule
                     </MDButton>
                     {renderInfoSB}
                   </Grid>
                   <Grid item xs={12} sm={6} lg={3}>
                     <MDButton variant="gradient" color="warning" onClick={openWarningSB} fullWidth>
-                      warning notification
+                      Upcoming Test
                     </MDButton>
                     {renderWarningSB}
                   </Grid>
                   <Grid item xs={12} sm={6} lg={3}>
                     <MDButton variant="gradient" color="error" onClick={openErrorSB} fullWidth>
-                      error notification
+                      Due Fees
                     </MDButton>
                     {renderErrorSB}
                   </Grid>
