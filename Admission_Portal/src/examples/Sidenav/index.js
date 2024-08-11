@@ -53,7 +53,7 @@ function Sidenav({ brand, brandName, routes, ...rest }) {
   const location = useLocation();
   const collapseName = location.pathname.replace("/", "");
 
-  let textColor = "white";
+  let textColor = "black";
 
   if (transparentSidenav || (whiteSidenav && !darkMode)) {
     textColor = "dark";
@@ -96,7 +96,7 @@ function Sidenav({ brand, brandName, routes, ...rest }) {
           rel="noreferrer"
           sx={{ textDecoration: "none" }}
         >
-          <SidenavCollapse
+          <SidenavCollapse 
             name={name}
             icon={icon}
             active={key === collapseName}
@@ -178,7 +178,7 @@ function Sidenav({ brand, brandName, routes, ...rest }) {
           (darkMode && !transparentSidenav && whiteSidenav)
         }
       />
-      <List>{renderRoutes}</List>
+      <List style={{color:"black"}}>{renderRoutes}</List>
       <MDBox p={2} mt="auto">
         <MDButton
           component="a"

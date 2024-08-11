@@ -1,4 +1,5 @@
 import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import MDBox from "components/MDBox";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Footer from "examples/Footer";
@@ -13,19 +14,15 @@ import quizIcon from "assets/images/quiiz.jpeg";
 import projectIcon from "assets/images/projects.jpeg";
 import resultIcon from "assets/images/result.jpeg";
 import feedbackIcon from "assets/images/feedbacks.jpeg";
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import MDTypography from "components/MDTypography";
-import Image from "../../assets/images/teacher2.png";
-import Image2 from "../../assets/images/laptopbook.jpeg";
-import Image3 from "../../assets/images/clander1.png";
+import Image from "../../assets/images/teapic.jpeg";
+import Image2 from "../../assets/images/propic.png";
+import Image3 from "../../assets/images/timepic.jpeg";
 import Color from "color";
+import MDTypography from "components/MDTypography";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+// import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
 
 function Dashboard() {
   const greenColor = Color("#82bd3e");
@@ -118,13 +115,12 @@ function Dashboard() {
         sx={{
           // border: "2px solid green",
           borderRadius: "10px",
-          backgroundColor: "white",
+          backgroundColor: "#ececec",
           marginTop: 1,
           padding: 2,
-
-          backgroundImage: newGradient,
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "no-repeat",
+          // backgroundImage: newGradient,
+          // backgroundSize: "100% 100%",
+          // backgroundRepeat: "no-repeat",
         }}
       >
         <MDBox
@@ -271,37 +267,6 @@ function Dashboard() {
               </MDBox>
             </Grid>
           </Grid>
-          <MDBox mt={4.5}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={6} lg={4}>
-                <MDBox mb={3}>
-                  <Line
-                    data={academicPerformanceData}
-                    options={{ plugins: { legend: { display: false } } }}
-                  />
-                  <AcademicPerformance data={academicPerformanceDetails} />
-                </MDBox>
-              </Grid>
-              <Grid item xs={12} md={6} lg={4}>
-                <MDBox mb={3}>
-                  <Line
-                    data={assignmentsAndExamsData}
-                    options={{ plugins: { legend: { display: false } } }}
-                  />
-                  <AssignmentsAndExams data={assignmentsAndExamsDetails} />
-                </MDBox>
-              </Grid>
-              <Grid item xs={12} md={6} lg={4}>
-                <MDBox mb={3}>
-                  <Line
-                    data={attendanceData}
-                    options={{ plugins: { legend: { display: false } } }}
-                  />
-                  <Attendance data={attendanceDetails} />
-                </MDBox>
-              </Grid>
-            </Grid>
-          </MDBox>
         </MDBox>
       </MDBox>
 

@@ -39,7 +39,6 @@ Coded by www.creative-tim.com
 import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
 import Billing from "layouts/billing";
-import RTL from "layouts/rtl";
 import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
@@ -65,7 +64,7 @@ const routes = [
     type: "collapse",
     name: "Register Course",
     key: "register1",
-    icon: <Icon fontSize="small">dashboard</Icon>,
+    icon: <Icon fontSize="small" >dashboard</Icon>,
     route: "/authentication/register1",
     component: <RegisterForm />,
   },
