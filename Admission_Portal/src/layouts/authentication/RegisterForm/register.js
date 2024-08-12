@@ -478,7 +478,7 @@ function RegisterForm() {
                 </Grid>
 
                 <Grid container spacing={0} style={{ margin: 0 }}>
-                  <Grid item xs={12} sm={2} md={2} style={{ padding: 0 }}>
+                  <Grid item xs={12} sm={6} md={4} style={{ padding: 0 }}>
                     <InputLabel className="form-label">Upload your picture</InputLabel>
                     <div className="upload-container">
                       <input
@@ -507,7 +507,7 @@ function RegisterForm() {
                     {formError.picture && <div className="form-error">{formError.picture}</div>}
                   </Grid>
 
-                  <Grid item xs={12} sm={10} md={10} style={{ padding: 0 }}>
+                  <Grid item xs={12} sm={6} md={8} style={{ padding: 0 }}>
                     <MDTypography variant="body1">
                       Please ensure that your photo is clear and recent. This photo will be used for
                       your identification purposes. Ensure the photo meets the following criteria:

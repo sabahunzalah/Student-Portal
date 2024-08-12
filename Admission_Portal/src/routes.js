@@ -99,7 +99,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Register Course",
+    name: "Registration Form",
     key: "register1",
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/authentication/register1",
