@@ -18,8 +18,39 @@ import CardContent from "@mui/material/CardContent";
 import TickPlacementBars from "./data/BarGrapgh";
 import authorsTableData from "./data/authorsTableData";
 import projectsTableData from "./data/projectsTableData";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 // import DataTable from "examples/Tables/DataTable";
-function Dashboard() {
+function Dashboard() {  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const fetchUserName = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        
+        if (!token) {
+          console.error("No token found");
+          return;
+        }
+
+        const response = await axios.get("http://localhost:8080/api/user", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.data.name) {
+          setUserName(response.data.name);
+        } else {
+          console.error("User not found");
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error.response?.data || error.message);
+      }
+    };
+
+    fetchUserName();
+  }, []);
   const { columns, rows } = authorsTableData();
   const { columns: pColumns, rows: pRows } = projectsTableData();
   const greenColor = Color("#82bd3e");
@@ -93,7 +124,11 @@ function Dashboard() {
               >
                 👋
               </MDTypography>
-              <MDTypography>Hi student welcome to SMIT!</MDTypography>
+              <MDTypography>
+                {/* Hi student welcome to SMIT! */}
+                 Hello {userName}, welcome to SMIT
+                
+              </MDTypography>
             </Grid>
           </Grid>
         </MDBox>
@@ -212,7 +247,6 @@ function Dashboard() {
           </Grid>
         </MDBox>
         {/* here is the render component for teacher  */}
-      
       </MDBox>
     </DashboardLayout>
   );
