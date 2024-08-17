@@ -1,20 +1,29 @@
-import jwt from "jsonwebtoken"
-import dotenv from "dotenv"
-dotenv.config({ path: "../.env" })
-const ensureAuthenticated = (req,res,next)=>{
- const auth = req.headers['authorization'];
- if(!auth){
-    return res.status(403).send({message:'Unauthorized ,jwt  token is required'});}
 
-    try {
-        const decoded = jwt.verify(auth,process.env.JWT_SECRET);
-        req.User = decoded
-        next()
-        
-    } catch (error) {
-    return res.status(403).send({message:'Unauthorized ,jwt  token is wrong or expired'});}
-        
-    }
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import User from "../models/User.js";
 
+dotenv.config({ path: "../.env" });
 
-export default ensureAuthenticated;
+const authenticateToken = async (req, res, next) => {
+
+const authHeader = req.headers['authorization'];
+const token = authHeader && authHeader.split(' ')[1];
+
+if (token == null) {
+  console.log("Token is missing");
+  return res.sendStatus(401); // Unauthorized if no token
+}
+
+jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  if (err) {
+    console.log("Token verification failed:", err.message);
+    return res.sendStatus(403); // Forbidden if token is invalid
+  }
+
+  req.user = user;
+  next();
+});
+
+}
+export default authenticateToken;
