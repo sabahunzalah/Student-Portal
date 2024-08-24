@@ -36,31 +36,7 @@ function Basic() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate(); // for programmatic navigation
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
 
-  //   try {
-  //     const response = await axios.post("http://localhost:8080/api/login", {
-  //       email,
-  //       password,
-  //     });
-
-  //     if (response.data.success) {
-  //       // alert(`Welcome, ${response.data.user.name}! You have been successfully logged in.`);
-  //       // // Redirect to dashboard if login is successful
-  //       // navigate("/dashboard");
-  //       localStorage.setItem("token", response.data.jwtToken);
-  //       localStorage.setItem("role", response.data.role);
-  //       navigate("/dashboard");
-  //     } else {
-  //       // Handle login failure
-  //       setErrorMessage("Invalid email or password. Please try again.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error logging in:", error.response?.data || error.message);
-  //     alert("An error occurred. Please try again later.");
-  //   }
-  // };
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -74,6 +50,7 @@ function Basic() {
         // Store JWT token and user role in localStorage
         localStorage.setItem("token", response.data.jwtToken);
         localStorage.setItem("role", response.data.role);
+        localStorage.setItem("name", response.data.name);
 
         // Check the user's role and navigate accordingly
         if (response.data.role === "admin-portal") {
