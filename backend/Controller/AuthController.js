@@ -18,14 +18,14 @@ const userSignup = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const UserModel = new User({ name, email, password: hashedPassword, role });
-    await UserModel.save();
+    const user = new User({ name, email, password: hashedPassword, role });
+    await user.save();
 
     const payload = {
       user: {
-        id: UserModel._id,  // Use UserModel._id
-        role: UserModel.role,
-        name: UserModel.name,
+        id: user._id,  // Use UserModel._id
+        role: user.role,
+        name:user.name,
       },
     };
 
@@ -35,8 +35,8 @@ const userSignup = async (req, res) => {
       message: "User registered successfully",
       jwtToken,
       user: {
-        name: UserModel.name,
-        role: UserModel.role,
+        name: user.name,
+        role: user.role,
       },
     });
   } catch (error) {

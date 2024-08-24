@@ -3,10 +3,10 @@ import User from '../models/User.js';
 
 const getUser = async (req, res) => {
     try {
-      
+   
+        const user = await User.findById(req.user._id);
+        console.log(req.user);
 
-        // // Fetch the user based on the ID from the token
-        const user = await User.findById(req.user.id);
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });

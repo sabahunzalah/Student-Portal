@@ -51,21 +51,21 @@ function Cover() {
         password,
         role,
       });
-
       if (response.data.success) {
-        alert("Registration successful");
-        console.log(response.data)
+        // Store JWT token, role, and name in localStorage
         localStorage.setItem("token", response.data.jwtToken);
         localStorage.setItem("role", role);
-        localStorage.setItem("name", response.data.name);
-
+        localStorage.setItem("name", response.data.name);  // Store the name
+        
+    
         // Redirect based on role
         if (role === "admin-portal") {
-          navigate("/admin-dashboard");
+            navigate("/admin-dashboard");
         } else if (role === "student-portal") {
-          navigate("/student-dashboard");
+            navigate("/student-dashboard");
         }
-      } else {
+    }
+    else {
         alert(response.data.message);
       }
     } catch (error) {
